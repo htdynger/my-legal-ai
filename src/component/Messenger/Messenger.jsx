@@ -33,6 +33,7 @@ const Messenger = () => {
 
 
     useEffect(() => {
+        
         messengerWrapperRef.current.classList.remove('messenger-wrapper-animation')
 
         void messengerWrapperRef.current.offsetWidth

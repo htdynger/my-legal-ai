@@ -47,12 +47,13 @@ const Header = () => {
 
         navigate(path)
 
-        if (path === '/') {
+        if (location.pathname === '/' && path === '/') {
+
             addNewChat()
 
         } else {
-            unSelectChat()
             closeChat()
+            unSelectChat()
             setChatInstantEnabled(false)
         }
 

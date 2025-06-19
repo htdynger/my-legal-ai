@@ -373,9 +373,17 @@ const DocumentSection = () => {
 
 const DocumentGenerationAi = ({ editorProp }) => {
 
-    const { selectedChat, data, setData, handleSelectChat } = useChatStore()
-    const { toggleChat } = useVisualStore()
 
+
+    const { selectedChat, data, setData, handleSelectChat, unSelectChat } = useChatStore()
+    const { toggleChat, closeChat } = useVisualStore()
+
+
+
+    useEffect(() => {
+      closeChat()
+      unSelectChat()
+    }, [])
     const bigVideoRef = useRef();
     const smallVideoRef = useRef();
     const messengerRef = useRef();
