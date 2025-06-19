@@ -1,0 +1,52 @@
+/* button {
+    background-color: transparent;
+    border: 0;
+}
+* {
+    scrollbar-width: none;  
+    box-sizing: border-box;
+
+}
+
+.hidden {
+    display: none !important;
+}
+
+body {
+
+
+}
+
+html {
+  background-color: #121319;
+  min-width: 100vw;
+  min-height: 100vh;
+
+} */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    font-family: Unbounded;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    color: #FBFBFB;
+
+    transition: all 1s;
+    outline: none;
+    
+}
+
+video {
+    display: none;
+}
+
+button {
+    border: 0;
+    background-color: transparent;
+}
