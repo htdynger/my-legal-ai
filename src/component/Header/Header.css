@@ -373,7 +373,7 @@
     align-items: center;
     justify-content: center;
 
-    background-color: #373E4E;
+    background-color: #222631;
     padding: 5px;
     border-radius: 30px;
     width: 64px;
@@ -389,7 +389,7 @@
     width: 54px;
     height: 44px;
     border-radius: 50px;
-    background-color: #373E4E;
+    background-color: #222631;
 }
 
 .header__column-n2__container-n2 {
@@ -477,4 +477,12 @@
 .closedSidebar {
     opacity: 0;
     pointer-events: none;
+}
+
+.navSelected {
+        background-color: #373E4E !important;
+}
+
+.header button:hover {
+    background-color: #303745;
 }

@@ -51,20 +51,24 @@ const Header = () => {
 
             addNewChat()
 
-        } else {
+        } else if (location.pathname === path) {
+            return
+        }  else {
             closeChat()
             unSelectChat()
             setChatInstantEnabled(false)
         }
+        
+       
 
 
 
         buttonRefs.forEach((e) => {
             e.current.classList.remove('navSelected')
         })
-
-        // buttonHasClicked === mainButtonRef ? setMainIconURL(navHomeButtonLogoSelectedURL) : setMainIconURL(navHomeButtonLogoURL)
         buttonHasClicked.current.classList.add('navSelected')
+        // buttonHasClicked === mainButtonRef ? setMainIconURL(navHomeButtonLogoSelectedURL) : setMainIconURL(navHomeButtonLogoURL)
+
     }
 
     

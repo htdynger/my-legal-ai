@@ -1098,12 +1098,13 @@
 }
 
 .mini-messenger {
-    height: 335px;
+    height: 728px;
     overflow: auto;
+    padding-bottom: 425px;
 }
 
 .messenger-animation {
-    animation: messenger-fade-out 1s linear;
+    /* animation: messenger-fade-out 1s linear; */
 }
 
 .hidden {

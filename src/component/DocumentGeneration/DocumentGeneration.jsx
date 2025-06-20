@@ -409,6 +409,13 @@ const DocumentGenerationAi = ({ editorProp }) => {
 
         toggleChat()
 
+        setTimeout(() => {
+          messengerRef.current.scrollTo({
+            top: messengerRef.current.scrollHeight,
+            behavior: 'smooth'
+          })
+        }, 50)
+
 
         if (selectedChat === false) {
 
@@ -449,12 +456,7 @@ const DocumentGenerationAi = ({ editorProp }) => {
             let initialState = {...selectedChat}
           
 
-            setTimeout(() => {
-              messengerRef.current.scrollTo({
-                top: messengerRef.current.scrollHeight,
-                behavior: 'smooth'
-              })
-            }, 50)
+
             
             
             // websockets связь
@@ -496,16 +498,10 @@ const DocumentGenerationAi = ({ editorProp }) => {
 
     const toggleEditorMenu = () => {
 
-        documentGenerationAiRef.current.classList.toggle('visible');
-
-        setTimeout(() => {
           setIsEditorMenuVisible(!isEditorMenuVisible)
+          documentGenerationAiRef.current.classList.toggle('visible');
 
-          messengerRef.current.scrollTo({
-            top: messengerRef.current.scrollHeight,
-            behavior: 'instant'
-          })
-        }, 500)
+
 
 
 
@@ -513,10 +509,6 @@ const DocumentGenerationAi = ({ editorProp }) => {
         void messengerRef.current.offsetWidth
         messengerRef.current.classList.add('messenger-animation')
 
-        messengerRef.current.scrollTo({
-          top: messengerRef.current.scrollHeight,
-          behavior: 'instant'
-        })
 
     };
 
@@ -581,10 +573,16 @@ const DocumentGenerationAi = ({ editorProp }) => {
     
 
     useEffect(() => {
-      messengerRef.current.scrollTo({
-        top: messengerRef.current.scrollHeight,
-        behavior: 'instant'
-      })
+      if (isEditorMenuVisible) {
+        setTimeout(() => {
+
+          messengerRef.current.scrollTo({
+            top: messengerRef.current.scrollHeight,
+            behavior: 'smooth'
+          })
+        }, 900)
+      }
+
     }, [isEditorMenuVisible])
 
     
