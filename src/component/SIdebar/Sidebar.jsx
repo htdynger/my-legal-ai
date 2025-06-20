@@ -17,6 +17,8 @@ import { useChatStore } from '../../store/useChatStore'
 
 import { useState, useEffect, useRef } from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
 
 
 
@@ -29,8 +31,10 @@ const Sidebar = () => {
     const sidebarRef = useRef()
 
 
+
     const { isSidebarHidden, toggleSidebar } = useVisualStore()
     const location = useLocation()
+    const navigate = useNavigate()
 
     const groupMessagesByDate = (data) => {
         const grouped = {};
@@ -58,7 +62,7 @@ const Sidebar = () => {
     }, [pointerEvents])
 
     const addNewChat = () => {
-
+        if (location.pathname !== '/') navigate('/')
         disablePointerEvents(1000)
         setTimeout(() => {unSelectChat()
         closeChat()}, 500)
@@ -73,7 +77,7 @@ const Sidebar = () => {
     return (
 
         <>
-            <div className='sidebar-relative'> </div>
+            <div className={isSidebarHidden ? 'sidebar-relative sidebar-close-animation' : 'sidebar-relative sidebar-open-animation' }> </div>
 
             <div className='aside-fixed-container'> 
 

@@ -30,7 +30,7 @@ const Main = () => {
 
 
 
-    const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat } = useVisualStore();
+    const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat, isSidebarHidden } = useVisualStore();
     const { selectedChat, handleSelectChat, data, setData, unSelectChat } = useChatStore()
 
     const [messageText, setMessageText] = useState('')
@@ -191,8 +191,58 @@ const Main = () => {
         }
     }
 
+    const mainRef = useRef()
+    const [firstRender, setFirstRender] = useState(true)
+
+
+    useEffect(() => {
+
+
+        mainRef.current.classList.remove('main-sidebar-opened-instant')
+        mainRef.current.classList.remove('main-sidebar-closed-instant')
+
+        if (isSidebarHidden) {
+            mainRef.current.classList.add('main-sidebar-closed-animation')
+            mainRef.current.classList.remove('main-sidebar-opened-animation')
+        } else {
+            mainRef.current.classList.add('main-sidebar-opened-animation')
+            mainRef.current.classList.remove('main-sidebar-closed-animation')
+        }
+
+
+        if (!localChatOpened || !isChatOpened) {
+            mainRef.current.classList.remove('main-sidebar-opened-animation')
+            mainRef.current.classList.remove('main-sidebar-closed-animation')
+            mainRef.current.classList.remove('main-sidebar-closed-instant')
+            mainRef.current.classList.remove('main-sidebar-opened-instant')
+
+
+        }
+
+    }, [isSidebarHidden])
+
+
+    useEffect(() => {
+        
+
+        if (isSidebarHidden) {
+            mainRef.current.classList.add('main-sidebar-closed-instant')
+            mainRef.current.classList.remove('main-sidebar-opened-instant')
+
+        } else if (!isSidebarHidden) {
+            mainRef.current.classList.add('main-sidebar-opened-instant')
+            mainRef.current.classList.remove('main-sidebar-closed-instant')
+        }
+
+        mainRef.current.classList.remove('main-sidebar-opened-animation')
+        mainRef.current.classList.remove('main-sidebar-closed-animation')
+
+        setFirstRender(false)
+    }, [])
+    
+
     return (
-        <div className={localChatOpened || isChatOpened ? 'main main-chatOpened' : 'main'}> 
+        <div ref={mainRef} className={isChatOpened ? 'main' : 'main'}> 
 
 
         {localChatOpened || isChatOpened ? (

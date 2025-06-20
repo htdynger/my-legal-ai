@@ -28,6 +28,9 @@ const Header = () => {
     const documentGenerationButtonRef = useRef()
     const location = useLocation()
     
+    const sidebarAddNewChatButtonRef = useRef()
+
+
     const [mainIconURL, setMainIconURL] = useState(navHomeButtonLogoSelectedURL)
 
     useEffect(() => {
@@ -77,11 +80,19 @@ const Header = () => {
 
         if (!isChatOpened) return
         // disablePointerEvents(1000)
+        
         setChatInstantEnabled(false)
         setTimeout(() => {
         unSelectChat()
         closeChat()}, 500)
 
+    }
+
+    const handleAddNewChatClick = () => {
+
+        addNewChat()
+        handleNavigate('/', mainButtonRef)
+        
     }
 
 
@@ -122,7 +133,7 @@ const Header = () => {
                         <div className={isSidebarHidden ? 'sidebar-closed openedSidebar' : 'sidebar-closed closedSidebar'}>
                             <button onClick={toggleSidebar}><img className='button-icon-n1' src={toggleSidebarButtonURL} alt="toggle-sidebar-button" /></button>
 
-                            <button onClick={() => addNewChat()}><img className='button-icon-n2' src={newChatButtonURL} alt="new-chat-button" /></button>
+                            <button ref={sidebarAddNewChatButtonRef} onClick={() => handleAddNewChatClick()}><img className='button-icon-n2' src={newChatButtonURL} alt="new-chat-button" /></button>
 
                             <button><img className='button-icon-n3' src={leftButtonURL} alt="left-button-icon" /></button>
 
