@@ -72,12 +72,26 @@ const Sidebar = () => {
 
     const groupedChats = groupMessagesByDate(data);
 
+    const sidebarRelativeRef = useRef()
+
+    useEffect(() => {
+        sidebarRelativeRef.current.classList.remove('sidebar-open-instant')
+    }, [isSidebarHidden])
+
+
+    
+    useEffect(() => {
+        sidebarRelativeRef.current.classList.add('sidebar-open-instant')
+    }, [])
+
+    
+
 
     
     return (
 
         <>
-            <div className={isSidebarHidden ? 'sidebar-relative sidebar-close-animation' : 'sidebar-relative sidebar-open-animation' }> </div>
+            <div ref={sidebarRelativeRef} className={isSidebarHidden ? 'sidebar-relative sidebar-close-animation' : 'sidebar-relative sidebar-open-animation' }> </div>
 
             <div className='aside-fixed-container'> 
 

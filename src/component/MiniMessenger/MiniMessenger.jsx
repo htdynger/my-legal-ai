@@ -6,6 +6,8 @@ import reSendURL from './items/reSend.png'
 import docxURL from './items/docx.png'
 import saveURL from './items/save.png'
 import './MiniMessenger.css'
+import RotateTriangle from '../../animation/RotateTriangle/RotateTriangle'
+
 
 
 
@@ -25,32 +27,44 @@ const MiniMessenger = () => {
 
                         <div className='ai-mini-message-app'>
 
-                            <section>
-                                <span> {element.message} </span>
-                            </section>
+                            {
+                                element.message ? 
+                                <>
+                                    <section>
+                                        <span> {element.message} </span>
+                                    </section>
 
-                            <div className='ai-mini-message-file'>
+                                    <div className='ai-mini-message-file'>
 
-                                <div className='ai-mini-message-file__icon'> <img src={docxURL} alt="document" /> </div>
+                                        <div className='ai-mini-message-file__icon'> <img src={docxURL} alt="document" /> </div>
 
-                                <div className='ai-mini-message-file__text'> 
-                                    <p> Договор о передаче прав</p>
-                                    <p> DOCX 10 Gb </p>
-                                </div>
+                                        <div className='ai-mini-message-file__text'> 
+                                            <p> Договор о передаче прав</p>
+                                            <p> DOCX 10 Gb </p>
+                                        </div>
 
-                                <div className='ai-mini-message-file__save'>
-                                    <button>
-                                        <img src={saveURL} alt="save" />
-                                    </button>
-                                </div>
-                            </div>
+                                        <div className='ai-mini-message-file__save'>
+                                            <button>
+                                                <img src={saveURL} alt="save" />
+                                            </button>
+                                        </div>
+                                    </div>
 
-                            <footer>
-                                <button><img src={copyURL} alt="copy-message" /></button>
-                                <button><img src={likeURL} alt="like-message" /></button>
-                                <button><img src={dislikeURL} alt="dislike-message" /></button>
-                                <button><img src={reSendURL} alt="re-send-message" /></button>
-                            </footer>
+                                    <footer>
+                                        <button><img src={copyURL} alt="copy-message" /></button>
+                                        <button><img src={likeURL} alt="like-message" /></button>
+                                        <button><img src={dislikeURL} alt="dislike-message" /></button>
+                                        <button><img src={reSendURL} alt="re-send-message" /></button>
+                                    </footer>
+
+                                </> 
+                                :
+                                <RotateTriangle />
+
+                            }
+                            
+
+
                         </div>
                     )
                 })}

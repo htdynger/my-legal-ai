@@ -228,10 +228,12 @@ const Main = () => {
         if (isSidebarHidden) {
             mainRef.current.classList.add('main-sidebar-closed-instant')
             mainRef.current.classList.remove('main-sidebar-opened-instant')
+            
 
         } else if (!isSidebarHidden) {
             mainRef.current.classList.add('main-sidebar-opened-instant')
             mainRef.current.classList.remove('main-sidebar-closed-instant')
+            
         }
 
         mainRef.current.classList.remove('main-sidebar-opened-animation')
@@ -242,7 +244,7 @@ const Main = () => {
     
 
     return (
-        <div ref={mainRef} className={isChatOpened ? 'main' : 'main'}> 
+        <div ref={mainRef} className='main'> 
 
 
         {localChatOpened || isChatOpened ? (

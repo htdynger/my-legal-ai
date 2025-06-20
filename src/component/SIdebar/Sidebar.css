@@ -260,3 +260,11 @@
         width: 292px;
     }
 }
+
+
+.sidebar-open-instant {
+    width: 292px;
+    margin-right: 24px;
+    transition: none !important;
+    animation: none !important;
+}
