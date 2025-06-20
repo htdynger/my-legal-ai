@@ -183,8 +183,8 @@ const Main = () => {
                 },
                 {
                     "author": "ai",
-                    "title": "lorem ipsum",
-                    "message": "4343234 ipsum 4343234 sit lorem ipsum dolor sitlorem 4343234 dolor sit lorem 4343234 dolor sitlorem ipsum 4343234 sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sit",
+                    "title": "",
+                    "message": "",
                     "date": "1",
                 },
             )    
@@ -210,14 +210,14 @@ const Main = () => {
         }
 
 
-        if (!localChatOpened || !isChatOpened) {
-            mainRef.current.classList.remove('main-sidebar-opened-animation')
-            mainRef.current.classList.remove('main-sidebar-closed-animation')
-            mainRef.current.classList.remove('main-sidebar-closed-instant')
-            mainRef.current.classList.remove('main-sidebar-opened-instant')
+        // if (localChatOpened || isChatOpened) {
+        //     mainRef.current.classList.remove('main-sidebar-opened-animation')
+        //     mainRef.current.classList.remove('main-sidebar-closed-animation')
+        //     mainRef.current.classList.remove('main-sidebar-closed-instant')
+        //     mainRef.current.classList.remove('main-sidebar-opened-instant')
 
 
-        }
+        // }
 
     }, [isSidebarHidden])
 

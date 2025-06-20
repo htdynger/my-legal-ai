@@ -9,6 +9,8 @@ import { useState, useRef, useEffect } from 'react'
 
 import { useChatStore } from '../../store/useChatStore'
 import { useVisualStore } from '../../store/useVisualStore'
+import DotJump from '../../animation/DotJump/DotJump'
+import RotateTriangle from '../../animation/RotateTriangle/RotateTriangle'
 
 
 const Messenger = () => {
@@ -52,21 +54,33 @@ const Messenger = () => {
                     if (element.author === 'ai') return (
 
                     <div className='ai-message-container'> 
+
+                        {/* <DotJump /> */}
+
+
+
                         <div className='ai-message-app'>
-                            <header>
-                                <span> {element.title} </span>
-                            </header>
 
-                            <section>
-                                <span> {element.message} </span>
-                            </section>
+                            {element.title && element.message ? <>
+                                <header>
+                                    <span> {element.title} </span>
+                                </header>
 
-                            <footer>
-                                <button><img src={copyURL} alt="copy-message" /></button>
-                                <button><img src={likeURL} alt="like-message" /></button>
-                                <button><img src={dislikeURL} alt="dislike-message" /></button>
-                                <button><img src={reSendURL} alt="re-send-message" /></button>
-                            </footer>
+                                <section>
+                                    <span> {element.message} </span>
+                                </section>
+
+                                <footer>
+                                    <button><img src={copyURL} alt="copy-message" /></button>
+                                    <button><img src={likeURL} alt="like-message" /></button>
+                                    <button><img src={dislikeURL} alt="dislike-message" /></button>
+                                    <button><img src={reSendURL} alt="re-send-message" /></button>
+                                </footer> 
+                            </>
+                            :
+                            <RotateTriangle />
+                            
+                            }
                         </div>
                     </div>
 
