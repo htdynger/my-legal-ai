@@ -64,7 +64,7 @@ import { saveAs } from 'file-saver';
 import { useVisualStore } from '../../store/useVisualStore';
 import { useChatStore } from '../../store/useChatStore';
 import MiniMessenger from '../MiniMessenger/MiniMessenger';
-
+import fontIconUrl from './items/fontIcon.png'
 const EditorWrapper = ({ content, editorRef }) => {
   const editor = useEditor({
     extensions: [
@@ -226,8 +226,9 @@ const DocumentSection = () => {
 
   useEffect(() => {
     const container = scrollRef.current;
+    
     if (!container) return;
-
+    container.width = ``
     const handleMouseDown = (e) => {
       setdragScrollData(prev => ({
         ...prev,
@@ -337,10 +338,10 @@ const DocumentSection = () => {
           </div>
         </div>
         <div 
-          ref={scrollRef}
+          
           className="document-generation__main"
         >
-          <div>
+          <div ref={scrollRef} className='document-generation__main__scroll-feature'>
             <div className={isTextChangeEnabled ? 'opened' : 'locked'}></div>
             {pages.map((page, index) => (
               <div
@@ -551,6 +552,7 @@ const DocumentGenerationAi = ({ editorProp }) => {
         setSelectedWeight(weight.label);
         editorProp.chain().focus().setFontWeight(weight.value).run();
         setWeightDropdownOpen(false);
+        console.log(selectedWeight)
     };
     const handleFontSizeSelect = (size) => {
         setSelectedFontSize(size);
@@ -610,7 +612,7 @@ const DocumentGenerationAi = ({ editorProp }) => {
                                 <div className={`custom-dropdown 
 ${isDropdownOpen ? 'open' : ''}`} onClick={() => 
 setDropdownOpen(!isDropdownOpen)}>
-                                    <div className="custom-dropdown__selected">{selectedFont}</div>
+                                    <div style={{"fontFamily": selectedFont}} className="custom-dropdown__selected">{selectedFont}</div>
 
                                     <div className="custom-dropdown__list-container">
 
@@ -623,12 +625,14 @@ alt="close-dropdown-button" /> </button>
 
 
                                         <div className="custom-dropdown__list-container__list">
+                                          <section>
                                             {fonts.map((font) => (
-                                                <div key={font} 
-className="custom-dropdown__option" onClick={() => handleFontSelect(font)}>
-                                                    {font}
+                                                <div key={font} className={selectedFont === font ? "custom-dropdown__option option-selected" : "custom-dropdown__option"} onClick={() => handleFontSelect(font)}>
+                                                  <img src={fontIconUrl} alt="icon" /> <span> {font} </span> 
                                                 </div>
                                             ))}
+                                          </section>
+
                                         </div>
 
                                     </div>
@@ -651,10 +655,9 @@ setWeightDropdownOpen(!isWeightDropdownOpen)}>
                                             <div className="custom-dropdown-weight__list-container__list">
                                                 {weights.map((weight) => (
                                                     <div
-                                                    key={weight.value}
-                                                    className="custom-dropdown-weight__option"
-                                                    onClick={() => 
-handleFontWeightSelect(weight)}
+                                                      key={weight.value}
+                                                      className={selectedWeight === weight.label ? "custom-dropdown-weight__option weight-option-selected" : "custom-dropdown-weight__option"}
+                                                      onClick={() => handleFontWeightSelect(weight)}
                                                     >
                                                     {weight.label}
                                                     </div>
