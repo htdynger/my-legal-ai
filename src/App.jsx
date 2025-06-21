@@ -59,6 +59,7 @@ function App() {
             <Route path='/' element={<Main></Main>} />
             
             <Route path='/document-generation' element={<DocumentGeneration></DocumentGeneration>} />
+            <Route path='/sign-up' element={<SignUp></SignUp>} />
 
           </Routes>
         </div>

@@ -36,7 +36,7 @@ const SidebarChats = ({date, chats, id}) => {
                     <div className='sidebarChats-container__chats-container'>
                         {chats.map((value, key)=> {
                             return (
-                                <span onClick={() => handleClickOnChat(value.id)} key={key} className="sidebarChats-container__chats-container__chats-text"> 
+                                <span onClick={() => handleClickOnChat(value.id)} key={key} className={value.id === selectedChat.id ? "sidebarChats-container__chats-container__chats-text active-chat" : 'sidebarChats-container__chats-container__chats-text'}> 
 
                                     <p> {value.title} </p>
                                     

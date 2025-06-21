@@ -37,6 +37,11 @@
     background-color: #222631;
 }
 
+.sidebarChats-container__chats-container__chats-text.active-chat {
+    background-color: #222631;
+    padding: 16px 15px 16px 15px;
+    order: -1;
+}
 .sidebarChats-container__chats-container__chats-text p {
 
     overflow: hidden;           /* Скрываем всё, что не помещается */

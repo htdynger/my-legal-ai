@@ -4,8 +4,11 @@ import animatedFrameURL from './items/animatedFrame.mp4'
 import flagUzbURL from './items/flagUzb.png'
 import copyButtonURL from './items/copyButton.png'
 import newChatButtonURL from './items/newChatButton.png'
+import newChatButtonHoverURL from './items/newChatButtonHover.png'
 import addFileButtonURL from './items/addFileButton.png'
+import addFileButtonHoverURL from './items/addFileButtonHover.png'
 import moreInfoButtonURL from './items/moreInfoButton.png'
+import moreInfoButtonEnabledURL from './items/moreInfoButtonEnabled.png'
 import sendButtonURL from './items/sendButton.png'
 
 import Messenger from '../Messenger/Messenger'
@@ -31,7 +34,7 @@ const Main = () => {
 
 
     const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat, isSidebarHidden } = useVisualStore();
-    const { selectedChat, handleSelectChat, data, setData, unSelectChat } = useChatStore()
+    const { selectedChat, handleSelectChat, data, setData, unSelectChat, setIsExplainEnabled, isExplainEnabled } = useChatStore()
 
     const [messageText, setMessageText] = useState('')
 
@@ -241,7 +244,11 @@ const Main = () => {
 
         setFirstRender(false)
     }, [])
+
     
+    const [newChatImgSrc, setNewChatImgSrc] = useState(newChatButtonURL);
+    const [addFileImgSrc, setAddFileImgSrc] = useState(addFileButtonURL)
+
 
     return (
         <div ref={mainRef} className='main'> 
@@ -320,15 +327,15 @@ const Main = () => {
                             
                         </div>
 
-                        <div onClick={() => addNewChat()} className='input-section__input-footer__container-n1__button-container-n2'> <button> <img src={newChatButtonURL} alt="new-chat-button" /> </button></div>
-                        <div className='input-section__input-footer__container-n1__button-container-n3'> <button> <img src={addFileButtonURL} alt="add-file-button" /> </button> </div>
+                        <div onMouseEnter={() => setNewChatImgSrc(newChatButtonHoverURL)} onMouseLeave={() => setNewChatImgSrc(newChatButtonURL)} onClick={() => addNewChat()} className='input-section__input-footer__container-n1__button-container-n2'> <button> <img src={newChatImgSrc} alt="new-chat-button" /> </button></div>
+                        <div onMouseEnter={() => setAddFileImgSrc(addFileButtonHoverURL)} onMouseLeave={() => setAddFileImgSrc(addFileButtonURL)} className='input-section__input-footer__container-n1__button-container-n3'> <button> <img src={addFileImgSrc} alt="add-file-button" /> </button> </div>
 
                     </div>
 
 
                     <div className='input-section__input-footer__container-n2'>
 
-                        <div className='input-section__input-footer__container-n2__button-container-n1'> <button className='input-section__input-footer__container-n2__button-container-n1__button'> <img src={moreInfoButtonURL} alt="more-info-button" /> </button> </div>
+                        <div onClick={() => setIsExplainEnabled(!isExplainEnabled)} className={isExplainEnabled ? 'input-section__input-footer__container-n2__button-container-n1 enabled' : 'input-section__input-footer__container-n2__button-container-n1'}> <button className='input-section__input-footer__container-n2__button-container-n1__button'> <img src={isExplainEnabled ? moreInfoButtonEnabledURL : moreInfoButtonURL} alt="more-info-button" /> </button> </div>
 
                         <div onClick={() => handleSendMessage(messageText)} className='input-section__input-footer__container-n2__button-container-n2'> <button className='input-section__input-footer__container-n2__button-container-n2__button'> <img src={sendButtonURL} alt="send-button" /> </button> </div>
                         
