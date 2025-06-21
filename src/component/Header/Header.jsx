@@ -119,10 +119,6 @@ const Header = () => {
                                 <img src={legAiText1URL} alt='ai' />
                             </div>
 
-
-
-                            {/* <img className='header__column-n1__pro-logo' src={legAiProLogo1URL} alt='pro-logo' /> */}
-
                             <div className='header__column-n1__pro-container'> <p> Pro </p>  </div>
 
                         </div>

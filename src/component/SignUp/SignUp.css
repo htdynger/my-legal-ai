@@ -1,0 +1,17 @@
+.all-rights-reserved {
+    position: absolute;
+    top: 95%;
+    left: 2%;
+
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-offset: 0%;
+    text-decoration-thickness: 0%;
+    text-decoration-skip-ink: auto;
+    color: #657085;
+}
