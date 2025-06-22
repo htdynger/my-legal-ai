@@ -4,12 +4,15 @@ import './SuccessfulAuth.css'
 import character_1URL from './item/character-1.png'
 // import GradientCircle from '../../animation/GradientCircle.jsx'
 import GradientCircle from '../../animation/GradientCircle/GradientCircle'
+import AuthAnimatedFrame from '../../animation/AuthAnimatedFrame/AuthAnimatedFrame'
 import { useNavigate } from 'react-router-dom'
 
 const SuccessfulAuth = () => {
 
     const navigate = useNavigate()
     return (
+        <>
+            <AuthAnimatedFrame />
 
         <section className='SuccessfulAuth-app'>
             <GradientCircle />
@@ -31,7 +34,7 @@ const SuccessfulAuth = () => {
                             <p> lorem ipsum dolor sit lorem. </p>
                         </span>
 
-                        <button onClick={() => navigate('/')}> Погрузиться </button>
+                        <button type='button' onClick={() => navigate('/')}> Погрузиться </button>
 
                     </article>
 
@@ -46,6 +49,9 @@ const SuccessfulAuth = () => {
                 Условия и политика конфиденциальности
             </span>
         </section>
+
+        
+        </>
     )
 }
 

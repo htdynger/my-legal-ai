@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     width: 645px;
-    height: 820px;
+    height: 683px;
     
     padding: 20px;
     
@@ -30,7 +30,7 @@
     width: 100%;
     height: 176px;
     gap: 20px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
 }
 
 .LoginForm-app .section-1__form__header__text-1 {
@@ -83,6 +83,7 @@
     background-color: transparent;
     border: 0;
     padding: 0;
+    flex: 1;
 }
 
 .LoginForm-app .section-1__section__label-1 input, .LoginForm .section-1__section__label-2 input {
@@ -250,4 +251,6 @@
     height: calc(100vh - 28px);
     z-index: 1;
 }
+
+
 

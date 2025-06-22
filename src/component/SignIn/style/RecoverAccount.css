@@ -210,3 +210,21 @@
     height: calc(100vh - 28px);
     z-index: 1;
 }
+
+
+.RecoverAccount-app .section-1__footer__button-back {
+    width: 100%;
+    height: 23px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    color: #657085;
+    cursor: pointer;
+}

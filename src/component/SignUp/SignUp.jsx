@@ -15,9 +15,11 @@ import './style/PhoneVerification.css'
 import './SignUp.css'
 
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import SuccessfulAuth from '../SuccessfulAuth/SuccessfulAuth'
+
+import { useVisualStore } from '../../store/useVisualStore'
 
 
 const RegisterForm = ({ navigate, setVisiblePage }) => {
@@ -107,7 +109,7 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
                             <button type="button" onClick={() => navigate('/sign-in')}>
                                 Войти в аккаунт
                             </button>
-                            <button type="button">
+                            <button type="button" onClick={() => {navigate('/sign-in'); setVisiblePage('RecoverAccount')}}>
                                 Восстановить пароль
                             </button>
                         </div>
@@ -140,78 +142,101 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
 
 
 const PhoneVerification = ({ navigate, setVisiblePage }) => {
+    const [code, setCode] = useState(['', '', '', '', '', '']);
+    const inputsRef = useRef([]);
 
-    const handlePhoneVerification = () => {
+    const handleChange = (value, index) => {
+        if (!/^\d?$/.test(value)) return;  // Разрешаем только цифры
 
-        if (true) {
-            setVisiblePage('SuccessfulAuth')
+        const newCode = [...code];
+        newCode[index] = value;
+        setCode(newCode);
+
+        if (value && index < 5) {
+            inputsRef.current[index + 1].focus();
         }
-    }
+    };
+
+    const handleKeyDown = (e, index) => {
+        if (e.key === 'Backspace' && !code[index] && index > 0) {
+            inputsRef.current[index - 1].focus();
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Код подтверждения:", code.join(''));
+        setVisiblePage('SuccessfulAuth');
+    };
 
     return (
-
-        <section className='PhoneVerification-app'>
+        <section className="PhoneVerification-app">
             <GradientCircle />
 
-            <div className='section-1'>
-                <form action="">
-
+            <div className="section-1">
+                <form onSubmit={handleSubmit}>
                     <header>
                         <div>
                             <img src={logoURL} alt="logo" />
                         </div>
 
-                        <span className='section-1__form__header__text-1'> 
+                        <h1 className="section-1__form__header__text-1">
                             ПОДТВЕРДИТЕ НОМЕР ТЕЛЕФОНА
-                        </span>
+                        </h1>
 
-                        <span className='section-1__form__header__text-2'>
-                            <p> На указанный номер телефона был отправлен </p>
-                            <p> шестизначный код подтверждения. </p>
-                        </span>
-
+                        <p className="section-1__form__header__text-2">
+                            На указанный номер телефона был отправлен шестизначный код подтверждения.
+                        </p>
                     </header>
 
                     <section>
-
-                       <input type="text" maxLength="1" inputMode="numeric" pattern="[0-9]*" />
-                       <input type="text" maxLength="1" inputMode="numeric" pattern="[0-9]*" />
-                       <input type="text" maxLength="1" inputMode="numeric" pattern="[0-9]*" />
-                       <input type="text" maxLength="1" inputMode="numeric" pattern="[0-9]*" />
-                       <input type="text" maxLength="1" inputMode="numeric" pattern="[0-9]*" />
-                       <input type="text" maxLength="1" inputMode="numeric" pattern="[0-9]*" />
-
+                        {code.map((digit, index) => (
+                            <input
+                                key={index}
+                                type="text"
+                                maxLength="1"
+                                inputMode="numeric"
+                                pattern="[0-9]*"
+                                value={digit}
+                                required
+                                ref={el => inputsRef.current[index] = el}
+                                onChange={(e) => handleChange(e.target.value, index)}
+                                onKeyDown={(e) => handleKeyDown(e, index)}
+                            />
+                        ))}
                     </section>
 
                     <footer>
-                        <button onClick={() => handlePhoneVerification()}> Проверить </button>
-                        <button onClick={() => setVisiblePage('RegisterForm')}> Назад </button>
+                        <button type="submit">Проверить</button>
+                        <button type="button" onClick={() => setVisiblePage('RegisterForm')}>Назад</button>
                     </footer>
-
                 </form>
-
-
-
-
             </div>
 
-            <div className='section-2'>
-                <img src={character_2URL} alt="" />
+            <div className="section-2">
+                <img src={character_2URL} alt="Персонаж" />
             </div>
 
-            <span className='all-rights-reserved'>
+            <span className="all-rights-reserved">
                 Условия и политика конфиденциальности
             </span>
         </section>
-    )
-}
+    );
+};
 
 
 const SignUp = () => {
 
+    
+
     const navigate = useNavigate()
 
-    const [visiblePage, setVisiblePage] = useState('RegisterForm')
+    const { visiblePage, setVisiblePage } = useVisualStore()
+
+
+    useEffect(() => {
+        setVisiblePage('RegisterForm')
+    }, [])
 
     return (
 
