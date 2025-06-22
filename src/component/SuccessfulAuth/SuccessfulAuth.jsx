@@ -4,9 +4,11 @@ import './SuccessfulAuth.css'
 import character_1URL from './item/character-1.png'
 // import GradientCircle from '../../animation/GradientCircle.jsx'
 import GradientCircle from '../../animation/GradientCircle/GradientCircle'
+import { useNavigate } from 'react-router-dom'
 
 const SuccessfulAuth = () => {
 
+    const navigate = useNavigate()
     return (
 
         <section className='SuccessfulAuth-app'>
@@ -29,7 +31,7 @@ const SuccessfulAuth = () => {
                             <p> lorem ipsum dolor sit lorem. </p>
                         </span>
 
-                        <button> Погрузиться </button>
+                        <button onClick={() => navigate('/')}> Погрузиться </button>
 
                     </article>
 

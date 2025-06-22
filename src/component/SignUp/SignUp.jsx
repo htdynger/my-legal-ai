@@ -7,128 +7,146 @@ import appleIconURL from './item/appleIcon.png'
 import googleIconURL from './item/googleIcon.png'
 
 import eyeClosedURL from './item/eyeClosed.png'
+import eyeOpenedURL from './item/eyeClosed.png'
 
 import GradientCircle from '../../animation/GradientCircle/GradientCircle'
 import './style/RegisterForm.css'
 import './style/PhoneVerification.css'
 import './SignUp.css'
 
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+
 import SuccessfulAuth from '../SuccessfulAuth/SuccessfulAuth'
 
-const RegisterForm = () => {
+
+const RegisterForm = ({ navigate, setVisiblePage }) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const handleCreateAccount = () => {
+        setVisiblePage('PhoneVerification');
+    };
 
     return (
-
-        <> 
-
-
-        
-            <section className="RegisterForm-app">
+        <section className="RegisterForm-app">
             <GradientCircle />
 
-                <div className="section-1">
-                    <form action=""> 
+            <div className="section-1">
+                <form action="" onSubmit={(e) => { e.preventDefault(); handleCreateAccount(); }}>
+                    <header>
+                        <div>
+                            <img src={logoURL} alt="Legal AI logo" />
+                        </div>
 
-                        <header>
+                        <h1 className="section-1__form__header__text-1">
+                            СОЗДАЙТЕ АККАУНТ
+                        </h1>
 
-                            <div>
-                                <img src={logoURL} alt="logo" />
-                            </div>
+                        <p className="section-1__form__header__text-2">
+                            Создайте аккаунт, благодаря которому сможете пользоваться Legal Ai.
+                        </p>
+                    </header>
 
-                            <span className='section-1__form__header__text-1'> 
-                                СОЗДАЙТЕ АККАУНТ
-                            </span>
+                    <section>
+                        <div className="section-1__section__label-1">
+                            <label htmlFor="nickname">Никнейм</label>
+                            <input id="nickname" placeholder="Ваше имя пользователя" type="text" required />
+                        </div>
 
-                            <span className='section-1__form__header__text-2'>
-                                <p> Создайте аккаунт, благодаря которому сможете </p>
-                                <p> пользоваться Legal Ai.</p>
-                            </span>
-                        </header>
+                        <div className="section-1__section__label-2">
+                            <label htmlFor="contact">Номер телефона или Email</label>
+                            <input id="contact" placeholder="Ваша электронная почта/номер тел." type="text" required />
+                        </div>
 
+                        <div className="section-1__section__label-3">
+                            <label>Пароль</label>
+                            <div className="section-1__section__label-3__password-container">
 
-                        <section>
+                                <div className="section-1__section__label-3__password-container__label-1">
+                                    <input
+                                        id="password"
+                                        placeholder="Создайте пароль"
+                                        type={showPassword ? 'text' : 'password'}
+                                        required
+                                    />
+                                    <img
+                                        src={showPassword ? eyeOpenedURL : eyeClosedURL}
+                                        alt="показать/скрыть пароль"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        style={{ cursor: 'pointer' }}
+                                    />
+                                </div>
 
-                            <div className='section-1__section__label-1'>
-                                <label htmlFor=""> Никнейм </label>
-                                <input placeholder='Ваше имя пользователя' type="text" />
-                            </div>
-
-                            <div className='section-1__section__label-2'>
-                                <label htmlFor=""> Номер телефона или Email </label>
-                                <input placeholder='Ваша электронная почта/номер тел.' type="text" />
-                            </div>
-
-                            <div className='section-1__section__label-3'>
-                                <label htmlFor=""> Пароль </label>
-                                <div className='section-1__section__label-3__password-container'>
-
-                                    <div className='section-1__section__label-3__password-container__label-1'>
-                                        <input placeholder='Создайте пароль' type="text" />
-                                        <img src={eyeClosedURL} alt="show-password-button" />
-                                    </div>
-
-                                    <div className='section-1__section__label-3__password-container__label-2'>
-                                        <input placeholder='Подтвердите пароль' type="text" />
-                                        <img src={eyeClosedURL} alt="show-password-button" />
-                                    </div>
-
+                                <div className="section-1__section__label-3__password-container__label-2">
+                                    <input
+                                        id="confirmPassword"
+                                        placeholder="Подтвердите пароль"
+                                        type={showConfirmPassword ? 'text' : 'password'}
+                                        required
+                                    />
+                                    <img
+                                        src={showConfirmPassword ? eyeOpenedURL : eyeClosedURL}
+                                        alt="показать/скрыть пароль"
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        style={{ cursor: 'pointer' }}
+                                    />
                                 </div>
 
                             </div>
+                        </div>
+                    </section>
 
-                        </section>
-
-                        <footer>
-                            <button className='section-1__footer__button-create-account'> Создать аккаунт </button>
-                            <span> Или </span>
-
-                            <div>
-                                <button>
-                                    Войти в аккаунт
-                                </button>
-
-                                <button>
-                                    Восстановить пароль
-                                </button>
-                            </div>
-                        </footer>
-
-                    </form>
-
-                    <div className='section-1__fast-login'>
-
-                        <button>
-                            <img src={appleIconURL} alt="apple-icon" />
-                            <span> Войти в Apple Account </span>
+                    <footer>
+                        <button type="submit" className="section-1__footer__button-create-account">
+                            Создать аккаунт
                         </button>
+                        <span>Или</span>
 
-                        <button>
-                            <img src={googleIconURL} alt="google-icon" />
-                            <span> Войти с Google </span>
-                        </button>
+                        <div>
+                            <button type="button" onClick={() => navigate('/sign-in')}>
+                                Войти в аккаунт
+                            </button>
+                            <button type="button">
+                                Восстановить пароль
+                            </button>
+                        </div>
+                    </footer>
+                </form>
 
-                    </div>
-                    
+                <div className="section-1__fast-login">
+                    <button type="button">
+                        <img src={appleIconURL} alt="Войти через Apple" />
+                        <span>Войти в Apple Account</span>
+                    </button>
+
+                    <button type="button">
+                        <img src={googleIconURL} alt="Войти через Google" />
+                        <span>Войти с Google</span>
+                    </button>
                 </div>
+            </div>
 
-                <div className="section-2"> 
-                    <img src={character_1URL} alt="" />
-                </div>
+            <div className="section-2">
+                <img src={character_1URL} alt="Персонаж" />
+            </div>
 
-                <span className='all-rights-reserved'>
-                    Условия и политика конфиденциальности
-                </span>
+            <span className="all-rights-reserved">
+                Условия и политика конфиденциальности
+            </span>
+        </section>
+    );
+};
 
-            </section>
 
+const PhoneVerification = ({ navigate, setVisiblePage }) => {
 
+    const handlePhoneVerification = () => {
 
-        </>
-        
-    )
-}
-
-const PhoneVerification = () => {
+        if (true) {
+            setVisiblePage('SuccessfulAuth')
+        }
+    }
 
     return (
 
@@ -166,8 +184,8 @@ const PhoneVerification = () => {
                     </section>
 
                     <footer>
-                        <button> Проверить </button>
-                        <button> Назад </button>
+                        <button onClick={() => handlePhoneVerification()}> Проверить </button>
+                        <button onClick={() => setVisiblePage('RegisterForm')}> Назад </button>
                     </footer>
 
                 </form>
@@ -191,12 +209,16 @@ const PhoneVerification = () => {
 
 const SignUp = () => {
 
+    const navigate = useNavigate()
+
+    const [visiblePage, setVisiblePage] = useState('RegisterForm')
+
     return (
 
         <>
-            <RegisterForm />
-            <PhoneVerification />
-            <SuccessfulAuth />
+            {visiblePage === 'RegisterForm' && <RegisterForm navigate={navigate} setVisiblePage={setVisiblePage} />} 
+            {visiblePage === 'PhoneVerification' && <PhoneVerification navigate={navigate} setVisiblePage={setVisiblePage} />} 
+            {visiblePage === 'SuccessfulAuth' && <SuccessfulAuth navigate={navigate} setVisiblePage={setVisiblePage} />} 
         </>
     )
 }
