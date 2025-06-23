@@ -192,6 +192,10 @@ const Main = () => {
                     "date": "1",
                 },
             )    
+            
+            setData(initialState)
+
+
         }
     }
 

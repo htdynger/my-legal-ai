@@ -20,10 +20,11 @@ const Messenger = () => {
 
 
 
-
     
-    console.log(data)
-    console.log(selectedChat)
+    
+
+
+    // console.log(data)
 
     const messengerWrapperRef = useRef()
     const messengerAppRef = useRef()
@@ -33,9 +34,14 @@ const Messenger = () => {
         
     }, [chatInstantEnabled])
 
-
+    // console.log(selectedChat)
     useEffect(() => {
-        
+
+
+
+        if (selectedChat.message[selectedChat.message.length -1].author === 'ai' && selectedChat.message[selectedChat.message.length -1].message === '' && selectedChat.message[selectedChat.message.length -1].title === '') setSendButtonEnabled(false)
+        if (selectedChat.message[selectedChat.message.length -1].author === 'ai' && selectedChat.message[selectedChat.message.length -1].message !== '' && selectedChat.message[selectedChat.message.length -1].title !== '') setSendButtonEnabled(true)
+
         messengerWrapperRef.current.classList.remove('messenger-wrapper-animation')
 
         void messengerWrapperRef.current.offsetWidth
@@ -43,6 +49,12 @@ const Messenger = () => {
         messengerWrapperRef.current.classList.add('messenger-wrapper-animation')
 
     }, [selectedChat])
+
+    useEffect(() => {
+        if (!data.message) return
+        if (data.message[data.message.length -1].message === '') setSendButtonEnabled(false)
+        if (data.message[data.message.length -1].message !== '') setSendButtonEnabled(true)
+    }, [data]) 
     
 
     return (
@@ -50,7 +62,7 @@ const Messenger = () => {
             <section ref={messengerAppRef} className={chatInstantEnabled ? "messenger-app" : "messenger-app fade-out-animation"}>
 
                 {Array.isArray(selectedChat.message) && selectedChat.message.map((element) => {
-                    if (element.author === 'user') return <div className='user-message-container'> <div key={element.id} className='user-message'> {element.message} </div> </div> 
+                    if (element.author === 'user') return <div key={element.id} className='user-message-container'> <div className='user-message'> {element.message} </div> </div> 
                     if (element.author === 'ai') return (
 
                     <div className='ai-message-container'> 
@@ -63,7 +75,7 @@ const Messenger = () => {
 
                             {element.title && element.message ? <>
 
-                                {setSendButtonEnabled(true)}
+
 
                                 <header>
                                     <span> {element.title} </span>
@@ -83,7 +95,7 @@ const Messenger = () => {
                             :
                             <>
                                 <RotateTriangle />
-                                {setSendButtonEnabled(false)}
+
                             </>
 
                             
