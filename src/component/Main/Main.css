@@ -871,3 +871,13 @@
     border-top-left-radius: 100px;
     border-top-right-radius: 100px;
 }
+
+
+
+
+.input-section__input-footer__container-n2__button-container-n2.disabled {
+    pointer-events: none;
+    /* filter: grayscale(1); */
+    filter: brightness(0.8);
+    border: #363A45 1px solid;
+}

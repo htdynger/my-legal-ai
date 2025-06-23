@@ -5,6 +5,9 @@ export const useChatStore = create((set, get)=> ({
     selectedChat: false,
     isExplainEnabled: false,
 
+    sendButtonEnabled: true,
+    setSendButtonEnabled: (boolean) => set(() => ({sendButtonEnabled: boolean})),
+
     setIsExplainEnabled: (boolean) => set({isExplainEnabled: boolean}),
 
 

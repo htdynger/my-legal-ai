@@ -15,7 +15,7 @@ import RotateTriangle from '../../animation/RotateTriangle/RotateTriangle'
 
 const Messenger = () => {
     
-    const { selectedChat, data } = useChatStore()
+    const { selectedChat, data, setSendButtonEnabled } = useChatStore()
     const { chatInstantEnabled } = useVisualStore()
 
 
@@ -62,6 +62,9 @@ const Messenger = () => {
                         <div className='ai-message-app'>
 
                             {element.title && element.message ? <>
+
+                                {setSendButtonEnabled(true)}
+
                                 <header>
                                     <span> {element.title} </span>
                                 </header>
@@ -78,7 +81,11 @@ const Messenger = () => {
                                 </footer> 
                             </>
                             :
-                            <RotateTriangle />
+                            <>
+                                <RotateTriangle />
+                                {setSendButtonEnabled(false)}
+                            </>
+
                             
                             }
                         </div>
