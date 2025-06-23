@@ -39,8 +39,7 @@ const Messenger = () => {
 
 
 
-        if (selectedChat.message[selectedChat.message.length -1].author === 'ai' && selectedChat.message[selectedChat.message.length -1].message === '' && selectedChat.message[selectedChat.message.length -1].title === '') setSendButtonEnabled(false)
-        if (selectedChat.message[selectedChat.message.length -1].author === 'ai' && selectedChat.message[selectedChat.message.length -1].message !== '' && selectedChat.message[selectedChat.message.length -1].title !== '') setSendButtonEnabled(true)
+        
 
         messengerWrapperRef.current.classList.remove('messenger-wrapper-animation')
 

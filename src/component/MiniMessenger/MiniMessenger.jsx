@@ -7,6 +7,7 @@ import docxURL from './items/docx.png'
 import saveURL from './items/save.png'
 import './MiniMessenger.css'
 import RotateTriangle from '../../animation/RotateTriangle/RotateTriangle'
+import { useEffect } from 'react'
 
 
 
@@ -14,7 +15,15 @@ import RotateTriangle from '../../animation/RotateTriangle/RotateTriangle'
 
 const MiniMessenger = () => {
 
-    const { selectedChat, data } = useChatStore()
+    const { selectedChat, data, setSendButtonEnabled } = useChatStore()
+
+    console.log(data)
+    useEffect(() => {
+        if (!data.message) return
+        if (data.message[data.message.length -1].message === '') setSendButtonEnabled(false)
+        if (data.message[data.message.length -1].message !== '') setSendButtonEnabled(true)
+  
+    }, [data]) 
 
 
     return (

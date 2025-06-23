@@ -122,6 +122,7 @@ const Main = () => {
 
     const handleSendMessage = (inputValue) => {
 
+        if (!sendButtonEnabled) return
         if (messageText.trim() === '') return
         setMessageText('')
 
@@ -169,6 +170,7 @@ const Main = () => {
         } else {
 
             let initialState = {...selectedChat}
+            let initialData = [...data]
 
             setTimeout(()=> {document.documentElement.scrollTo({
                 top: document.documentElement.scrollHeight,
@@ -193,7 +195,10 @@ const Main = () => {
                 },
             )    
             
-            setData(initialState)
+            // setData(initialState)
+            console.log(data)
+            console.log(selectedChat)
+
 
 
         }
@@ -342,7 +347,7 @@ const Main = () => {
 
                         <div onClick={() => setIsExplainEnabled(!isExplainEnabled)} className={isExplainEnabled ? 'input-section__input-footer__container-n2__button-container-n1 enabled' : 'input-section__input-footer__container-n2__button-container-n1'}> <button className='input-section__input-footer__container-n2__button-container-n1__button'> <img src={isExplainEnabled ? moreInfoButtonEnabledURL : moreInfoButtonURL} alt="more-info-button" /> </button> </div>
 
-                        <div onClick={sendButtonEnabled && (() => handleSendMessage(messageText))} className={sendButtonEnabled ? 'input-section__input-footer__container-n2__button-container-n2' : 'input-section__input-footer__container-n2__button-container-n2 disabled'}> <button className='input-section__input-footer__container-n2__button-container-n2__button'> <img src={sendButtonURL} alt="send-button" /> </button> </div>
+                        <div onClick={() => handleSendMessage(messageText)} className={sendButtonEnabled ? 'input-section__input-footer__container-n2__button-container-n2' : 'input-section__input-footer__container-n2__button-container-n2 disabled'}> <button className='input-section__input-footer__container-n2__button-container-n2__button'> <img src={sendButtonURL} alt="send-button" /> </button> </div>
                         
                     </div>
 

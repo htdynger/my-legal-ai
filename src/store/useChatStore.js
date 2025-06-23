@@ -14,7 +14,7 @@ export const useChatStore = create((set, get)=> ({
     unSelectChat: () => set({
         selectedChat: false,
         isExplainEnabled: false,
-
+        sendButtonEnabled: true,
     }),
     
     handleSelectChat: (id) => {

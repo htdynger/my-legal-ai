@@ -2,7 +2,8 @@ import './DocumentGeneration.css';
 import './style/DocumentGenerationAi.css'
 import './style/DocumentSection.css'
 
-
+import animatedFrameFragmentURL from './items/animated-frame-fragment.mp4'
+import previewTextURL from './items/previewText.png'
 
 import documentGenerationAiPreviewBigURL from './items/documentGenerationAiPreviewBig.mp4';
 import documentGenerationAiPreviewSmallURL from './items/documentGenerationAiPreviewSmall.mp4';
@@ -376,7 +377,7 @@ const DocumentGenerationAi = ({ editorProp }) => {
 
 
 
-    const { selectedChat, data, setData, handleSelectChat, unSelectChat } = useChatStore()
+    const { selectedChat, data, setData, handleSelectChat, unSelectChat, sendButtonEnabled } = useChatStore()
     const { toggleChat, closeChat } = useVisualStore()
 
 
@@ -397,7 +398,7 @@ const DocumentGenerationAi = ({ editorProp }) => {
     const handleSendMessage = () => {
 
 
-        
+        if (!sendButtonEnabled) return
         
         if (messageText.trim() === '') return
 
@@ -425,7 +426,9 @@ const DocumentGenerationAi = ({ editorProp }) => {
             // websockets связь
 
             const id = uuidv4(); 
+            console.log(data)
             let initialState = [...data]
+            console.log(data)
 
 
 
@@ -477,6 +480,8 @@ const DocumentGenerationAi = ({ editorProp }) => {
                     "date": "1",
                 },
             )    
+            setData(initialState)
+
         }
     };
 
@@ -779,15 +784,29 @@ className="document-generation-ai__header__settings-section__content__text-color
             </div>
 
             <div className={isEditorMenuVisible ? 'document-generation-ai__main small' : 'document-generation-ai__main'}>
-                <video
-                    className="animated-frame-big"
-                    src={documentGenerationAiPreviewBigURL}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    ref={bigVideoRef}
-                />
+              <div className='animated-frame-big-parent'>
+
+                  <video
+                      className="animated-frame-big__top-section"
+                      src={animatedFrameFragmentURL}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      ref={bigVideoRef}
+                  />
+                  <img src={previewTextURL} alt="text" />
+                  <video
+                      className="animated-frame-bottom-section"
+                      src={animatedFrameFragmentURL}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      ref={bigVideoRef}
+                  />
+              </div>
+
 
                 <video
                     className="animated-frame-small"
@@ -808,19 +827,19 @@ className="document-generation-ai__header__settings-section__content__text-color
                 <textarea value={messageText} onChange={(e)=> setMessageText(e.target.value)} className="document-generation-ai__input-section__message-input" placeholder='Начните писать' type="text" />
                 <div className="document-generation-ai__input-section__button-section">
                     <div className="document-generation-ai__input-section__button-section__left-buttons">
-                        <div className="document-generation-ai__input-section__button-section__left-buttons__container">
+                        {/* <div className="document-generation-ai__input-section__button-section__left-buttons__container">
                             <button className="button-n1">
                                 <img src={flagUzbURL} alt="change-language-icon" />
                             </button>
                             <button className="button-n2">
                                 <img src={copyButtonURL} alt="copy-button-icon" />
                             </button>
-                        </div>
+                        </div> */}
                         <button className="button-n3">
                             <img src={addFileButtonURL} alt="add-file-button" />
                         </button>
                     </div>
-                    <button onClick={handleSendMessage} className="document-generation-ai__input-section__button-section__right-buttons">
+                    <button onClick={handleSendMessage} className={sendButtonEnabled ? "document-generation-ai__input-section__button-section__right-buttons" : "document-generation-ai__input-section__button-section__right-buttons disabled"}>
                         <img src={sendButtonURL} alt="send-button-icon" />
                     </button>
                 </div>
