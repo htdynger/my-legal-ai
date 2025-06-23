@@ -26,6 +26,7 @@ body {
     width: 645px;
     height: 820px;
     padding: 20px;
+    z-index: 5;
 }
 
 .RegisterForm-app .section-1 form {
@@ -145,6 +146,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.3s ease;
+}
+.RegisterForm-app .section-1__footer__button-create-account:hover {
+    background-color: #657085;
+}
+
+.RegisterForm-app .section-1__footer__button-create-account:active {
+    scale: 0.9;
 }
 
 .RegisterForm-app .section-1 footer span {
@@ -202,6 +211,7 @@ body {
     margin-top: 28px;
     margin-left: -200px;
     height: calc(100vh - 28px);
+    z-index: 4;
 }
 
 .all-rights-reserved {

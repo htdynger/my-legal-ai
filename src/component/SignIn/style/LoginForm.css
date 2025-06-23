@@ -14,7 +14,7 @@
     height: 683px;
     
     padding: 20px;
-    
+    z-index: 5;
 }
 
 .LoginForm-app .section-1 form {
@@ -163,7 +163,17 @@
     line-height: 150%;
     letter-spacing: 0%;
     text-align: center;
+    transition: 0.3s ease;
+    z-index: 2;
 
+}
+
+.LoginForm-app .section-1__footer__button-create-account:hover {
+    background-color: #657085;
+}
+
+.LoginForm-app .section-1__footer__button-create-account:active {
+    scale: 0.9;
 }
 
 .LoginForm-app .section-1 footer span {
@@ -249,7 +259,7 @@
     margin-top: 28px;
     margin-left: -200px;
     height: calc(100vh - 28px);
-    z-index: 1;
+    z-index: 4;
 }
 
 

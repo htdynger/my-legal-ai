@@ -14,6 +14,9 @@ export const useVisualStore = create((set)=> ({
     chatInstantEnabled: false,
     setChatInstantEnabled: (value) => set((state) => ({chatInstantEnabled: value})),
 
+    visualPathname: '/',
+    setVisualPathname: (value) => set(() => ({visualPathname: value})),
+
     pointerEvents: true,
 
     disablePointerEvents: (timeout) => {

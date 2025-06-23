@@ -12,6 +12,7 @@
     width: 645px;
     height: 479px;
     padding: 20px;
+    z-index: 5;
 }
 
 .RecoverAccount-app .section-1 form {
@@ -160,6 +161,15 @@
     line-height: 150%;
     letter-spacing: 0%;
     text-align: center;
+    transition: 0.3s ease;
+}
+
+.RecoverAccount-app .section-1__footer__button-create-account:hover {
+    background-color: #657085;
+}
+
+.RecoverAccount-app .section-1__footer__button-create-account:active {
+    scale: 0.9;
 }
 
 .RecoverAccount-app .section-1 footer span {
@@ -208,7 +218,7 @@
     margin-top: 28px;
     margin-left: -200px;
     height: calc(100vh - 28px);
-    z-index: 1;
+    z-index: 4;
 }
 
 

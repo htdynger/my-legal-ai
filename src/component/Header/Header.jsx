@@ -39,7 +39,7 @@ const Header = () => {
     
     const buttonRefs = [mainButtonRef, documentGenerationButtonRef]
 
-
+    const { visualPathname, setVisualPathname } = useVisualStore()
     const { isSidebarHidden, toggleSidebar, closeChat, isChatOpened, setChatInstantEnabled } = useVisualStore()
     
 
@@ -66,10 +66,10 @@ const Header = () => {
 
 
 
-        buttonRefs.forEach((e) => {
-            e.current.classList.remove('navSelected')
-        })
-        buttonHasClicked.current.classList.add('navSelected')
+        // buttonRefs.forEach((e) => {
+        //     e.current.classList.remove('navSelected')
+        // })
+        // buttonHasClicked.current.classList.add('navSelected')
         // buttonHasClicked === mainButtonRef ? setMainIconURL(navHomeButtonLogoSelectedURL) : setMainIconURL(navHomeButtonLogoURL)
 
     }
@@ -97,7 +97,9 @@ const Header = () => {
 
 
 
-
+    useEffect(() => {
+        setVisualPathname(location.pathname)
+    }, [location.pathname])
 
     return (
         // <div className='relative'>
@@ -147,14 +149,14 @@ const Header = () => {
                     <nav className='header__column-n2'>
 
                         <div className='header__column-n2__container-n1'>
-                            <button ref={mainButtonRef} onClick={() => handleNavigate('/', mainButtonRef)}> <img src={mainIconURL} /></button>
+                            <button className={visualPathname === '/' ? 'navSelected' : ''} ref={mainButtonRef} onClick={() => handleNavigate('/', mainButtonRef)}> <img src={mainIconURL} /></button>
                         </div>
 
                         <div className='header__column-n2__container-n2'>
 
                             <button className='header__column-n2__container-n2__button-text-n1'> Инфоблок </button>
                             <button className='header__column-n2__container-n2__button-text-n2'> LegAi Pro </button>
-                            <button ref={documentGenerationButtonRef} onClick={() => handleNavigate('/document-generation/', documentGenerationButtonRef)} className='header__column-n2__container-n2__button-text-n3'> Генерация док-ов </button>
+                            <button ref={documentGenerationButtonRef} onClick={() => handleNavigate('/document-generation/', documentGenerationButtonRef)} className={visualPathname === '/document-generation/' ? 'header__column-n2__container-n2__button-text-n3 navSelected' : 'header__column-n2__container-n2__button-text-n3'}> Генерация док-ов </button>
 
                             <button className='header__column-n2__container-n2__button-img-n1'> <img className='header__column-h2__container-n2__button-img-n1__logo' src={navSearchButtonLogoURL} alt="search-button-logo" /> </button>
 

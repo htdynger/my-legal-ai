@@ -120,7 +120,7 @@ const Sidebar = () => {
 
                     <div className='aside__navbar-n3'>
 
-                        {location.pathname != '/document-generation/' ?
+                        {location.pathname != '/document-generation/' || true ?
                         
                             <>
 

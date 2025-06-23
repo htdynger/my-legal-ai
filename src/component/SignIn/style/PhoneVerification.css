@@ -12,6 +12,7 @@
     width: 645px;
     height: 550px;
     padding: 20px;
+    z-index: 5;
 }
 
 .PhoneVerification-app-2 .section-1 header {
@@ -95,6 +96,15 @@
     letter-spacing: 0%;
     text-align: center;
     border-radius: 16px;
+    transition: 0.3s ease;
+}
+
+.PhoneVerification-app-2 .section-1 footer button:nth-child(1):hover {
+    background-color: #657085;
+}
+
+.PhoneVerification-app-2 .section-1 footer button:nth-child(1):active {
+    scale: 0.9;
 }
 
 .PhoneVerification-app-2 .section-1 footer button:nth-child(2) {
@@ -118,5 +128,5 @@
     margin-top: 28px;
     margin-left: -200px;
     height: calc(100vh - 28px);
-    z-index: 1;
+    z-index: 4;
 }

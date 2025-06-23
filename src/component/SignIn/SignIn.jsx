@@ -23,6 +23,8 @@ import { useVisualStore } from '../../store/useVisualStore'
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import AuthAnimatedFrame from '../../animation/AuthAnimatedFrame/AuthAnimatedFrame'
+
 
 const ChangePassword = ({ setVisiblePage }) => {
     const [password, setPassword] = useState('');
@@ -46,6 +48,8 @@ const ChangePassword = ({ setVisiblePage }) => {
     };
 
     return (
+        <>
+        <AuthAnimatedFrame />
         <section className="ChangePassword-app">
             <GradientCircle />
 
@@ -118,6 +122,7 @@ const ChangePassword = ({ setVisiblePage }) => {
                 Условия и политика конфиденциальности
             </span>
         </section>
+        </>
     );
 };
 
@@ -152,6 +157,9 @@ const PhoneVerification = ({ navigate, setVisiblePage }) => {
     };
 
     return (
+        <>
+
+        <AuthAnimatedFrame />
         <section className="PhoneVerification-app-2">
             <GradientCircle />
 
@@ -212,6 +220,8 @@ const PhoneVerification = ({ navigate, setVisiblePage }) => {
                 Условия и политика конфиденциальности
             </span>
         </section>
+
+        </>
     );
 };
 
@@ -231,6 +241,8 @@ const RecoverAccount = ({ setVisiblePage }) => {
     };
 
     return (
+        <> 
+        <AuthAnimatedFrame />
         <section className="RecoverAccount-app">
             <GradientCircle />
 
@@ -288,6 +300,8 @@ const RecoverAccount = ({ setVisiblePage }) => {
                 Условия и политика конфиденциальности
             </span>
         </section>
+
+        </>
     );
 };
 
@@ -316,6 +330,8 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
     };
 
     return (
+        <>
+        <AuthAnimatedFrame />
         <section className="LoginForm-app">
             <GradientCircle />
 
@@ -407,6 +423,7 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
                 Условия и политика конфиденциальности
             </span>
         </section>
+        </>
     );
 };
 

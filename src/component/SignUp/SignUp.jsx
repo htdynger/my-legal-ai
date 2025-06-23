@@ -21,6 +21,8 @@ import SuccessfulAuth from '../SuccessfulAuth/SuccessfulAuth'
 
 import { useVisualStore } from '../../store/useVisualStore'
 
+import AuthAnimatedFrame from '../../animation/AuthAnimatedFrame/AuthAnimatedFrame'
+
 
 const RegisterForm = ({ navigate, setVisiblePage }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -31,6 +33,8 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
     };
 
     return (
+        <> 
+        <AuthAnimatedFrame />
         <section className="RegisterForm-app">
             <GradientCircle />
 
@@ -137,6 +141,7 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
                 Условия и политика конфиденциальности
             </span>
         </section>
+        </>
     );
 };
 
@@ -170,6 +175,8 @@ const PhoneVerification = ({ navigate, setVisiblePage }) => {
     };
 
     return (
+        <>
+        <AuthAnimatedFrame />
         <section className="PhoneVerification-app">
             <GradientCircle />
 
@@ -221,8 +228,9 @@ const PhoneVerification = ({ navigate, setVisiblePage }) => {
                 Условия и политика конфиденциальности
             </span>
         </section>
+        </>
     );
-};
+}; 
 
 
 const SignUp = () => {

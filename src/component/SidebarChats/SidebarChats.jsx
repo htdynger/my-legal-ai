@@ -3,19 +3,24 @@ import './SidebarChats.css'
 
 import { useChatStore } from '../../store/useChatStore'
 import { useVisualStore } from '../../store/useVisualStore'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const SidebarChats = ({date, chats, id}) => {
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const { handleSelectChat, selectedChat } = useChatStore()
     const { toggleChat, setChatInstantEnabled } = useVisualStore()
 
     const handleClickOnChat = (chatId) => {
+
         setTimeout(() => {toggleChat()}, 1000)
         setChatInstantEnabled(true)
 
         handleSelectChat(chatId)
         console.log(selectedChat)
 
+        if (location.pathname !== '/') navigate('/')
         setTimeout(() => {document.documentElement.scrollTo({
             top: document.documentElement.scrollHeight,
             behavior: 'instant'
