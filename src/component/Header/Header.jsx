@@ -12,6 +12,10 @@ import newChatButtonURL from './items/sidebar/newChatButton.png'
 import rightButtonURL from './items/sidebar/rightButton.png'
 import leftButtonURL from './items/sidebar/leftButton.png'
 
+import navBoxesButtonLogoURL from './items/navBoxesButtonLogo.png'
+import navPenButtonLogoURL from './items/navPenButtonLogo.png'
+import navProButtonLogoURL from './items/navProButtonLogo.png'
+
 import { useVisualStore } from '../../store/useVisualStore'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react'
@@ -154,11 +158,11 @@ const Header = () => {
 
                         <div className='header__column-n2__container-n2'>
 
-                            <button className='header__column-n2__container-n2__button-text-n1'> Инфоблок </button>
-                            <button className='header__column-n2__container-n2__button-text-n2'> LegAi Pro </button>
-                            <button ref={documentGenerationButtonRef} onClick={() => handleNavigate('/document-generation/', documentGenerationButtonRef)} className={visualPathname === '/document-generation/' ? 'header__column-n2__container-n2__button-text-n3 navSelected' : 'header__column-n2__container-n2__button-text-n3'}> Генерация док-ов </button>
+                            <div> <button className='header__column-n2__container-n2__button-text-n1'> <img src={navBoxesButtonLogoURL} alt="Info" /> </button> </div>
+                            <div> <button className='header__column-n2__container-n2__button-text-n2'> <img src={navProButtonLogoURL} alt="Pro-Version" /> </button> </div>
+                            <div className={visualPathname === '/document-generation/' ? 'navSelected' : ''} ref={documentGenerationButtonRef} onClick={() => handleNavigate('/document-generation/', documentGenerationButtonRef)}> <button className='header__column-n2__container-n2__button-text-n3'> <img src={navPenButtonLogoURL} alt="document-generation" /> </button> </div>
 
-                            <button className='header__column-n2__container-n2__button-img-n1'> <img className='header__column-h2__container-n2__button-img-n1__logo' src={navSearchButtonLogoURL} alt="search-button-logo" /> </button>
+                            <div> <button className='header__column-n2__container-n2__button-img-n1'> <img className='header__column-h2__container-n2__button-img-n1__logo' src={navSearchButtonLogoURL} alt="search-button-logo" /> </button> </div>
 
                             {/* <button className='header__column-n2__container-n2__button-img-n2'> <img className='header__column-h2__container-n2__button-img-n2__logo' src={navSettingsButtonLogoURL} alt="settings-button-logo" /> </button> */}
 
