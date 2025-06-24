@@ -377,7 +377,7 @@ const DocumentGenerationAi = ({ editorProp }) => {
 
 
 
-    const { selectedChat, data, setData, handleSelectChat, unSelectChat, sendButtonEnabled } = useChatStore()
+    const { selectedChat, data, setData, handleSelectChat, unSelectChat, sendButtonEnabled, hardSetSelectedChat } = useChatStore()
     const { toggleChat, closeChat } = useVisualStore()
 
 
@@ -480,7 +480,9 @@ const DocumentGenerationAi = ({ editorProp }) => {
                     "date": "1",
                 },
             )    
-            setData(initialState)
+            // setData(initialState)
+
+            hardSetSelectedChat(initialState)
 
         }
     };

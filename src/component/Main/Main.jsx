@@ -35,7 +35,7 @@ const Main = () => {
 
 
     const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat, isSidebarHidden } = useVisualStore();
-    const { selectedChat, handleSelectChat, data, setData, unSelectChat, setIsExplainEnabled, isExplainEnabled, sendButtonEnabled } = useChatStore()
+    const { selectedChat, handleSelectChat, data, setData, unSelectChat, setIsExplainEnabled, isExplainEnabled, sendButtonEnabled, hardSetSelectedChat } = useChatStore()
 
     const [messageText, setMessageText] = useState('')
 
@@ -196,6 +196,7 @@ const Main = () => {
             )    
             
             // setData(initialState)
+            hardSetSelectedChat(initialState)
             console.log(data)
             console.log(selectedChat)
 

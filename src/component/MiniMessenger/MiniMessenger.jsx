@@ -19,11 +19,15 @@ const MiniMessenger = () => {
 
     console.log(data)
     useEffect(() => {
-        if (!data.message) return
-        if (data.message[data.message.length -1].message === '') setSendButtonEnabled(false)
-        if (data.message[data.message.length -1].message !== '') setSendButtonEnabled(true)
-  
-    }, [data]) 
+        console.log('selectedChat changed')
+        if (!selectedChat.message) return
+        if (selectedChat.message[selectedChat.message.length - 1].author === 'ai' && selectedChat.message[selectedChat.message.length - 1].message === '') setSendButtonEnabled(false)
+        if (selectedChat.message[selectedChat.message.length - 1].author !== 'ai' && selectedChat.message[selectedChat.message.length - 1].message !== '') setSendButtonEnabled(true)
+
+        // if (!data.message) return
+        // if (data.message[data.message.length -1].message === '') setSendButtonEnabled(false)
+        // if (data.message[data.message.length -1].message !== '') setSendButtonEnabled(true)
+    }, [selectedChat]) 
 
 
     return (

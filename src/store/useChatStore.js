@@ -21,6 +21,9 @@ export const useChatStore = create((set, get)=> ({
         const chat = get().data.find((e) => e.id === id);
         set({ selectedChat: chat ? chat : false });
     },
+    hardSetSelectedChat: (object) => set({
+        selectedChat: object,
+    }),
 
     setData: (value) => set({data: value}),
     

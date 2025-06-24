@@ -9,18 +9,32 @@ const SidebarChats = ({date, chats, id}) => {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const { handleSelectChat, selectedChat } = useChatStore()
+    const { handleSelectChat, selectedChat, unSelectChat } = useChatStore()
     const { toggleChat, setChatInstantEnabled } = useVisualStore()
 
     const handleClickOnChat = (chatId) => {
 
-        setTimeout(() => {toggleChat()}, 1000)
-        setChatInstantEnabled(true)
+        if (location.pathname !== '/') {
+            setTimeout(() => {
+                setTimeout(() => {toggleChat()}, 1000)
+                setChatInstantEnabled(true)
+                unSelectChat()
+                handleSelectChat(chatId)
+                console.log(selectedChat)
+                navigate('/')
+            }, 150)
 
-        handleSelectChat(chatId)
-        console.log(selectedChat)
+        } else if (location.pathname === '/') {
+            setTimeout(() => {toggleChat()}, 1000)
+            setChatInstantEnabled(true)
+            unSelectChat()
+            handleSelectChat(chatId)
+            console.log(selectedChat)
+            navigate('/')
+        }
 
-        if (location.pathname !== '/') navigate('/')
+
+
         setTimeout(() => {document.documentElement.scrollTo({
             top: document.documentElement.scrollHeight,
             behavior: 'instant'
