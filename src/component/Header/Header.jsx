@@ -183,7 +183,7 @@ const Header = () => {
             </>}
 
 
-            {windowLayout.width > 0 && windowLayout.width <= 1440 && 
+            {windowLayout.width > 515 && windowLayout.width <= 1440 && 
             <>
 
                 <div className='relative'></div>

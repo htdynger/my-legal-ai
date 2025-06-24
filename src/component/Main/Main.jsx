@@ -1,5 +1,7 @@
 import './Main.css'
 import './chat-opened.css'
+
+import './1440.css'
 import animatedFrameURL from './items/animatedFrame.mp4'
 import flagUzbURL from './items/flagUzb.png'
 import copyButtonURL from './items/copyButton.png'
