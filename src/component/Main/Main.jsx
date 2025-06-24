@@ -4,8 +4,11 @@ import animatedFrameURL from './items/animatedFrame.mp4'
 import flagUzbURL from './items/flagUzb.png'
 import copyButtonURL from './items/copyButton.png'
 import newChatButtonURL from './items/newChatButton.png'
+import newChatButtonHoverURL from './items/newChatButtonHover.png'
 import addFileButtonURL from './items/addFileButton.png'
+import addFileButtonHoverURL from './items/addFileButtonHover.png'
 import moreInfoButtonURL from './items/moreInfoButton.png'
+import moreInfoButtonEnabledURL from './items/moreInfoButtonEnabled.png'
 import sendButtonURL from './items/sendButton.png'
 
 import Messenger from '../Messenger/Messenger'
@@ -16,6 +19,7 @@ import { useChatStore } from '../../store/useChatStore'
 import { useState, useEffect, useRef } from 'react'
 
 import { v4 as uuidv4 } from 'uuid';
+
 
 
 
@@ -30,8 +34,8 @@ const Main = () => {
 
 
 
-    const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat } = useVisualStore();
-    const { selectedChat, handleSelectChat, data, setData, unSelectChat } = useChatStore()
+    const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat, isSidebarHidden } = useVisualStore();
+    const { selectedChat, handleSelectChat, data, setData, unSelectChat, setIsExplainEnabled, isExplainEnabled, sendButtonEnabled, hardSetSelectedChat } = useChatStore()
 
     const [messageText, setMessageText] = useState('')
 
@@ -118,6 +122,7 @@ const Main = () => {
 
     const handleSendMessage = (inputValue) => {
 
+        if (!sendButtonEnabled) return
         if (messageText.trim() === '') return
         setMessageText('')
 
@@ -165,6 +170,7 @@ const Main = () => {
         } else {
 
             let initialState = {...selectedChat}
+            let initialData = [...data]
 
             setTimeout(()=> {document.documentElement.scrollTo({
                 top: document.documentElement.scrollHeight,
@@ -183,16 +189,80 @@ const Main = () => {
                 },
                 {
                     "author": "ai",
-                    "title": "lorem ipsum",
-                    "message": "4343234 ipsum 4343234 sit lorem ipsum dolor sitlorem 4343234 dolor sit lorem 4343234 dolor sitlorem ipsum 4343234 sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sit",
+                    "title": "",
+                    "message": "",
                     "date": "1",
                 },
             )    
+            
+            // setData(initialState)
+            hardSetSelectedChat(initialState)
+            console.log(data)
+            console.log(selectedChat)
+
+
+
         }
     }
 
+    const mainRef = useRef()
+    const [firstRender, setFirstRender] = useState(true)
+
+
+    useEffect(() => {
+
+
+        mainRef.current.classList.remove('main-sidebar-opened-instant')
+        mainRef.current.classList.remove('main-sidebar-closed-instant')
+
+        if (isSidebarHidden) {
+            mainRef.current.classList.add('main-sidebar-closed-animation')
+            mainRef.current.classList.remove('main-sidebar-opened-animation')
+        } else {
+            mainRef.current.classList.add('main-sidebar-opened-animation')
+            mainRef.current.classList.remove('main-sidebar-closed-animation')
+        }
+
+
+        // if (localChatOpened || isChatOpened) {
+        //     mainRef.current.classList.remove('main-sidebar-opened-animation')
+        //     mainRef.current.classList.remove('main-sidebar-closed-animation')
+        //     mainRef.current.classList.remove('main-sidebar-closed-instant')
+        //     mainRef.current.classList.remove('main-sidebar-opened-instant')
+
+
+        // }
+
+    }, [isSidebarHidden])
+
+
+    useEffect(() => {
+        
+
+        if (isSidebarHidden) {
+            mainRef.current.classList.add('main-sidebar-closed-instant')
+            mainRef.current.classList.remove('main-sidebar-opened-instant')
+            
+
+        } else if (!isSidebarHidden) {
+            mainRef.current.classList.add('main-sidebar-opened-instant')
+            mainRef.current.classList.remove('main-sidebar-closed-instant')
+            
+        }
+
+        mainRef.current.classList.remove('main-sidebar-opened-animation')
+        mainRef.current.classList.remove('main-sidebar-closed-animation')
+
+        setFirstRender(false)
+    }, [])
+
+    
+    const [newChatImgSrc, setNewChatImgSrc] = useState(newChatButtonURL);
+    const [addFileImgSrc, setAddFileImgSrc] = useState(addFileButtonURL)
+
+
     return (
-        <div className={localChatOpened || isChatOpened ? 'main main-chatOpened' : 'main'}> 
+        <div ref={mainRef} className='main'> 
 
 
         {localChatOpened || isChatOpened ? (
@@ -250,7 +320,7 @@ const Main = () => {
                         playsInline
                     />
                 </div>
-          
+
             <div ref={inputSectionRef} className={localChatOpened || isChatOpened ? 'input-section input-section-chatOpened' : 'input-section'}>
 
 
@@ -261,30 +331,31 @@ const Main = () => {
 
                     <div className='input-section__input-footer__container-n1'>
 
-                        <div className='input-section__input-footer__container-n1__button-container-n1'>
+                        {/* <div className='input-section__input-footer__container-n1__button-container-n1'>
 
                             <button> <img src={flagUzbURL} alt="flag-uzbekistan" /> </button>
                             <button> <img src={copyButtonURL} alt="copy-button" /></button> 
                             
-                        </div>
+                        </div> */}
 
-                        <div onClick={() => addNewChat()} className='input-section__input-footer__container-n1__button-container-n2'> <button> <img src={newChatButtonURL} alt="new-chat-button" /> </button></div>
-                        <div className='input-section__input-footer__container-n1__button-container-n3'> <button> <img src={addFileButtonURL} alt="add-file-button" /> </button> </div>
+                        <div onMouseEnter={() => setNewChatImgSrc(newChatButtonHoverURL)} onMouseLeave={() => setNewChatImgSrc(newChatButtonURL)} onClick={() => addNewChat()} className='input-section__input-footer__container-n1__button-container-n2'> <button> <img src={newChatImgSrc} alt="new-chat-button" /> </button></div>
+                        <div onMouseEnter={() => setAddFileImgSrc(addFileButtonHoverURL)} onMouseLeave={() => setAddFileImgSrc(addFileButtonURL)} className='input-section__input-footer__container-n1__button-container-n3'> <button> <img src={addFileImgSrc} alt="add-file-button" /> </button> </div>
 
                     </div>
 
 
                     <div className='input-section__input-footer__container-n2'>
 
-                        <div className='input-section__input-footer__container-n2__button-container-n1'> <button className='input-section__input-footer__container-n2__button-container-n1__button'> <img src={moreInfoButtonURL} alt="more-info-button" /> </button> </div>
+                        <div onClick={() => setIsExplainEnabled(!isExplainEnabled)} className={isExplainEnabled ? 'input-section__input-footer__container-n2__button-container-n1 enabled' : 'input-section__input-footer__container-n2__button-container-n1'}> <button className='input-section__input-footer__container-n2__button-container-n1__button'> <img src={isExplainEnabled ? moreInfoButtonEnabledURL : moreInfoButtonURL} alt="more-info-button" /> </button> </div>
 
-                        <div onClick={() => handleSendMessage(messageText)} className='input-section__input-footer__container-n2__button-container-n2'> <button className='input-section__input-footer__container-n2__button-container-n2__button'> <img src={sendButtonURL} alt="send-button" /> </button> </div>
+                        <div onClick={() => handleSendMessage(messageText)} className={sendButtonEnabled ? 'input-section__input-footer__container-n2__button-container-n2' : 'input-section__input-footer__container-n2__button-container-n2 disabled'}> <button className='input-section__input-footer__container-n2__button-container-n2__button'> <img src={sendButtonURL} alt="send-button" /> </button> </div>
                         
                     </div>
 
 
                 </div>
             </div>
+
         
 
         </div>

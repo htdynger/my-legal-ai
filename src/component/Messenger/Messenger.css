@@ -42,8 +42,9 @@
 .ai-message-container {
     display: flex;
     max-width: 100%;
-    align-items: center;
+    align-items: start;
     justify-content: flex-start;
+    flex-direction: column;
 }
 
 
@@ -226,3 +227,10 @@
         opacity: 1;
     }
 }
+
+
+
+
+
+
+

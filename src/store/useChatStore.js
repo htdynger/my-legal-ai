@@ -3,12 +3,27 @@ import { create } from "zustand";
 export const useChatStore = create((set, get)=> ({
 
     selectedChat: false,
-    unSelectChat: () => set({selectedChat: false}),
+    isExplainEnabled: false,
+
+    sendButtonEnabled: true,
+    setSendButtonEnabled: (boolean) => set(() => ({sendButtonEnabled: boolean})),
+
+    setIsExplainEnabled: (boolean) => set({isExplainEnabled: boolean}),
+
+
+    unSelectChat: () => set({
+        selectedChat: false,
+        isExplainEnabled: false,
+        sendButtonEnabled: true,
+    }),
     
     handleSelectChat: (id) => {
         const chat = get().data.find((e) => e.id === id);
         set({ selectedChat: chat ? chat : false });
     },
+    hardSetSelectedChat: (object) => set({
+        selectedChat: object,
+    }),
 
     setData: (value) => set({data: value}),
     

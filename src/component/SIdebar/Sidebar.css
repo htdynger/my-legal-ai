@@ -225,3 +225,46 @@
     scrollbar-width: none;  
     width: 100%;
 }
+
+
+
+.sidebar-open-animation {
+    animation: sidebar-open-animation 1s forwards;
+}
+
+
+.sidebar-close-animation {
+    animation: sidebar-close-animation 1s forwards;
+}
+
+@keyframes sidebar-close-animation {
+    0% {
+        width: 292px;
+        margin-right: 24px;
+    } 99% {
+        width: 0px;
+        margin-right: 0px;
+    } 100% {
+        margin-right: 0px;
+        width: 0px;
+    }
+}
+
+
+@keyframes sidebar-open-animation {
+    0% {
+        margin-right: 0px;
+        width: 0px;
+    } 100% {
+        margin-right: 24px;
+        width: 292px;
+    }
+}
+
+
+.sidebar-open-instant {
+    width: 292px;
+    margin-right: 24px;
+    transition: none !important;
+    animation: none !important;
+}

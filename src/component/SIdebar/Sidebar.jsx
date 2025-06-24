@@ -17,6 +17,8 @@ import { useChatStore } from '../../store/useChatStore'
 
 import { useState, useEffect, useRef } from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
 
 
 
@@ -29,8 +31,10 @@ const Sidebar = () => {
     const sidebarRef = useRef()
 
 
+
     const { isSidebarHidden, toggleSidebar } = useVisualStore()
     const location = useLocation()
+    const navigate = useNavigate()
 
     const groupMessagesByDate = (data) => {
         const grouped = {};
@@ -58,7 +62,7 @@ const Sidebar = () => {
     }, [pointerEvents])
 
     const addNewChat = () => {
-
+        if (location.pathname !== '/') navigate('/')
         disablePointerEvents(1000)
         setTimeout(() => {unSelectChat()
         closeChat()}, 500)
@@ -68,12 +72,26 @@ const Sidebar = () => {
 
     const groupedChats = groupMessagesByDate(data);
 
+    const sidebarRelativeRef = useRef()
+
+    useEffect(() => {
+        sidebarRelativeRef.current.classList.remove('sidebar-open-instant')
+    }, [isSidebarHidden])
+
+
+    
+    useEffect(() => {
+        sidebarRelativeRef.current.classList.add('sidebar-open-instant')
+    }, [])
+
+    
+
 
     
     return (
 
         <>
-            <div className='sidebar-relative'> </div>
+            <div ref={sidebarRelativeRef} className={isSidebarHidden ? 'sidebar-relative sidebar-close-animation' : 'sidebar-relative sidebar-open-animation' }> </div>
 
             <div className='aside-fixed-container'> 
 
@@ -102,7 +120,7 @@ const Sidebar = () => {
 
                     <div className='aside__navbar-n3'>
 
-                        {location.pathname != '/document-generation/' ?
+                        {location.pathname != '/document-generation/' || true ?
                         
                             <>
 

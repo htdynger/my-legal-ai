@@ -2,7 +2,8 @@ import './DocumentGeneration.css';
 import './style/DocumentGenerationAi.css'
 import './style/DocumentSection.css'
 
-
+import animatedFrameFragmentURL from './items/animated-frame-fragment.mp4'
+import previewTextURL from './items/previewText.png'
 
 import documentGenerationAiPreviewBigURL from './items/documentGenerationAiPreviewBig.mp4';
 import documentGenerationAiPreviewSmallURL from './items/documentGenerationAiPreviewSmall.mp4';
@@ -64,7 +65,7 @@ import { saveAs } from 'file-saver';
 import { useVisualStore } from '../../store/useVisualStore';
 import { useChatStore } from '../../store/useChatStore';
 import MiniMessenger from '../MiniMessenger/MiniMessenger';
-
+import fontIconUrl from './items/fontIcon.png'
 const EditorWrapper = ({ content, editorRef }) => {
   const editor = useEditor({
     extensions: [
@@ -226,8 +227,9 @@ const DocumentSection = () => {
 
   useEffect(() => {
     const container = scrollRef.current;
+    
     if (!container) return;
-
+    container.width = ``
     const handleMouseDown = (e) => {
       setdragScrollData(prev => ({
         ...prev,
@@ -337,10 +339,10 @@ const DocumentSection = () => {
           </div>
         </div>
         <div 
-          ref={scrollRef}
+          
           className="document-generation__main"
         >
-          <div>
+          <div ref={scrollRef} className='document-generation__main__scroll-feature'>
             <div className={isTextChangeEnabled ? 'opened' : 'locked'}></div>
             {pages.map((page, index) => (
               <div
@@ -375,7 +377,7 @@ const DocumentGenerationAi = ({ editorProp }) => {
 
 
 
-    const { selectedChat, data, setData, handleSelectChat, unSelectChat } = useChatStore()
+    const { selectedChat, data, setData, handleSelectChat, unSelectChat, sendButtonEnabled, hardSetSelectedChat } = useChatStore()
     const { toggleChat, closeChat } = useVisualStore()
 
 
@@ -396,7 +398,7 @@ const DocumentGenerationAi = ({ editorProp }) => {
     const handleSendMessage = () => {
 
 
-        
+        if (!sendButtonEnabled) return
         
         if (messageText.trim() === '') return
 
@@ -409,6 +411,13 @@ const DocumentGenerationAi = ({ editorProp }) => {
 
         toggleChat()
 
+        setTimeout(() => {
+          messengerRef.current.scrollTo({
+            top: messengerRef.current.scrollHeight,
+            behavior: 'smooth'
+          })
+        }, 50)
+
 
         if (selectedChat === false) {
 
@@ -417,7 +426,9 @@ const DocumentGenerationAi = ({ editorProp }) => {
             // websockets связь
 
             const id = uuidv4(); 
+            console.log(data)
             let initialState = [...data]
+            console.log(data)
 
 
 
@@ -449,12 +460,7 @@ const DocumentGenerationAi = ({ editorProp }) => {
             let initialState = {...selectedChat}
           
 
-            setTimeout(() => {
-              messengerRef.current.scrollTo({
-                top: messengerRef.current.scrollHeight,
-                behavior: 'smooth'
-              })
-            }, 50)
+
             
             
             // websockets связь
@@ -469,11 +475,15 @@ const DocumentGenerationAi = ({ editorProp }) => {
                 },
                 {
                     "author": "ai",
-                    "title": "lorem ipsum",
-                    "message": "4343234 ipsum 4343234 sit lorem ipsum dolor sitlorem 4343234 dolor sit lorem 4343234 dolor sitlorem ipsum 4343234 sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sit",
+                    "title": "",
+                    "message": "",
                     "date": "1",
                 },
             )    
+            // setData(initialState)
+
+            hardSetSelectedChat(initialState)
+
         }
     };
 
@@ -496,16 +506,10 @@ const DocumentGenerationAi = ({ editorProp }) => {
 
     const toggleEditorMenu = () => {
 
-        documentGenerationAiRef.current.classList.toggle('visible');
-
-        setTimeout(() => {
           setIsEditorMenuVisible(!isEditorMenuVisible)
+          documentGenerationAiRef.current.classList.toggle('visible');
 
-          messengerRef.current.scrollTo({
-            top: messengerRef.current.scrollHeight,
-            behavior: 'instant'
-          })
-        }, 500)
+
 
 
 
@@ -513,10 +517,6 @@ const DocumentGenerationAi = ({ editorProp }) => {
         void messengerRef.current.offsetWidth
         messengerRef.current.classList.add('messenger-animation')
 
-        messengerRef.current.scrollTo({
-          top: messengerRef.current.scrollHeight,
-          behavior: 'instant'
-        })
 
     };
 
@@ -559,6 +559,7 @@ const DocumentGenerationAi = ({ editorProp }) => {
         setSelectedWeight(weight.label);
         editorProp.chain().focus().setFontWeight(weight.value).run();
         setWeightDropdownOpen(false);
+        console.log(selectedWeight)
     };
     const handleFontSizeSelect = (size) => {
         setSelectedFontSize(size);
@@ -581,10 +582,16 @@ const DocumentGenerationAi = ({ editorProp }) => {
     
 
     useEffect(() => {
-      messengerRef.current.scrollTo({
-        top: messengerRef.current.scrollHeight,
-        behavior: 'instant'
-      })
+      if (isEditorMenuVisible) {
+        setTimeout(() => {
+
+          messengerRef.current.scrollTo({
+            top: messengerRef.current.scrollHeight,
+            behavior: 'smooth'
+          })
+        }, 900)
+      }
+
     }, [isEditorMenuVisible])
 
     
@@ -612,7 +619,7 @@ const DocumentGenerationAi = ({ editorProp }) => {
                                 <div className={`custom-dropdown 
 ${isDropdownOpen ? 'open' : ''}`} onClick={() => 
 setDropdownOpen(!isDropdownOpen)}>
-                                    <div className="custom-dropdown__selected">{selectedFont}</div>
+                                    <div style={{"fontFamily": selectedFont}} className="custom-dropdown__selected">{selectedFont}</div>
 
                                     <div className="custom-dropdown__list-container">
 
@@ -625,12 +632,14 @@ alt="close-dropdown-button" /> </button>
 
 
                                         <div className="custom-dropdown__list-container__list">
+                                          <section>
                                             {fonts.map((font) => (
-                                                <div key={font} 
-className="custom-dropdown__option" onClick={() => handleFontSelect(font)}>
-                                                    {font}
+                                                <div key={font} className={selectedFont === font ? "custom-dropdown__option option-selected" : "custom-dropdown__option"} onClick={() => handleFontSelect(font)}>
+                                                  <img src={fontIconUrl} alt="icon" /> <span> {font} </span> 
                                                 </div>
                                             ))}
+                                          </section>
+
                                         </div>
 
                                     </div>
@@ -653,10 +662,9 @@ setWeightDropdownOpen(!isWeightDropdownOpen)}>
                                             <div className="custom-dropdown-weight__list-container__list">
                                                 {weights.map((weight) => (
                                                     <div
-                                                    key={weight.value}
-                                                    className="custom-dropdown-weight__option"
-                                                    onClick={() => 
-handleFontWeightSelect(weight)}
+                                                      key={weight.value}
+                                                      className={selectedWeight === weight.label ? "custom-dropdown-weight__option weight-option-selected" : "custom-dropdown-weight__option"}
+                                                      onClick={() => handleFontWeightSelect(weight)}
                                                     >
                                                     {weight.label}
                                                     </div>
@@ -778,15 +786,29 @@ className="document-generation-ai__header__settings-section__content__text-color
             </div>
 
             <div className={isEditorMenuVisible ? 'document-generation-ai__main small' : 'document-generation-ai__main'}>
-                <video
-                    className="animated-frame-big"
-                    src={documentGenerationAiPreviewBigURL}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    ref={bigVideoRef}
-                />
+              <div className='animated-frame-big-parent'>
+
+                  <video
+                      className="animated-frame-big__top-section"
+                      src={animatedFrameFragmentURL}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      ref={bigVideoRef}
+                  />
+                  <img src={previewTextURL} alt="text" />
+                  <video
+                      className="animated-frame-bottom-section"
+                      src={animatedFrameFragmentURL}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      ref={bigVideoRef}
+                  />
+              </div>
+
 
                 <video
                     className="animated-frame-small"
@@ -807,19 +829,19 @@ className="document-generation-ai__header__settings-section__content__text-color
                 <textarea value={messageText} onChange={(e)=> setMessageText(e.target.value)} className="document-generation-ai__input-section__message-input" placeholder='Начните писать' type="text" />
                 <div className="document-generation-ai__input-section__button-section">
                     <div className="document-generation-ai__input-section__button-section__left-buttons">
-                        <div className="document-generation-ai__input-section__button-section__left-buttons__container">
+                        {/* <div className="document-generation-ai__input-section__button-section__left-buttons__container">
                             <button className="button-n1">
                                 <img src={flagUzbURL} alt="change-language-icon" />
                             </button>
                             <button className="button-n2">
                                 <img src={copyButtonURL} alt="copy-button-icon" />
                             </button>
-                        </div>
+                        </div> */}
                         <button className="button-n3">
                             <img src={addFileButtonURL} alt="add-file-button" />
                         </button>
                     </div>
-                    <button onClick={handleSendMessage} className="document-generation-ai__input-section__button-section__right-buttons">
+                    <button onClick={handleSendMessage} className={sendButtonEnabled ? "document-generation-ai__input-section__button-section__right-buttons" : "document-generation-ai__input-section__button-section__right-buttons disabled"}>
                         <img src={sendButtonURL} alt="send-button-icon" />
                     </button>
                 </div>

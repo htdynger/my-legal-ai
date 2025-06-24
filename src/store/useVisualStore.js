@@ -1,9 +1,11 @@
 import { create } from "zustand";
-import Sidebar from "../component/SIdebar/Sidebar";
 
 export const useVisualStore = create((set)=> ({
     isSidebarHidden: false,
     toggleSidebar: () => set((state)=> ({isSidebarHidden: !state.isSidebarHidden})),
+
+    visiblePage: 'none',
+    setVisiblePage: (value) => set(() => ({visiblePage: value})),
 
     isChatOpened: false,
     toggleChat: () => set((state)=> ({isChatOpened: true, chatInstantEnabled: true})),
@@ -11,6 +13,19 @@ export const useVisualStore = create((set)=> ({
 
     chatInstantEnabled: false,
     setChatInstantEnabled: (value) => set((state) => ({chatInstantEnabled: value})),
+
+    visualPathname: '/',
+    setVisualPathname: (value) => set(() => ({visualPathname: value})),
+
+    windowLayout: {
+        width: 1980,
+        height: null,
+    },
+
+    setLayoutWidth: (int) => set((state) => ({windowLayout: {
+        ...state.windowLayout,
+        width: int,
+    }})),
 
     pointerEvents: true,
 
