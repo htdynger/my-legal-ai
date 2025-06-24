@@ -1,12 +1,27 @@
-# React + Vite
+# my-legal-ai
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Продукт разработан на Vite + React.
 
-Currently, two official plugins are available:
+### Используемые библиотеки, и фреймворки:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- Vite
+- react-router-dom
+- zustand
+- uuid
+- tiptap
+- docx
+- file-saver
 
-## Expanding the ESLint configuration
+### Структура проекта:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+animation: компоненты анимаций с position: absolute;
+component: структурные компоненты, наполняющие DOM, и содержащие в себе любые другие компоненты.
+store: хранилища zustand.
+utils: добавление зависимостей для tiptap (обеспечение корректного отображения стилей в document-generation
+
+
+# v0.1
+
+Старт разработки продукта
+
