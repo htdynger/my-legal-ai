@@ -7,7 +7,19 @@ import MainLayout from './component/MainLayout';
 import './App.css'
 import AuthLayout from './component/AuthLayout';
 
+import { useVisualStore } from './store/useVisualStore';
+import { useEffect } from 'react';
+
 const App = () => {
+
+    const { setLayoutWidth } = useVisualStore()
+
+    useEffect(() => {
+        setLayoutWidth(window.innerWidth)
+        console.log(window.innerWidth)
+    }, [])
+
+
     return (
         <BrowserRouter>
             <Routes>

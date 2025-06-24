@@ -22,6 +22,8 @@ import { useRef, useState, useEffect } from 'react'
 
 import './Header.css'
 
+import './1440.css'
+
 import { useChatStore } from '../../store/useChatStore'
 
 const Header = () => {
@@ -44,7 +46,7 @@ const Header = () => {
     const buttonRefs = [mainButtonRef, documentGenerationButtonRef]
 
     const { visualPathname, setVisualPathname } = useVisualStore()
-    const { isSidebarHidden, toggleSidebar, closeChat, isChatOpened, setChatInstantEnabled } = useVisualStore()
+    const { isSidebarHidden, toggleSidebar, closeChat, isChatOpened, setChatInstantEnabled, windowLayout } = useVisualStore()
     
 
 
@@ -106,80 +108,112 @@ const Header = () => {
     }, [location.pathname])
 
     return (
-        // <div className='relative'>
-        <> 
-            <div className="relative"></div>
-            <div className="header-fixed-container">
-                <header className='header'>
-                    <div className='header__column-n1'>
+        <>
 
-                        <div className='container'>
+            {windowLayout.width > 1440 && 
+            <> 
+                <div className="relative"></div>
+                <div className="header-fixed-container">
+                    <header className='header'>
+                        <div className='header__column-n1'>
 
-                            <div className='header__column-n1__logo-container'>
-                                <img src={legAiLogo1URL} alt="logo" />
+                            <div className='container'>
+
+                                <div className='header__column-n1__logo-container'>
+                                    <img src={legAiLogo1URL} alt="logo" />
+                                </div>
+
+
+                                <div className='header__column-n1__legAi-container'> 
+                                    <p>Leg</p>
+                                    <img src={legAiText1URL} alt='ai' />
+                                </div>
+
+                                <div className='header__column-n1__pro-container'> <p> Pro </p>  </div>
+
                             </div>
 
 
-                            <div className='header__column-n1__legAi-container'> 
-                                <p>Leg</p>
-                                <img src={legAiText1URL} alt='ai' />
+
+
+                            <div className={isSidebarHidden ? 'sidebar-closed openedSidebar' : 'sidebar-closed closedSidebar'}>
+                                <button onClick={toggleSidebar}><img className='button-icon-n1' src={toggleSidebarButtonURL} alt="toggle-sidebar-button" /></button>
+
+                                <button ref={sidebarAddNewChatButtonRef} onClick={() => handleAddNewChatClick()}><img className='button-icon-n2' src={newChatButtonURL} alt="new-chat-button" /></button>
+
+                                <button><img className='button-icon-n3' src={leftButtonURL} alt="left-button-icon" /></button>
+
+                                <button><img className='button-icon-n4' src={rightButtonURL} alt="right-button-icon" /></button>
                             </div>
 
-                            <div className='header__column-n1__pro-container'> <p> Pro </p>  </div>
+
 
                         </div>
 
+                        
 
+                        
 
+                        <nav className='header__column-n2'>
 
-                        <div className={isSidebarHidden ? 'sidebar-closed openedSidebar' : 'sidebar-closed closedSidebar'}>
-                            <button onClick={toggleSidebar}><img className='button-icon-n1' src={toggleSidebarButtonURL} alt="toggle-sidebar-button" /></button>
+                            <div className='header__column-n2__container-n1'>
+                                <button className={visualPathname === '/' ? 'navSelected' : ''} ref={mainButtonRef} onClick={() => handleNavigate('/', mainButtonRef)}> <img src={mainIconURL} /></button>
+                            </div>
 
-                            <button ref={sidebarAddNewChatButtonRef} onClick={() => handleAddNewChatClick()}><img className='button-icon-n2' src={newChatButtonURL} alt="new-chat-button" /></button>
+                            <div className='header__column-n2__container-n2'>
 
-                            <button><img className='button-icon-n3' src={leftButtonURL} alt="left-button-icon" /></button>
+                                <div> <button className='header__column-n2__container-n2__button-text-n1'> <img src={navBoxesButtonLogoURL} alt="Info" /> </button> </div>
+                                <div> <button className='header__column-n2__container-n2__button-text-n2'> <img src={navProButtonLogoURL} alt="Pro-Version" /> </button> </div>
+                                <div className={visualPathname === '/document-generation/' ? 'navSelected' : ''} ref={documentGenerationButtonRef} onClick={() => handleNavigate('/document-generation/', documentGenerationButtonRef)}> <button className='header__column-n2__container-n2__button-text-n3'> <img src={navPenButtonLogoURL} alt="document-generation" /> </button> </div>
 
-                            <button><img className='button-icon-n4' src={rightButtonURL} alt="right-button-icon" /></button>
-                        </div>
+                                <div> <button className='header__column-n2__container-n2__button-img-n1'> <img className='header__column-h2__container-n2__button-img-n1__logo' src={navSearchButtonLogoURL} alt="search-button-logo" /> </button> </div>
 
+                            </div>
+                        </nav>
 
+                        <div className='header__column-n3'>
 
-                    </div>
-
-                    
-
-                    
-
-                    <nav className='header__column-n2'>
-
-                        <div className='header__column-n2__container-n1'>
-                            <button className={visualPathname === '/' ? 'navSelected' : ''} ref={mainButtonRef} onClick={() => handleNavigate('/', mainButtonRef)}> <img src={mainIconURL} /></button>
-                        </div>
-
-                        <div className='header__column-n2__container-n2'>
-
-                            <div> <button className='header__column-n2__container-n2__button-text-n1'> <img src={navBoxesButtonLogoURL} alt="Info" /> </button> </div>
-                            <div> <button className='header__column-n2__container-n2__button-text-n2'> <img src={navProButtonLogoURL} alt="Pro-Version" /> </button> </div>
-                            <div className={visualPathname === '/document-generation/' ? 'navSelected' : ''} ref={documentGenerationButtonRef} onClick={() => handleNavigate('/document-generation/', documentGenerationButtonRef)}> <button className='header__column-n2__container-n2__button-text-n3'> <img src={navPenButtonLogoURL} alt="document-generation" /> </button> </div>
-
-                            <div> <button className='header__column-n2__container-n2__button-img-n1'> <img className='header__column-h2__container-n2__button-img-n1__logo' src={navSearchButtonLogoURL} alt="search-button-logo" /> </button> </div>
-
-                            {/* <button className='header__column-n2__container-n2__button-img-n2'> <img className='header__column-h2__container-n2__button-img-n2__logo' src={navSettingsButtonLogoURL} alt="settings-button-logo" /> </button> */}
+                            <button><img src={userButtonLogoURL} alt="user-button-logo" /></button>
 
                         </div>
-                    </nav>
+                    </header>
+                </div>
+                
 
-                    <div className='header__column-n3'>
+            </>}
 
-                        <button><img src={userButtonLogoURL} alt="user-button-logo" /></button>
 
-                    </div>
+            {windowLayout.width > 0 && windowLayout.width <= 1440 && 
+            <>
+
+                <div className='relative'></div>
+
+                <header className='header-fixed-container'> 
+                    <section className='header-1440'>
+                        <nav className='header-1440__nav'>
+                            <div className='header-1440__nav__column-1'> 
+                                <div className={visualPathname === '/' ? 'navSelected' : ''}><button ref={mainButtonRef} onClick={() => handleNavigate('/', mainButtonRef)}> <img src={mainIconURL} /></button></div>
+                                <div><button><img src={toggleSidebarButtonURL} alt="toggle-sidebar-button" /></button></div>
+                            </div>
+
+                            <div className='header-1440__nav__column-2'>
+                                <div><button><img src={legAiLogo1URL} alt="logo-button" /></button></div>
+                                <div><button><img src={navPenButtonLogoURL} alt="document-generation-button" /></button></div>
+                                <div><button><img src={navBoxesButtonLogoURL} alt="info-button" /></button></div>
+                                <div><button><img src={navProButtonLogoURL} alt="pro-button" /></button></div>
+                                <div><button><img src={navSearchButtonLogoURL} alt="search-button" /></button></div>
+                                <div><button><img src={userButtonLogoURL} alt="user-button" /></button></div>
+                            </div>
+                        </nav>
+                    </section>
                 </header>
-            </div>
-            
+
+
+            </>
+
+            }
 
         </>
-        // </div>
     )
 }
 

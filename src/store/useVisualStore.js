@@ -17,6 +17,16 @@ export const useVisualStore = create((set)=> ({
     visualPathname: '/',
     setVisualPathname: (value) => set(() => ({visualPathname: value})),
 
+    windowLayout: {
+        width: 1980,
+        height: null,
+    },
+
+    setLayoutWidth: (int) => set((state) => ({windowLayout: {
+        ...state.windowLayout,
+        width: int,
+    }})),
+
     pointerEvents: true,
 
     disablePointerEvents: (timeout) => {
