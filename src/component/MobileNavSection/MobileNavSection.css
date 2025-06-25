@@ -60,6 +60,7 @@
 .nav-515 section:nth-child(1) div:nth-child(1)::after {
     content: '';
     display: block;
+    left: calc(50% - 43vw);
     width: 86vw;
     bottom: 157px;
     height: 2px;
@@ -69,6 +70,7 @@
 .nav-515 section:nth-child(1) div:nth-child(2)::after {
     content: '';
     display: block;
+    left: calc(50% - 43vw);
     width: 86vw;
     bottom: 104px;
     height: 2px;
@@ -79,6 +81,7 @@
 .nav-515 section:nth-child(1) div:nth-child(3)::after {
     content: '';
     display: block;
+    left: calc(50% - 43vw);
     width: 86vw;
     bottom: 51px;
     height: 2px;
@@ -89,9 +92,36 @@
 .nav-515 section:nth-child(2) div:nth-child(1)::after {
     content: '';
     display: block;
+    left: calc(50% - 43vw);
     width: 86vw;
     bottom: 51px;
     height: 2px;
     background-color: #292E3C;
     position: absolute;
 }
+
+
+
+.nav-515-selected {
+    padding: 15px 20px 15px 20px;
+    border-radius: 16px;
+    width: 100%;
+    height: 51px !important;
+    background-color: #292E3C;
+}
+
+.nav-515-selected span::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #7E8BA5;
+    border-radius: 50%;
+    position: absolute;
+    right: 11vw;
+    margin-top: 5.5px;
+    
+}
+
+/* .nav-515-selected::after {
+    left: calc(50% - 43vw);
+} */
