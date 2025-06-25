@@ -1,0 +1,127 @@
+.nav-515 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nav-515 section {
+    border: 1px solid #292E3C;
+    background: #222631CC;
+    gap: 32px;
+    padding: 15px;
+    border-radius: 24px;
+    height: auto;
+    box-shadow: none;
+
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    z-index: 20;
+    
+}
+
+.nav-515 section div {
+    height: 21px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.nav-515 section div button {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-515 section div button span {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    color: #FBFBFB;
+}
+
+.nav-515__logo-container {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 15px;
+}
+
+.nav-515 section:nth-child(1) div:nth-child(1)::after {
+    content: '';
+    display: block;
+    left: calc(50% - 43vw);
+    width: 86vw;
+    bottom: 157px;
+    height: 2px;
+    background-color: #292E3C;
+    position: absolute;
+}
+.nav-515 section:nth-child(1) div:nth-child(2)::after {
+    content: '';
+    display: block;
+    left: calc(50% - 43vw);
+    width: 86vw;
+    bottom: 104px;
+    height: 2px;
+    background-color: #292E3C;
+    position: absolute;
+}
+
+.nav-515 section:nth-child(1) div:nth-child(3)::after {
+    content: '';
+    display: block;
+    left: calc(50% - 43vw);
+    width: 86vw;
+    bottom: 51px;
+    height: 2px;
+    background-color: #292E3C;
+    position: absolute;
+}
+
+.nav-515 section:nth-child(2) div:nth-child(1)::after {
+    content: '';
+    display: block;
+    left: calc(50% - 43vw);
+    width: 86vw;
+    bottom: 51px;
+    height: 2px;
+    background-color: #292E3C;
+    position: absolute;
+}
+
+
+
+.nav-515-selected {
+    padding: 15px 20px 15px 20px;
+    border-radius: 16px;
+    width: 100%;
+    height: 51px !important;
+    background-color: #292E3C;
+}
+
+.nav-515-selected span::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #7E8BA5;
+    border-radius: 50%;
+    position: absolute;
+    right: 11vw;
+    margin-top: 5.5px;
+    
+}
+
+/* .nav-515-selected::after {
+    left: calc(50% - 43vw);
+} */
