@@ -324,7 +324,7 @@
 .main-sidebar-opened-instant {
     transition: none !important;
     animation: none !important;
-    margin-left: -316px !important;
+    margin-left: -316px;
 }
 
 
@@ -430,7 +430,8 @@
     flex-direction: column;
     justify-content: center;
     /* align-items: center; */
-    width: 49%;
+    /* width: 49%; */
+    width: 924px;
 
     padding: 20px 10px 10px 10px;
 
@@ -849,7 +850,8 @@
     position: relative;
 
     height: 100px;
-    width: 48%;
+    /* width: 48%; */
+    width: 924px;
     border-top-left-radius: 100px;
     border-top-right-radius: 100px;
     /* opacity: 1; */
