@@ -22,6 +22,7 @@ import mobileNewChatURL from './items/mobile/mobileNewChat.png'
 import mobileSendMessageURL from './items/mobile/mobileSendMessage.png'
 
 import Messenger from '../Messenger/Messenger'
+import MobileNavSection from '../MobileNavSection/MobileNavSection'
 
 import { useVisualStore } from '../../store/useVisualStore';
 import { useChatStore } from '../../store/useChatStore'
@@ -207,6 +208,51 @@ const Main = () => {
     const [addFileImgSrc, setAddFileImgSrc] = useState(addFileButtonURL)
 
 
+
+    const [translateY, setTranslateY] = useState(0);
+const [isOpen, setIsOpen] = useState(false);
+const [isSwiping, setIsSwiping] = useState(false);
+const startYRef = useRef(0);
+const startHeightRef = useRef(134); // сохраняем стартовую высоту футера
+
+const handleTouchStart = (e) => {
+    startYRef.current = e.touches[0].clientY;
+    startHeightRef.current = 134 + translateY; // фиксируем текущее значение
+    setIsSwiping(true);
+};
+
+const handleTouchMove = (e) => {
+    const deltaY = startYRef.current - e.touches[0].clientY;
+    const newHeight = startHeightRef.current + deltaY;
+    const clampedHeight = Math.min(Math.max(newHeight, 134), 633);
+    setTranslateY(clampedHeight - 134);
+};
+
+const handleTouchEnd = () => {
+    setIsSwiping(false);
+    const threshold = (633 - 134) * 0.50; // 25% от диапазона высот
+
+    const currentHeight = 134 + translateY;
+
+    if (currentHeight - 134 > threshold) {
+        // Открыть
+        setIsOpen(true);
+        setTranslateY(633 - 134);
+    } else {
+        // Закрыть
+        setIsOpen(false);
+        setTranslateY(0);
+    }
+};
+
+
+useEffect(() => {
+    // console.log(translateY)
+}, [translateY])
+    
+
+
+
     return (
 
         <>
@@ -345,29 +391,51 @@ const Main = () => {
 
 
                 <div className='main-515__footer-layout'> </div>
-                <footer className='main-515__footer'> 
+                <div 
+                    className={translateY > 350 ? 'main-515__footer-wrapper main-515__footer-wrapper__fade-in-animation' : 'main-515__footer-wrapper main-515__footer-wrapper__fade-out-animation'}
+                    style={{ height: `${134 + translateY}px`, transition: isSwiping ? 'none' : 'height 0.5s ease'}}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                >
+                    <footer className='main-515__footer'> 
+                        <div className="footer-shadow"></div>
+                        <div className="footer-handle"></div>
+
+                        <div className='main-515__footer__content-wrapper'>
+                            <section>
+                                <div className='main-515__footer__section__textarea-section'>
+                                    <textarea 
+                                        ref={textareaRef} 
+                                        value={messageText} 
+                                        onChange={(e) => setMessageText(e.target.value)} 
+                                        placeholder='Начните писать'
+                                    />
+                                </div>
+                                <div className='main-515__footer__section__button-section'>
+                                    <div className='main-515__footer__section__button-section__column-1'>
+                                        <div><button><img src={mobileNewChatURL} alt="new-chat" /></button></div>
+                                        <div><button><img src={mobileAddFileURL} alt="add-file" /></button></div>
+                                    </div>
+                                    <div className='main-515__footer__section__button-section__column-2'>
+                                        <div><button><img src={mobileExplainURL} alt="explain" /></button></div>
+                                        <div onClick={() => handleSendMessage(messageText)}>
+                                            <button><img src={mobileSendMessageURL} alt="send-message" /></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+
+                            <div className={translateY > 490 ? 'main-515__footer__nav main-515__footer__nav__fade-in-animation' : 'main-515__footer__nav main-515__footer__nav__fade-out-animation'}>
+                                <MobileNavSection />
+                            </div>
+                        </div>
+                    </footer>
+
+
+                </div>
                     
-                    <section>
-
-                        <div className='main-515__footer__section__textarea-section'>
-                            <textarea ref={textareaRef} value={messageText} onChange={(e) => setMessageText(e.target.value)} placeholder='Начните писать'></textarea>
-                        </div>
-
-                        <div className='main-515__footer__section__button-section'>
-
-                            <div className='main-515__footer__section__button-section__column-1'>
-                                <div> <button><img src={mobileNewChatURL} alt="new-chat" /></button> </div>
-                                <div> <button><img src={mobileAddFileURL} alt="add-file" /></button></div>
-                            </div>
-
-                            <div className='main-515__footer__section__button-section__column-2'>
-                                <div> <button><img src={mobileExplainURL} alt="explain" /></button></div>
-                                <div onClick={() => handleSendMessage(messageText)} ><button><img src={mobileSendMessageURL} alt="send-message" /></button></div>
-                            </div>
-                        </div>
-                    </section>
-
-                </footer>
 
                 
                 
