@@ -11,8 +11,8 @@
 
 .ai-triangle-loader span {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 6px !important;
+    height: 6px !important;
     background: #657085;
     border-radius: 50%;
     transform-origin: center center;
@@ -31,6 +31,15 @@
     animation: delayRotateTriangleChild3 0.5s 0.8s forwards ease-in-out;
 
 }
+
+/* @media (max-width: 515) {
+    .ai-triangle-loader span {
+        width: 2px;
+        height: 2px;
+    background: #fff;
+
+    }
+} */
 
 @keyframes delayRotateTriangleChild1 {
     0% {

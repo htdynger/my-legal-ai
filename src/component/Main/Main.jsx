@@ -2,6 +2,7 @@ import './Main.css'
 import './chat-opened.css'
 
 import './1440.css'
+import './515.css'
 import animatedFrameURL from './items/animatedFrame.mp4'
 import flagUzbURL from './items/flagUzb.png'
 import copyButtonURL from './items/copyButton.png'
@@ -12,6 +13,13 @@ import addFileButtonHoverURL from './items/addFileButtonHover.png'
 import moreInfoButtonURL from './items/moreInfoButton.png'
 import moreInfoButtonEnabledURL from './items/moreInfoButtonEnabled.png'
 import sendButtonURL from './items/sendButton.png'
+
+import bookURL from './items/mobile/book.png'
+import mobileLogoURL from './items/mobile/mobileLogo.png'
+import mobileAddFileURL from './items/mobile/mobileAddFile.png'
+import mobileExplainURL from './items/mobile/mobileExplain.png'
+import mobileNewChatURL from './items/mobile/mobileNewChat.png'
+import mobileSendMessageURL from './items/mobile/mobileSendMessage.png'
 
 import Messenger from '../Messenger/Messenger'
 
@@ -36,68 +44,10 @@ const Main = () => {
 
 
 
-    const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat, isSidebarHidden } = useVisualStore();
+    const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat, isSidebarHidden, windowLayout } = useVisualStore();
     const { selectedChat, handleSelectChat, data, setData, unSelectChat, setIsExplainEnabled, isExplainEnabled, sendButtonEnabled, hardSetSelectedChat } = useChatStore()
 
     const [messageText, setMessageText] = useState('')
-
-    // useEffect(() => {
-    //     const el = textareaRef.current;
-    //     const container = inputSectionRef.current;
-    //     if (!el || !container) return;
-    
-    //     // Сброс высоты перед перерасчётом
-    //     el.style.height = 'auto';
-    
-    //     // Получаем scrollHeight и ограничиваем максимальную высоту 500px
-    //     const maxTextareaHeight = 500;
-    //     let newHeight = el.scrollHeight + 64;
-    //     if (newHeight > maxTextareaHeight) {
-    //         newHeight = maxTextareaHeight;
-    //         // Чтобы не показывать скролл, можно дополнительно добавить стиль overflow
-    //         el.style.overflowY = 'auto'; // или 'scroll'
-    //     } else {
-    //         el.style.overflowY = 'hidden';
-    //     }
-    
-    //     el.style.height = `${newHeight}px`;
-    
-    //     const baseHeight = 123;
-    //     const verticalPadding = 30;
-    
-    //     // Устанавливаем высоту контейнера с учётом textarea
-    //     const containerHeight = Math.max(baseHeight, newHeight + verticalPadding);
-    //     container.style.height = `${containerHeight}px`;
-    
-    //     // Если текст пустой — сбрасываем высоту и трансформацию
-    //     if (messageText === '') {
-    //         container.style.height = `123px`;
-    //         container.style.transform = isChatOpened ? 'translateY(50px)' : 'translateY(0)';
-    //         return;
-    //     }
-    
-    //     // Рассчитываем разницу в высоте
-    //     const heightDiff = containerHeight - baseHeight;
-    
-    //     // Коэффициент смещения - регулируй под себя
-    //     const translateYValue = -heightDiff * 1;
-    
-    //     // Устанавливаем transform с ограничением (maxTranslateY оставил большим, т.к. в px)
-    //     const maxTranslateY = -8000;
-    //     const appliedTranslateY = Math.max(translateYValue, maxTranslateY);
-    
-    //     container.style.transform = `translateY(${isChatOpened ? 50 + appliedTranslateY : appliedTranslateY}px)`;
-    
-    //     console.log('Container height:', containerHeight, 'TranslateY:', appliedTranslateY);
-    // }, [messageText]);
-
-    // useEffect(()=> {
-    //     inputSectionRef.current.style.height = `123px`;
-    //     inputSectionRef.current.style.transform = isChatOpened ? 'translateY(50px)' : 'translateY(0)';
-    // }, [isChatOpened])
-    
-    
-    
     
     const [localChatOpened, setLocalChatOpened] = useState(false)
 
@@ -214,6 +164,8 @@ const Main = () => {
     useEffect(() => {
 
 
+        if (windowLayout.width <= 515) return
+
         mainRef.current.classList.remove('main-sidebar-opened-instant')
         mainRef.current.classList.remove('main-sidebar-closed-instant')
 
@@ -224,17 +176,6 @@ const Main = () => {
             mainRef.current.classList.add('main-sidebar-opened-animation')
             mainRef.current.classList.remove('main-sidebar-closed-animation')
         }
-
-
-        // if (localChatOpened || isChatOpened) {
-        //     mainRef.current.classList.remove('main-sidebar-opened-animation')
-        //     mainRef.current.classList.remove('main-sidebar-closed-animation')
-        //     mainRef.current.classList.remove('main-sidebar-closed-instant')
-        //     mainRef.current.classList.remove('main-sidebar-opened-instant')
-
-
-        // }
-
     }, [isSidebarHidden])
 
 
@@ -247,6 +188,9 @@ const Main = () => {
             
 
         } else if (!isSidebarHidden) {
+
+            if (windowLayout.width <= 515) return
+
             mainRef.current.classList.add('main-sidebar-opened-instant')
             mainRef.current.classList.remove('main-sidebar-closed-instant')
             
@@ -264,103 +208,173 @@ const Main = () => {
 
 
     return (
-        <div ref={mainRef} className='main'> 
+
+        <>
+            {windowLayout.width > 515 && <div ref={mainRef} className='main'> 
 
 
-        {localChatOpened || isChatOpened ? (
+                {localChatOpened || isChatOpened ? (
 
-            <>
+                    <>
 
-                { isChatOpened && <Messenger />}
+                        { isChatOpened && <Messenger />}
 
-                <div className='main__text chat-opened__opacity-fade-out'>
-                    <h1 className='hello-text-n1 hello-text-n1-chatOpened '> 
-                        Legal <strong>{' AI '}</strong> приветствует вас.
-                    </h1> 
+                        <div className='main__text chat-opened__opacity-fade-out'>
+                            <h1 className='hello-text-n1 hello-text-n1-chatOpened '> 
+                                Legal <strong>{' AI '}</strong> приветствует вас.
+                            </h1> 
 
-                    <h2 className='hello-text-n2 hello-text-n2-chatOpened'> 
-                        Задайте мне вопрос
-                    </h2>
-                </div>
+                            <h2 className='hello-text-n2 hello-text-n2-chatOpened'> 
+                                Задайте мне вопрос
+                            </h2>
+                        </div>
+                        
+
+                    
+
+
+
+                    </>
+                )
+
+
+                : (
+
+                    <>
+                        <div className='main__text chat-opened__opacity-fade-in'>
+                            <h1> 
+                                Legal <strong>{' AI '}</strong> приветствует вас.
+                            </h1> 
+
+                            <h2> 
+                                Задайте мне вопрос
+                            </h2>
+                        </div>
+
+
+
+                    </>
+                )}
+
+                    
+                        <div className={localChatOpened || isChatOpened ? 'animated-frame-parent fade-out__animated-frame' : 'animated-frame-parent fade-in__animated-frame'}>
+                            <div className='fade-top'> </div>
+                            <video
+                                className="animated-frame"
+                                src={animatedFrameURL}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                            />
+                        </div>
+
+                    <div ref={inputSectionRef} className={localChatOpened || isChatOpened ? 'input-section input-section-chatOpened' : 'input-section'}>
+
+
+
+                        <textarea ref={textareaRef} value={messageText} onChange={(e) => setMessageText(e.target.value)} placeholder='Начните писать'   />
+
+                        <div className='input-section__input-footer'> 
+
+                            <div className='input-section__input-footer__container-n1'>
+
+                                {/* <div className='input-section__input-footer__container-n1__button-container-n1'>
+
+                                    <button> <img src={flagUzbURL} alt="flag-uzbekistan" /> </button>
+                                    <button> <img src={copyButtonURL} alt="copy-button" /></button> 
+                                    
+                                </div> */}
+
+                                <div onMouseEnter={() => setNewChatImgSrc(newChatButtonHoverURL)} onMouseLeave={() => setNewChatImgSrc(newChatButtonURL)} onClick={() => addNewChat()} className='input-section__input-footer__container-n1__button-container-n2'> <button> <img src={newChatImgSrc} alt="new-chat-button" /> </button></div>
+                                <div onMouseEnter={() => setAddFileImgSrc(addFileButtonHoverURL)} onMouseLeave={() => setAddFileImgSrc(addFileButtonURL)} className='input-section__input-footer__container-n1__button-container-n3'> <button> <img src={addFileImgSrc} alt="add-file-button" /> </button> </div>
+
+                            </div>
+
+
+                            <div className='input-section__input-footer__container-n2'>
+
+                                <div onClick={() => setIsExplainEnabled(!isExplainEnabled)} className={isExplainEnabled ? 'input-section__input-footer__container-n2__button-container-n1 enabled' : 'input-section__input-footer__container-n2__button-container-n1'}> <button className='input-section__input-footer__container-n2__button-container-n1__button'> <img src={isExplainEnabled ? moreInfoButtonEnabledURL : moreInfoButtonURL} alt="more-info-button" /> </button> </div>
+
+                                <div onClick={() => handleSendMessage(messageText)} className={sendButtonEnabled ? 'input-section__input-footer__container-n2__button-container-n2' : 'input-section__input-footer__container-n2__button-container-n2 disabled'}> <button className='input-section__input-footer__container-n2__button-container-n2__button'> <img src={sendButtonURL} alt="send-button" /> </button> </div>
+                                
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>}
+
+
+            {windowLayout.width <= 515 && <section className='main-515'> 
+                
+                <div className='main-515__header-layout'> </div>
+                <header className='main-515__header'> 
+                    <div>
+                        <button><img src={bookURL} alt="idk" /></button>
+
+                    </div>
+
+                    <div>
+                        <button><img src={mobileLogoURL} alt="logo" /></button>
+                    </div>
+
+                    <div>
+
+                    </div>
+                </header>
                 
 
-            
+
+
+                <main>
+                    {isChatOpened && <Messenger />}
+
+                    <span className={localChatOpened || isChatOpened ? 'main-515__main__span__fade-out-animation' : 'main-515__main__span__fade-in-animation'}>
+                        <h1>Legal <p> AI </p> </h1>
+                        <p> приветствует вас. </p>
+                        <h2> Задайте мне вопрос </h2>
+                    </span>
+
+                </main>
+                
 
 
 
-            </>
-        )
+                <div className='main-515__footer-layout'> </div>
+                <footer className='main-515__footer'> 
+                    
+                    <section>
+
+                        <div className='main-515__footer__section__textarea-section'>
+                            <textarea ref={textareaRef} value={messageText} onChange={(e) => setMessageText(e.target.value)} placeholder='Начните писать'></textarea>
+                        </div>
+
+                        <div className='main-515__footer__section__button-section'>
+
+                            <div className='main-515__footer__section__button-section__column-1'>
+                                <div> <button><img src={mobileNewChatURL} alt="new-chat" /></button> </div>
+                                <div> <button><img src={mobileAddFileURL} alt="add-file" /></button></div>
+                            </div>
+
+                            <div className='main-515__footer__section__button-section__column-2'>
+                                <div> <button><img src={mobileExplainURL} alt="explain" /></button></div>
+                                <div onClick={() => handleSendMessage(messageText)} ><button><img src={mobileSendMessageURL} alt="send-message" /></button></div>
+                            </div>
+                        </div>
+                    </section>
+
+                </footer>
+
+                
+                
+                
+            </section>}
+        </>
         
-        
-        : (
-
-            <>
-                <div className='main__text chat-opened__opacity-fade-in'>
-                    <h1> 
-                        Legal <strong>{' AI '}</strong> приветствует вас.
-                    </h1> 
-
-                    <h2> 
-                        Задайте мне вопрос
-                    </h2>
-                </div>
-
-
-
-            </>
-        )}
-
-            
-                <div className={localChatOpened || isChatOpened ? 'animated-frame-parent fade-out__animated-frame' : 'animated-frame-parent fade-in__animated-frame'}>
-                    <div className='fade-top'> </div>
-                    <video
-                        className="animated-frame"
-                        src={animatedFrameURL}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                    />
-                </div>
-
-            <div ref={inputSectionRef} className={localChatOpened || isChatOpened ? 'input-section input-section-chatOpened' : 'input-section'}>
-
-
-
-                <textarea ref={textareaRef} value={messageText} onChange={(e) => setMessageText(e.target.value)} placeholder='Начните писать'   />
-
-                <div className='input-section__input-footer'> 
-
-                    <div className='input-section__input-footer__container-n1'>
-
-                        {/* <div className='input-section__input-footer__container-n1__button-container-n1'>
-
-                            <button> <img src={flagUzbURL} alt="flag-uzbekistan" /> </button>
-                            <button> <img src={copyButtonURL} alt="copy-button" /></button> 
-                            
-                        </div> */}
-
-                        <div onMouseEnter={() => setNewChatImgSrc(newChatButtonHoverURL)} onMouseLeave={() => setNewChatImgSrc(newChatButtonURL)} onClick={() => addNewChat()} className='input-section__input-footer__container-n1__button-container-n2'> <button> <img src={newChatImgSrc} alt="new-chat-button" /> </button></div>
-                        <div onMouseEnter={() => setAddFileImgSrc(addFileButtonHoverURL)} onMouseLeave={() => setAddFileImgSrc(addFileButtonURL)} className='input-section__input-footer__container-n1__button-container-n3'> <button> <img src={addFileImgSrc} alt="add-file-button" /> </button> </div>
-
-                    </div>
-
-
-                    <div className='input-section__input-footer__container-n2'>
-
-                        <div onClick={() => setIsExplainEnabled(!isExplainEnabled)} className={isExplainEnabled ? 'input-section__input-footer__container-n2__button-container-n1 enabled' : 'input-section__input-footer__container-n2__button-container-n1'}> <button className='input-section__input-footer__container-n2__button-container-n1__button'> <img src={isExplainEnabled ? moreInfoButtonEnabledURL : moreInfoButtonURL} alt="more-info-button" /> </button> </div>
-
-                        <div onClick={() => handleSendMessage(messageText)} className={sendButtonEnabled ? 'input-section__input-footer__container-n2__button-container-n2' : 'input-section__input-footer__container-n2__button-container-n2 disabled'}> <button className='input-section__input-footer__container-n2__button-container-n2__button'> <img src={sendButtonURL} alt="send-button" /> </button> </div>
-                        
-                    </div>
-
-
-                </div>
-            </div>
-
-        
-
-        </div>
         
     )
 }

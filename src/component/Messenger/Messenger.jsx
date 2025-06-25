@@ -1,4 +1,5 @@
 import './Messenger.css'
+import './515.css'
 
 import copyURL from './items/copy.png'
 import  likeURL from './items/like.png'
@@ -11,6 +12,8 @@ import { useChatStore } from '../../store/useChatStore'
 import { useVisualStore } from '../../store/useVisualStore'
 import DotJump from '../../animation/DotJump/DotJump'
 import RotateTriangle from '../../animation/RotateTriangle/RotateTriangle'
+
+
 
 
 const Messenger = () => {
@@ -62,6 +65,7 @@ const Messenger = () => {
     
 
     return (
+
         <div ref={messengerWrapperRef} className='messenger-wrapper'>  
             <section ref={messengerAppRef} className={chatInstantEnabled ? "messenger-app" : "messenger-app fade-out-animation"}>
 
@@ -111,6 +115,7 @@ const Messenger = () => {
                 })}
             </section>
         </div>
+
     )
 }
 

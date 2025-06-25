@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 
 const App = () => {
 
-    const { setLayoutWidth } = useVisualStore()
+    const { setLayoutWidth, windowLayout } = useVisualStore()
 
     useEffect(() => {
         setLayoutWidth(window.innerWidth)
@@ -21,21 +21,35 @@ const App = () => {
 
 
     return (
-        <BrowserRouter>
-            <Routes>
-                {/* Основной layout с Header + Sidebar */}
-                <Route element={<MainLayout />}>
-                    <Route path="/" element={<Main />} />
-                    <Route path="/document-generation" element={<DocumentGeneration />} />
-                </Route>
+        <>
+        
 
-                {/* Auth layout без Header и Sidebar */}
-                <Route element={<AuthLayout />}>
-                    <Route path="/sign-up" element={<SignUp />} />
-                    <Route path="/sign-in" element={<SignIn />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+            {windowLayout.width > 515 && <BrowserRouter>
+                <Routes>
+                    {/* Основной layout с Header + Sidebar */}
+                    <Route element={<MainLayout />}>
+                        <Route path="/" element={<Main />} />
+                        <Route path="/document-generation" element={<DocumentGeneration />} />
+                    </Route>
+
+                    {/* Auth layout без Header и Sidebar */}
+                    <Route element={<AuthLayout />}>
+                        <Route path="/sign-up" element={<SignUp />} />
+                        <Route path="/sign-in" element={<SignIn />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>}
+
+            {windowLayout.width <= 515 && <BrowserRouter>
+            
+                <Routes>
+                    <Route path='/' element={<Main />} />
+                </Routes>
+            
+            </BrowserRouter>}
+
+        </>
+
     );
 };
 
