@@ -40,13 +40,17 @@ const App = () => {
                 </Routes>
             </BrowserRouter>}
 
-            {windowLayout.width <= 515 && <BrowserRouter>
+            {windowLayout.width <= 515 && 
+
+            <BrowserRouter>
             
                 <Routes>
-                    <Route path='/' element={<Main />} />
+                    <Route path='*' element={<Main />} />
                 </Routes>
+                {/* ROUTING ВНУТРИ */}
             
-            </BrowserRouter>}
+            </BrowserRouter>
+            }
 
         </>
 
