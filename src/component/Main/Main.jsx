@@ -24,12 +24,14 @@ import mobileSendMessageURL from './items/mobile/mobileSendMessage.png'
 import Messenger from '../Messenger/Messenger'
 import MobileInputFooter from '../mobile/MobileInputFooter/MobileInputFooter.jsx'
 
+
 import { useVisualStore } from '../../store/useVisualStore';
 import { useChatStore } from '../../store/useChatStore'
 
 import { useState, useEffect, useRef } from 'react'
 
 import { v4 as uuidv4 } from 'uuid';
+import MobileInfo from '../mobile/MobileInfo/MobileInfo.jsx'
 
 
 
@@ -389,6 +391,15 @@ useEffect(() => {
                         </span>
 
                     </main>
+                </>}
+
+
+                {location.pathname === '/info' && <>
+                
+                
+                    <MobileInfo />
+
+                
                 </>}
 
                 
