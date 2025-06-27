@@ -1,6 +1,6 @@
 
-@media (max-width: 515px) {
-    .main-515 {
+@media (max-width: 750px) {
+    .main-750 {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -9,7 +9,7 @@
         background-color: #16191F;
     }
     
-    .main-515__header {
+    .main-750__header {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -23,14 +23,14 @@
         
     }
 
-    .main-515__header-layout {
+    .main-750__header-layout {
         height: 74px;
         width: 100vw;
         position: relative;
         display: flex;
     }
 
-    .main-515__footer {
+    .main-750__footer {
         width: 100%;
         /* height: 134px; */
         height: 100%;
@@ -45,7 +45,7 @@
     
 
 
-    .main-515__footer-wrapper {
+    .main-750__footer-wrapper {
         width: 100%;
         height: 134px;
         display: flex;
@@ -66,7 +66,7 @@
 
 
 
-    .main-515__footer-wrapper::before {
+    .main-750__footer-wrapper::before {
         box-shadow: 0px 8px 100px 30px rgba(0, 0, 0, 1);
         content: '';
         display: block;
@@ -76,7 +76,7 @@
         
     }
 
-    .main-515__footer-wrapper::after {
+    .main-750__footer-wrapper::after {
         /* box-shadow: 0px 8px 100px 30px rgba(0, 0, 0, 1); */
         content: '';
         display: block;
@@ -90,16 +90,16 @@
 
     }
 
-    .main-515__footer-wrapper__fade-out-animation::after {
+    .main-750__footer-wrapper__fade-out-animation::after {
         transform: translateY(-15px);
     }
 
-    .main-515__footer-wrapper__fade-in-animation::after {
+    .main-750__footer-wrapper__fade-in-animation::after {
         transform: translateY(-30px);
     }
     
 
-    .main-515__footer-layout {
+    .main-750__footer-layout {
         width: 100%;
         height: 134px;
         display: flex;
@@ -107,14 +107,14 @@
     }
 
 
-    .main-515 main {
+    .main-750 main {
         display: flex;
         flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    /* .main-515__footer::after {
+    /* .main-750__footer::after {
         content: '';
         position: fixed;
         display: flex;
@@ -125,7 +125,7 @@
         bottom: 119px;
     }
 
-    .main-515__footer::before {
+    .main-750__footer::before {
         content: '';
         position: fixed;
         display: block;
@@ -163,7 +163,7 @@
         background-color: #373E4E;
     }
 
-    .main-515__footer section {
+    .main-750__footer section {
         width: 93%;
         height: 104px;
         padding: 15px 10px 10px 10px;
@@ -185,7 +185,7 @@
         z-index: 2;
     }
 
-    .main-515__footer__section__textarea-section {
+    .main-750__footer__section__textarea-section {
         width: 100%;
         height: 24px;
         display: flex;
@@ -193,7 +193,7 @@
         justify-content: center;
     }
 
-    .main-515__footer__section__textarea-section textarea {
+    .main-750__footer__section__textarea-section textarea {
         width: 100%;
         height: 24px;
         border-radius: 15px 15px 30px 30px;
@@ -203,7 +203,7 @@
         resize: none;
     }
 
-    .main-515__footer__section__textarea-section textarea::placeholder {
+    .main-750__footer__section__textarea-section textarea::placeholder {
         color: #657085;
 
         font-family: Montserrat;
@@ -215,7 +215,7 @@
 
     }
     
-    .main-515__footer__section__button-section {
+    .main-750__footer__section__button-section {
         display: flex;
         width: 100%;
         height: 40px;
@@ -224,7 +224,7 @@
     }
 
 
-    .main-515__footer__section__button-section__column-1 {
+    .main-750__footer__section__button-section__column-1 {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -233,7 +233,7 @@
     }
 
 
-    .main-515__footer__section__button-section__column-1 div {
+    .main-750__footer__section__button-section__column-1 div {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -243,7 +243,7 @@
         border-radius: 36px;
     }
 
-    .main-515__footer__section__button-section__column-1 div button {
+    .main-750__footer__section__button-section__column-1 div button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -253,7 +253,7 @@
     }
 
 
-    .main-515__footer__section__button-section__column-2 {
+    .main-750__footer__section__button-section__column-2 {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -262,7 +262,7 @@
         gap: 10px;
     }
 
-    .main-515__footer__section__button-section__column-2 div {
+    .main-750__footer__section__button-section__column-2 div {
         width: 50px;
         height: 40px;
         background-color: #292E3C;
@@ -273,7 +273,7 @@
         justify-content: center;
     }
 
-    .main-515__footer__section__button-section__column-2 div button {
+    .main-750__footer__section__button-section__column-2 div button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -282,7 +282,7 @@
     }
 
 
-    .main-515 main span {
+    .main-750 main span {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -293,7 +293,7 @@
     }
 
 
-    .main-515 main span h1 {
+    .main-750 main span h1 {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -301,7 +301,7 @@
         gap: 8px;
     }
 
-    .main-515 main span h1, .main-515 main span h1 p, .main-515 main span p {
+    .main-750 main span h1, .main-750 main span h1 p, .main-750 main span p {
         font-family: Unbounded;
         font-weight: 300;
         font-size: 24px;
@@ -312,7 +312,7 @@
     }
 
 
-    .main-515 main span h1 p {
+    .main-750 main span h1 p {
         font-family: Unbounded;
         font-weight: 600;
         font-size: 24px;
@@ -328,7 +328,7 @@
 
 
     
-    .main-515 main span h2 {
+    .main-750 main span h2 {
         background: radial-gradient(74.5% 116.87% at 50.2% 100%, rgba(187, 188, 251, 0.7) 0%, rgba(109, 203, 250, 0.7) 34.97%, rgba(89, 114, 239, 0.7) 64.59%, rgba(40, 80, 110, 0.7) 82.81%, rgba(40, 80, 110, 0.7) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -346,7 +346,7 @@
 
     }
 
-    .main-515__footer__content-wrapper {
+    .main-750__footer__content-wrapper {
         width: 100%;
         display: flex;
         align-items: center;
@@ -358,7 +358,7 @@
 
 
 
-    .main-515__footer__nav {
+    .main-750__footer__nav {
         /* display: flex; */
         align-items: center;
         justify-content: center;
@@ -368,11 +368,11 @@
 
 
 
-    .main-515__footer__nav__fade-in-animation {
-        animation: main-515__footer__nav__fade-in-animation 1s forwards;
+    .main-750__footer__nav__fade-in-animation {
+        animation: main-750__footer__nav__fade-in-animation 1s forwards;
     }
 
-    @keyframes main-515__footer__nav__fade-in-animation {
+    @keyframes main-750__footer__nav__fade-in-animation {
         0% {
             display: flex;
             opacity: 0;
@@ -386,11 +386,11 @@
     }
 
 
-    .main-515__footer__nav__fade-out-animation {
-        animation: main-515__footer__nav__fade-out-animation 0.2s forwards;
+    .main-750__footer__nav__fade-out-animation {
+        animation: main-750__footer__nav__fade-out-animation 0.2s forwards;
     }
 
-    @keyframes main-515__footer__nav__fade-out-animation {
+    @keyframes main-750__footer__nav__fade-out-animation {
         0% {
             display: flex;
             opacity: 1;
@@ -408,11 +408,11 @@
 
 
 
-    .main-515__footer-wrapper__fade-in-animation {
-        animation: main-515__footer-wrapper__fade-in-animation 0.2s forwards;
+    .main-750__footer-wrapper__fade-in-animation {
+        animation: main-750__footer-wrapper__fade-in-animation 0.2s forwards;
     }
 
-    @keyframes main-515__footer-wrapper__fade-in-animation {
+    @keyframes main-750__footer-wrapper__fade-in-animation {
         0% {
             background-color: #22263100;
             /* backdrop-filter: blur(0px); */
@@ -449,11 +449,11 @@
 
 
 
-    .main-515__main__span__fade-in-animation {
-        animation: main-515__main__span__fade-in-animation 1s forwards;
+    .main-750__main__span__fade-in-animation {
+        animation: main-750__main__span__fade-in-animation 1s forwards;
     }
 
-    @keyframes main-515__main__span__fade-in-animation {
+    @keyframes main-750__main__span__fade-in-animation {
 
         0% {
             transform: translateY(-10px);
@@ -473,11 +473,11 @@
 
 
 
-    .main-515__main__span__fade-out-animation {
-        animation: main-515__main__span__fade-out-animation 1s forwards;
+    .main-750__main__span__fade-out-animation {
+        animation: main-750__main__span__fade-out-animation 1s forwards;
     }
 
-    @keyframes main-515__main__span__fade-out-animation {
+    @keyframes main-750__main__span__fade-out-animation {
 
         0% {
             transform: translateY(0px);

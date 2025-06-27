@@ -9,6 +9,8 @@ import AuthLayout from './component/AuthLayout';
 
 import { useVisualStore } from './store/useVisualStore';
 import { useEffect } from 'react';
+import MobileSignIn from './component/mobile/MobileSignIn/MobileSignIn';
+import MobileSignUp from './component/mobile/MobileSignUp/MobileSignUp';
 
 const App = () => {
 
@@ -24,7 +26,7 @@ const App = () => {
         <>
         
 
-            {windowLayout.width > 515 && <BrowserRouter>
+            {windowLayout.width > 750 && <BrowserRouter>
                 <Routes>
                     {/* Основной layout с Header + Sidebar */}
                     <Route element={<MainLayout />}>
@@ -40,13 +42,19 @@ const App = () => {
                 </Routes>
             </BrowserRouter>}
 
-            {windowLayout.width <= 515 && <BrowserRouter>
+            {windowLayout.width <= 750 && 
+
+            <BrowserRouter>
             
                 <Routes>
-                    <Route path='/' element={<Main />} />
+                    <Route path='*' element={<Main />} />
+                    <Route path='/sign-in' element={<MobileSignIn />} />
+                    <Route path='/sign-up' element={<MobileSignUp />} />
                 </Routes>
+                {/* ROUTING ВНУТРИ */}
             
-            </BrowserRouter>}
+            </BrowserRouter>
+            }
 
         </>
 

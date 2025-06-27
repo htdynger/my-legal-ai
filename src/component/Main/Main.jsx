@@ -2,7 +2,7 @@ import './Main.css'
 import './chat-opened.css'
 
 import './1440.css'
-import './515.css'
+import './750.css'
 import animatedFrameURL from './items/animatedFrame.mp4'
 import flagUzbURL from './items/flagUzb.png'
 import copyButtonURL from './items/copyButton.png'
@@ -22,7 +22,8 @@ import mobileNewChatURL from './items/mobile/mobileNewChat.png'
 import mobileSendMessageURL from './items/mobile/mobileSendMessage.png'
 
 import Messenger from '../Messenger/Messenger'
-import MobileNavSection from '../MobileNavSection/MobileNavSection'
+import MobileInputFooter from '../mobile/MobileInputFooter/MobileInputFooter.jsx'
+
 
 import { useVisualStore } from '../../store/useVisualStore';
 import { useChatStore } from '../../store/useChatStore'
@@ -30,6 +31,7 @@ import { useChatStore } from '../../store/useChatStore'
 import { useState, useEffect, useRef } from 'react'
 
 import { v4 as uuidv4 } from 'uuid';
+import MobileInfo from '../mobile/MobileInfo/MobileInfo.jsx'
 
 
 
@@ -165,7 +167,7 @@ const Main = () => {
     useEffect(() => {
 
 
-        if (windowLayout.width <= 515) return
+        if (windowLayout.width <= 750) return
 
         mainRef.current.classList.remove('main-sidebar-opened-instant')
         mainRef.current.classList.remove('main-sidebar-closed-instant')
@@ -190,7 +192,7 @@ const Main = () => {
 
         } else if (!isSidebarHidden) {
 
-            if (windowLayout.width <= 515) return
+            if (windowLayout.width <= 750) return
 
             mainRef.current.classList.add('main-sidebar-opened-instant')
             mainRef.current.classList.remove('main-sidebar-closed-instant')
@@ -256,7 +258,7 @@ useEffect(() => {
     return (
 
         <>
-            {windowLayout.width > 515 && <div ref={mainRef} className='main'> 
+            {windowLayout.width > 750 && <div ref={mainRef} className='main'> 
 
 
                 {localChatOpened || isChatOpened ? (
@@ -355,86 +357,72 @@ useEffect(() => {
                 </div>}
 
 
-            {windowLayout.width <= 515 && <section className='main-515'> 
-                
-                <div className='main-515__header-layout'> </div>
-                <header className='main-515__header'> 
-                    <div>
-                        <button><img src={bookURL} alt="idk" /></button>
-
-                    </div>
-
-                    <div>
-                        <button><img src={mobileLogoURL} alt="logo" /></button>
-                    </div>
-
-                    <div>
-
-                    </div>
-                </header>
+            {windowLayout.width <= 750 && <section className='main-750'> 
                 
 
 
+                {location.pathname === '/' && <>
+                    <div className='main-750__header-layout'> </div>
+                    <header className='main-750__header'> 
+                        <div>
+                            <button><img src={bookURL} alt="idk" /></button>
 
-                <main>
-                    {isChatOpened && <Messenger />}
-
-                    <span className={localChatOpened || isChatOpened ? 'main-515__main__span__fade-out-animation' : 'main-515__main__span__fade-in-animation'}>
-                        <h1>Legal <p> AI </p> </h1>
-                        <p> приветствует вас. </p>
-                        <h2> Задайте мне вопрос </h2>
-                    </span>
-
-                </main>
-                
-
-
-
-                <div className='main-515__footer-layout'> </div>
-                <div 
-                    className={translateY > 350 ? 'main-515__footer-wrapper main-515__footer-wrapper__fade-in-animation' : 'main-515__footer-wrapper main-515__footer-wrapper__fade-out-animation'}
-                    style={{ height: `${134 + translateY}px`, transition: isSwiping ? 'none' : 'height 0.5s ease'}}
-                    onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
-                    onTouchEnd={handleTouchEnd}
-                >
-                    <footer className='main-515__footer'> 
-                        <div className="footer-shadow"></div>
-                        <div className="footer-handle"></div>
-
-                        <div className='main-515__footer__content-wrapper'>
-                            <section>
-                                <div className='main-515__footer__section__textarea-section'>
-                                    <textarea 
-                                        ref={textareaRef} 
-                                        value={messageText} 
-                                        onChange={(e) => setMessageText(e.target.value)} 
-                                        placeholder='Начните писать'
-                                    />
-                                </div>
-                                <div className='main-515__footer__section__button-section'>
-                                    <div className='main-515__footer__section__button-section__column-1'>
-                                        <div><button><img src={mobileNewChatURL} alt="new-chat" /></button></div>
-                                        <div><button><img src={mobileAddFileURL} alt="add-file" /></button></div>
-                                    </div>
-                                    <div className='main-515__footer__section__button-section__column-2'>
-                                        <div><button><img src={mobileExplainURL} alt="explain" /></button></div>
-                                        <div onClick={() => handleSendMessage(messageText)}>
-                                            <button><img src={mobileSendMessageURL} alt="send-message" /></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-
-
-                            <div className={translateY > 490 ? 'main-515__footer__nav main-515__footer__nav__fade-in-animation' : 'main-515__footer__nav main-515__footer__nav__fade-out-animation'}>
-                                <MobileNavSection />
-                            </div>
                         </div>
-                    </footer>
+
+                        <div>
+                            <button><img src={mobileLogoURL} alt="logo" /></button>
+                        </div>
+
+                        <div>
+
+                        </div>
+                    </header>
+                    
 
 
-                </div>
+
+                    <main>
+                        {isChatOpened && <Messenger />}
+
+                        <span className={localChatOpened || isChatOpened ? 'main-750__main__span__fade-out-animation' : 'main-750__main__span__fade-in-animation'}>
+                            <h1>Legal <p> AI </p> </h1>
+                            <p> приветствует вас. </p>
+                            <h2> Задайте мне вопрос </h2>
+                        </span>
+
+                    </main>
+                </>}
+
+
+                {location.pathname === '/info' && <>
+                
+                
+                    <MobileInfo />
+
+                
+                </>}
+
+                
+
+
+
+                <MobileInputFooter 
+                    translateY={translateY} 
+                    isSwiping={isSwiping} 
+                    handleTouchStart={handleTouchStart}
+                    handleTouchMove={handleTouchMove}
+                    handleTouchEnd={handleTouchEnd}
+                    messageText={messageText} 
+                    setMessageText={setMessageText}
+                    mobileNewChatURL={mobileNewChatURL}
+                    mobileAddFileURL={mobileAddFileURL}
+                    mobileExplainURL={mobileExplainURL}
+                    handleSendMessage={handleSendMessage}
+                    mobileSendMessageURL={mobileSendMessageURL}
+                    setTranslateY={setTranslateY}
+                />
+
+                
                     
 
                 
