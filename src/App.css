@@ -45,9 +45,9 @@ html {
   /* gap: 24px; */
 }
 
-@media (max-width: 515px) {
+@media (max-width: 750px) {
   body {
-    background-color: #16191F;
+    /* background-color: #16191F; */
   }
   
 }

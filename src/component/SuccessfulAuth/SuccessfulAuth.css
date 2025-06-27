@@ -77,3 +77,40 @@
     height: calc(100vh - 28px);
     z-index: 1;
 }
+
+
+@media (max-width: 750px) {
+    .SuccessfulAuth-app .section-2 {
+        display: none;
+    }
+
+    .gradient-circle {
+        display: none !important;
+    }
+
+
+    .SuccessfulAuth-app {
+        margin-top: 100px;
+    }
+
+    .SuccessfulAuth-app .section-1 {
+        height: 343px;
+    }
+
+
+    .SuccessfulAuth-app .section-1__form__header__text-2 {
+        font-family: Montserrat;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 150%;
+        letter-spacing: 0%;
+
+    }
+
+    .SuccessfulAuth-app .section-1 article button {
+        margin-top: 0;
+    }
+
+
+    
+}

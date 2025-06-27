@@ -1,0 +1,34 @@
+@media (max-width: 750px) {
+    .PhoneVerification-app-2 .section-1 {
+        margin-top: 100px;
+        height: 568px;
+    }
+
+    .PhoneVerification-app-2 .section-1 header {
+        width: 100%;
+        height: 260px;
+    }
+
+    .section-1__form__header__text-2 {
+        font-family: Montserrat;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 150%;
+        letter-spacing: 0%;
+
+    }
+
+    .PhoneVerification-app-2 .section-1 section input {
+        width: 12vw;
+    }
+
+    .PhoneVerification-app-2 .section-1 footer button:nth-child(2) {
+        font-family: Montserrat;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 150%;
+        letter-spacing: 0%;
+        text-align: center;
+        color: #657085;
+    }
+}

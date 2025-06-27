@@ -30,8 +30,8 @@ const SuccessfulAuth = () => {
                         </span>
 
                         <span className='section-1__form__header__text-2'>
-                            <p> Lorem ipsum dolor sit lorem ipsum dolor sit</p>
-                            <p> lorem ipsum dolor sit lorem. </p>
+                            Lorem ipsum dolor sit lorem ipsum dolor sit
+                            lorem ipsum dolor sit lorem. 
                         </span>
 
                         <button type='button' onClick={() => navigate('/')}> Погрузиться </button>

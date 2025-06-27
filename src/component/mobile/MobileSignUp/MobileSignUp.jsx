@@ -10,12 +10,14 @@ import eyeClosedURL from './item/eyeClosed.png'
 import eyeOpenedURL from './item/eyeClosed.png'
 
 import './style/RegisterForm.css'
+import './style/PhoneVerification.css'
 
 import { useNavigate } from 'react-router-dom'
 import { useState, useRef, useEffect } from 'react'
 
 import { useVisualStore } from '../../../store/useVisualStore'
 import AuthAnimatedFrame from '../../../animation/AuthAnimatedFrame/AuthAnimatedFrame'
+import SuccessfulAuth from '../../SuccessfulAuth/SuccessfulAuth.jsx'
 
 
 const RegisterForm = ({ navigate, setVisiblePage }) => {
@@ -72,12 +74,12 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
                                         required
                                     />
 
-                                    {/* <img
+                                    <img
                                         src={showPassword ? eyeOpenedURL : eyeClosedURL}
                                         alt="показать/скрыть пароль"
                                         onClick={() => setShowPassword(!showPassword)}
                                         style={{ cursor: 'pointer' }}
-                                    /> */}
+                                    />
                                 </div>
 
                                 <div className="section-1__section__label-3__password-container__label-2">
@@ -88,12 +90,12 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
                                         required
                                     />
 
-                                    {/* <img
+                                    <img
                                         src={showConfirmPassword ? eyeOpenedURL : eyeClosedURL}
                                         alt="показать/скрыть пароль"
                                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                                         style={{ cursor: 'pointer' }}
-                                    /> */}
+                                    />
                                 </div>
 
                             </div>
@@ -117,6 +119,7 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
                     </footer>
                 </form>
 
+
                 <div className="section-1__fast-login">
                     <button type="button">
                         <img src={appleIconURL} alt="Войти через Apple" />
@@ -128,11 +131,14 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
                         <span>Войти с Google</span>
                     </button>
                 </div>
-            </div>
 
+
+            </div>
+{/* 
             <span className="all-rights-reserved">
                 Условия и политика конфиденциальности
-            </span>
+            </span> */}
+
         </section>
         </>
     );
@@ -171,7 +177,7 @@ const PhoneVerification = ({ navigate, setVisiblePage }) => {
         <>
         <AuthAnimatedFrame />
         <section className="PhoneVerification-app">
-            <GradientCircle />
+
 
             <div className="section-1">
                 <form onSubmit={handleSubmit}>
@@ -213,13 +219,6 @@ const PhoneVerification = ({ navigate, setVisiblePage }) => {
                 </form>
             </div>
 
-            <div className="section-2">
-                <img src={character_2URL} alt="Персонаж" />
-            </div>
-
-            <span className="all-rights-reserved">
-                Условия и политика конфиденциальности
-            </span>
         </section>
         </>
     );

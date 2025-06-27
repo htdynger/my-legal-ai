@@ -1,12 +1,14 @@
 @media (max-width: 750px) {
 
     .RegisterForm-app {
-        background-color: #16191F;
+        background-color: #121319;
         margin-top: 100px;
+        /* display: block;
+        overflow-y: auto; */
     }
     .RegisterForm-app .section-1 {
         width: 100%;
-        height: 850px;
+        height: 972px;
         margin-bottom: 36px;
     }
 
@@ -15,9 +17,10 @@
     .RegisterForm-app .section-1__form__header__text-2 {
         font-family: Montserrat;
         font-weight: 500;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 150%;
         letter-spacing: 0%;
+        
 
     }
 
@@ -47,12 +50,12 @@
         font-size: 16px;
         line-height: 150%;
         letter-spacing: 0%;
-        color: #373E4E;
+        color: #FBFBFB;
 
     }
 
     .RegisterForm-app .section-1__section__label-3__password-container__label-1, .RegisterForm-app .section-1__section__label-3__password-container__label-2 {
-        width: 192px;
+        width: 100%;
         height: 64px;
         padding: 20px 15px 20px 15px;
         margin: 0;
@@ -102,6 +105,37 @@
 
     .RegisterForm-app .section-1__fast-login button {
         /* border: 1px solid #000; */
-        background-color: #222631;
+        background-color: #16191F;
+        width: 100%;
+        height: 64px;
+
+
+    }
+
+
+    .RegisterForm-app .section-1__section__label-3__password-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .RegisterForm-app .section-1__fast-login {
+        width: 100%;
+        height: 143px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+
+    .RegisterForm-app .section-1__fast-login button span {
+        font-family: Montserrat;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: 0%;
+
     }
 }
