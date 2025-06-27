@@ -1,4 +1,4 @@
-.nav-515 {
+.nav-750 {
     width: 100%;
     display: flex;
     align-items: center;
@@ -7,7 +7,7 @@
     gap: 20px;
 }
 
-.nav-515 section {
+.nav-750 section {
     border: 1px solid #292E3C;
     background: #222631CC;
     gap: 32px;
@@ -23,7 +23,7 @@
     
 }
 
-.nav-515 section div {
+.nav-750 section div {
     height: 21px;
     width: 100%;
 
@@ -32,13 +32,13 @@
     justify-content: start;
 }
 
-.nav-515 section div button {
+.nav-750 section div button {
     gap: 10px;
     display: flex;
     align-items: center;
 }
 
-.nav-515 section div button span {
+.nav-750 section div button span {
     font-family: Montserrat;
     font-weight: 500;
     font-size: 14px;
@@ -47,7 +47,7 @@
     color: #FBFBFB;
 }
 
-.nav-515__logo-container {
+.nav-750__logo-container {
     width: 100%;
     height: 24px;
     display: flex;
@@ -57,7 +57,7 @@
     bottom: 15px;
 }
 
-.nav-515 section:nth-child(1) div:nth-child(1)::after {
+/* .nav-750 section:nth-child(1) div:nth-child(1)::after {
     content: '';
     display: block;
     left: calc(50% - 43vw);
@@ -67,7 +67,7 @@
     background-color: #292E3C;
     position: absolute;
 }
-.nav-515 section:nth-child(1) div:nth-child(2)::after {
+.nav-750 section:nth-child(1) div:nth-child(2)::after {
     content: '';
     display: block;
     left: calc(50% - 43vw);
@@ -78,7 +78,7 @@
     position: absolute;
 }
 
-.nav-515 section:nth-child(1) div:nth-child(3)::after {
+.nav-750 section:nth-child(1) div:nth-child(3)::after {
     content: '';
     display: block;
     left: calc(50% - 43vw);
@@ -89,7 +89,7 @@
     position: absolute;
 }
 
-.nav-515 section:nth-child(2) div:nth-child(1)::after {
+.nav-750 section:nth-child(2) div:nth-child(1)::after {
     content: '';
     display: block;
     left: calc(50% - 43vw);
@@ -98,11 +98,11 @@
     height: 2px;
     background-color: #292E3C;
     position: absolute;
-}
+} */
 
 
 
-.nav-515-selected {
+.nav-750-selected {
     padding: 15px 20px 15px 20px;
     border-radius: 16px;
     width: 100%;
@@ -110,7 +110,7 @@
     background-color: #292E3C;
 }
 
-.nav-515-selected span::after {
+.nav-750-selected span::after {
     content: '';
     width: 10px;
     height: 10px;
@@ -122,6 +122,6 @@
     
 }
 
-/* .nav-515-selected::after {
+/* .nav-750-selected::after {
     left: calc(50% - 43vw);
 } */

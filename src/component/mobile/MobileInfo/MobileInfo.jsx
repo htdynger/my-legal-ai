@@ -18,11 +18,11 @@ const MobileInfo = () => {
     return (
 
         <>
-            <div className='info-515-wrapper'> 
-                <main className="info-515"> 
+            <div className='info-750-wrapper'> 
+                <main className="info-750"> 
 
-                    <section className='info-515__section-1'>
-                        <div className='info-515__section-1__content'>
+                    <section className='info-750__section-1'>
+                        <div className='info-750__section-1__content'>
 
                             <div>
 
@@ -47,14 +47,14 @@ const MobileInfo = () => {
 
                         </div>
 
-                        <div className='info-515__section-1__img'>
+                        <div className='info-750__section-1__img'>
                             <img src={character_1URL} alt="character" />
                         </div>
 
                     </section>
 
 
-                    <section className='info-515__section-2'>
+                    <section className='info-750__section-2'>
                         <aside> 
                             <div>
                                 <div><img src={section_2_iconURL} alt="icon" /></div>
@@ -69,19 +69,19 @@ const MobileInfo = () => {
                             </div>
 
                             <div>
-                                <i className='info-515-container'>
+                                <i className='info-750-container'>
                                     <div>Pro</div>
                                     <p> Подписка: </p>
                                 </i>
 
-                                <p className='info-515__section-2__div-3__status'> Неактивна </p>
+                                <p className='info-750__section-2__div-3__status'> Неактивна </p>
                             </div>
 
                         </aside>
                     </section>
 
 
-                    <section className='info-515__section-3'>
+                    <section className='info-750__section-3'>
 
                         <h1> Новости и обновления </h1>
 
@@ -89,11 +89,11 @@ const MobileInfo = () => {
 
                             <aside>
 
-                                <div className='info-515__section-3__news-1'>
+                                <div className='info-750__section-3__news-1'>
 
-                                    <div className='info-515__section-3__news-1__img'></div>
+                                    <div className='info-750__section-3__news-1__img'></div>
 
-                                    <div className='info-515__section-3__news-1__content'>
+                                    <div className='info-750__section-3__news-1__content'>
                                         <p> 15.05.2025 </p>
                                         <h2>LegAI beta: добро пожаловать в бета тест</h2>
                                         <button>
@@ -105,10 +105,10 @@ const MobileInfo = () => {
 
 
 
-                                <div className='info-515__section-3__news-2'>
+                                <div className='info-750__section-3__news-2'>
 
-                                    <div className='info-515__section-3__news-2__img'></div>
-                                    <div className='info-515__section-3__news-2__content'>
+                                    <div className='info-750__section-3__news-2__img'></div>
+                                    <div className='info-750__section-3__news-2__content'>
                                         <p> 15.05.2025 </p>
                                         <h2>LegAI beta: добро пожаловать в бета тест</h2>
                                         <button>
@@ -119,10 +119,10 @@ const MobileInfo = () => {
 
                                 </div>
 
-                                <div className='info-515__section-3__news-3'>
+                                <div className='info-750__section-3__news-3'>
 
-                                    <div className='info-515__section-3__news-3__img'></div>
-                                    <div className='info-515__section-3__news-3__content'>
+                                    <div className='info-750__section-3__news-3__img'></div>
+                                    <div className='info-750__section-3__news-3__content'>
                                         <p> 15.05.2025 </p>
                                         <h2>Вот определение статьи АК 47</h2>
                                         <button>
@@ -141,16 +141,16 @@ const MobileInfo = () => {
 
 
 
-                    <section className='info-515__section-4'>
+                    <section className='info-750__section-4'>
                         <h1>Возможности LEG AI</h1>
 
                         <section>
 
                             <aside>
 
-                                <div className='info-515__section-4__opportunity-1'></div>
-                                <div className='info-515__section-4__opportunity-2'></div>
-                                <div className='info-515__section-4__opportunity-3'></div>
+                                <div className='info-750__section-4__opportunity-1'></div>
+                                <div className='info-750__section-4__opportunity-2'></div>
+                                <div className='info-750__section-4__opportunity-3'></div>
 
                             </aside>
 
@@ -161,7 +161,7 @@ const MobileInfo = () => {
 
 
 
-                    <section className='info-515__section-5'>
+                    <section className='info-750__section-5'>
 
                         <div>
                             <p> Leg </p> 

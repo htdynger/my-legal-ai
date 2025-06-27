@@ -11,28 +11,33 @@ import logoURL from './item/logo.png'
 
 import { useNavigate, useLocation } from 'react-router-dom'
 
-const MobileNavSection = () => {
+const MobileNavSection = ({ setTranslateY }) => {
 
     const location = useLocation()
     const navigate = useNavigate()
 
+    const handleNavigate = (path) => {
+        navigate(path)
+        setTranslateY(0)
+    }
+
     return (
 
-        <nav className='nav-515'>
+        <nav className='nav-750'>
             <section>
-                <div className={location.pathname === '/' ? 'nav-515-selected' : ''}>
+                <div onClick={() => handleNavigate('/')} className={location.pathname === '/' ? 'nav-750-selected' : ''}>
                     <button><img src={homeIconURL} alt="chat-button" /><span> Чат </span></button>
                 </div>
 
-                <div className={location.pathname === '/info' ? 'nav-515-selected' : ''}>
+                <div onClick={() => handleNavigate('/info')} className={location.pathname === '/info' ? 'nav-750-selected' : ''}>
                     <button><img src={infoBlockIconURL} alt="infoblock-button" /><span> Инфоблок </span></button>
                 </div>
 
-                <div className={location.pathname === '/pro' ? 'nav-515-selected' : ''}>
+                <div onClick={() => handleNavigate('/pro')} className={location.pathname === '/pro' ? 'nav-750-selected' : ''}>
                     <button><img src={proIconURL} alt="pro-button" /><span> Обновить план </span></button>
                 </div>
 
-                <div className={location.pathname === '/settings' ? 'nav-515-selected' : ''}>
+                <div onClick={() => handleNavigate('/settings')} className={location.pathname === '/settings' ? 'nav-750-selected' : ''}>
                     <button><img src={settingsIconURL} alt="settings-icon" /><span> Настройки </span></button>
                 </div>
             </section>
@@ -53,7 +58,7 @@ const MobileNavSection = () => {
                 </div>
             </section>
 
-            <div className='nav-515__logo-container'>
+            <div className='nav-750__logo-container'>
                 <img src={logoURL} alt="logo" />
             </div>
         </nav>

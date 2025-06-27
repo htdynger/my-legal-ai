@@ -2,7 +2,7 @@ import './Main.css'
 import './chat-opened.css'
 
 import './1440.css'
-import './515.css'
+import './750.css'
 import animatedFrameURL from './items/animatedFrame.mp4'
 import flagUzbURL from './items/flagUzb.png'
 import copyButtonURL from './items/copyButton.png'
@@ -167,7 +167,7 @@ const Main = () => {
     useEffect(() => {
 
 
-        if (windowLayout.width <= 515) return
+        if (windowLayout.width <= 750) return
 
         mainRef.current.classList.remove('main-sidebar-opened-instant')
         mainRef.current.classList.remove('main-sidebar-closed-instant')
@@ -192,7 +192,7 @@ const Main = () => {
 
         } else if (!isSidebarHidden) {
 
-            if (windowLayout.width <= 515) return
+            if (windowLayout.width <= 750) return
 
             mainRef.current.classList.add('main-sidebar-opened-instant')
             mainRef.current.classList.remove('main-sidebar-closed-instant')
@@ -258,7 +258,7 @@ useEffect(() => {
     return (
 
         <>
-            {windowLayout.width > 515 && <div ref={mainRef} className='main'> 
+            {windowLayout.width > 750 && <div ref={mainRef} className='main'> 
 
 
                 {localChatOpened || isChatOpened ? (
@@ -357,13 +357,13 @@ useEffect(() => {
                 </div>}
 
 
-            {windowLayout.width <= 515 && <section className='main-515'> 
+            {windowLayout.width <= 750 && <section className='main-750'> 
                 
 
 
                 {location.pathname === '/' && <>
-                    <div className='main-515__header-layout'> </div>
-                    <header className='main-515__header'> 
+                    <div className='main-750__header-layout'> </div>
+                    <header className='main-750__header'> 
                         <div>
                             <button><img src={bookURL} alt="idk" /></button>
 
@@ -384,7 +384,7 @@ useEffect(() => {
                     <main>
                         {isChatOpened && <Messenger />}
 
-                        <span className={localChatOpened || isChatOpened ? 'main-515__main__span__fade-out-animation' : 'main-515__main__span__fade-in-animation'}>
+                        <span className={localChatOpened || isChatOpened ? 'main-750__main__span__fade-out-animation' : 'main-750__main__span__fade-in-animation'}>
                             <h1>Legal <p> AI </p> </h1>
                             <p> приветствует вас. </p>
                             <h2> Задайте мне вопрос </h2>
@@ -419,6 +419,7 @@ useEffect(() => {
                     mobileExplainURL={mobileExplainURL}
                     handleSendMessage={handleSendMessage}
                     mobileSendMessageURL={mobileSendMessageURL}
+                    setTranslateY={setTranslateY}
                 />
 
                 
