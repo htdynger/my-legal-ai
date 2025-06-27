@@ -1,0 +1,35 @@
+@media (max-width: 750px) {
+
+
+
+    .PhoneVerification-app {
+        margin-top: 100px;
+    }
+    .PhoneVerification-app .section-1 {
+
+        width: 100%;
+        height: 541px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .PhoneVerification-app .section-1 header {
+        width: 100%;
+        height: 233px;
+    }
+
+    .PhoneVerification-app .section-1 section input {
+        width: 12vw;
+    }
+
+
+    .PhoneVerification-app .section-1__form__header__text-2 {
+        font-family: Montserrat;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 150%;
+        letter-spacing: 0%;
+
+    }
+}
