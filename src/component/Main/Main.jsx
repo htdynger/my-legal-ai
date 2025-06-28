@@ -215,24 +215,62 @@ const Main = () => {
 const [isOpen, setIsOpen] = useState(false);
 const [isSwiping, setIsSwiping] = useState(false);
 const startYRef = useRef(0);
-const startHeightRef = useRef(134); // сохраняем стартовую высоту футера
+const startHeightRef = useRef(134); // сохраняем стартовую высоту футера'
+
+const [footerRevealer, setFooterRevealer] = useState(true)
+
+useEffect(() => {   
+    setFooterRevealer(false)
+
+    setTimeout(() => {
+        setFooterRevealer(true)
+    }, 500)
+
+}, [isOpen])
+
+
 
 const handleTouchStart = (e) => {
+    
+    if (!footerRevealer) return
+
+    if (isOpen) {
+        setTimeout(() => {
+            setIsOpen(false);
+            setTranslateY(0);
+        }, 100)
+        return
+    }
     startYRef.current = e.touches[0].clientY;
     startHeightRef.current = 134 + translateY; // фиксируем текущее значение
     setIsSwiping(true);
 };
 
 const handleTouchMove = (e) => {
+    if (!footerRevealer) return
+
     const deltaY = startYRef.current - e.touches[0].clientY;
     const newHeight = startHeightRef.current + deltaY;
     const clampedHeight = Math.min(Math.max(newHeight, 134), 633);
     setTranslateY(clampedHeight - 134);
+
 };
 
 const handleTouchEnd = () => {
+    if (!footerRevealer) return
+
+    
     setIsSwiping(false);
-    const threshold = (633 - 134) * 0.50; // 25% от диапазона высот
+
+    const threshold = (633 - 134) * 0.05; 
+
+    // if (isOpen) {
+    //     threshold = (633 - 134) * 0.99; 
+    // }
+    // if (!isOpen) {
+    //     threshold = (633 - 134) * 0.05; 
+    // }
+    
 
     const currentHeight = 134 + translateY;
 
