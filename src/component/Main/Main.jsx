@@ -14,12 +14,12 @@ import moreInfoButtonURL from './items/moreInfoButton.png'
 import moreInfoButtonEnabledURL from './items/moreInfoButtonEnabled.png'
 import sendButtonURL from './items/sendButton.png'
 
-import bookURL from './items/mobile/book.png'
-import mobileLogoURL from './items/mobile/mobileLogo.png'
-import mobileAddFileURL from './items/mobile/mobileAddFile.png'
-import mobileExplainURL from './items/mobile/mobileExplain.png'
-import mobileNewChatURL from './items/mobile/mobileNewChat.png'
-import mobileSendMessageURL from './items/mobile/mobileSendMessage.png'
+import bookURL from './items/mobile/book.svg'
+import mobileLogoURL from './items/mobile/mobileLogo.svg'
+import mobileAddFileURL from './items/mobile/mobileAddFile.svg'
+import mobileExplainURL from './items/mobile/mobileExplain.svg'
+import mobileNewChatURL from './items/mobile/mobileNewChat.svg'
+import mobileSendMessageURL from './items/mobile/mobileSendMessage.svg'
 
 import Messenger from '../Messenger/Messenger'
 import MobileInputFooter from '../mobile/MobileInputFooter/MobileInputFooter.jsx'
@@ -370,7 +370,10 @@ useEffect(() => {
                         </div>
 
                         <div>
-                            <button><img src={mobileLogoURL} alt="logo" /></button>
+                            <button>
+                                <img src={mobileLogoURL} alt="logo" />
+                                <span> Pro </span>
+                            </button>
                         </div>
 
                         <div>

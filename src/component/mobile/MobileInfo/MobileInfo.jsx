@@ -1,16 +1,19 @@
 
 import character_1URL from './item/character-1.png'
 
-import showMoreURL from './item/showMore.png'
+import showMoreURL from './item/showMore.svg'
 
-import section_2_iconURL from './item/section-2-icon.png'
+import section_2_iconURL from './item/section-2-icon.svg'
+
+import AI_URL from './item/AI.png'
+
+
 import proLogoURL from './item/proLogo.png'
 
 import news_1URL from './item/news-1.png'
 import news_2URL from './item/news-2.jpg'
 import news_3URL from './item/news-3.png'
 
-import AI_URL from './item/AI.png'
 
 import './MobileInfo.css'
 const MobileInfo = () => {

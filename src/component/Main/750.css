@@ -500,5 +500,30 @@
 
     }
 
+    .main-750__header div:nth-child(2) button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .main-750__header div:nth-child(2) button span {
+        padding: 7px 10px 7px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background: radial-gradient(58.27% 348.22% at 39.42% -41.67%, #4A83F0 0%, #B44ADD 39.73%, #D76674 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+        width: 48px;
+        height: 24px;
+        font-family: Unbounded;
+        font-weight: 500;
+        font-size: 13px;
+        leading-trim: Cap height;
+        line-height: 150%;
+        letter-spacing: 0%;
+
+    }
+
 }
 

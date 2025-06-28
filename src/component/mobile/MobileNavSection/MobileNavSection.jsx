@@ -1,13 +1,13 @@
 import './MobileNavSection.css'
 
-import homeIconURL from './item/homeIcon.png'
-import hyperTextIconURL from './item/hyperTextIcon.png'
-import infoBlockIconURL from './item/infoBlockIcon.png'
-import logOutIconURL from './item/logOutIcon.png'
-import proIconURL from './item/proIcon.png'
-import settingsIconURL from './item/settingsIcon.png'
+import homeIconURL from './item/homeIcon.svg'
+import hyperTextIconURL from './item/hyperTextIcon.svg'
+import infoBlockIconURL from './item/infoBlockIcon.svg'
+import logOutIconURL from './item/logOutIcon.svg'
+import proIconURL from './item/proIcon.svg'
+import settingsIconURL from './item/settingsIcon.svg'
 
-import logoURL from './item/logo.png'
+import logoURL from './item/logo.svg'
 
 import { useNavigate, useLocation } from 'react-router-dom'
 
