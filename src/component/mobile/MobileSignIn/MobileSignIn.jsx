@@ -22,6 +22,8 @@ import { useNavigate } from 'react-router-dom'
 
 import AuthAnimatedFrame from '../../../animation/AuthAnimatedFrame/AuthAnimatedFrame'
 
+import axios from 'axios'
+
 
 const ChangePassword = ({ setVisiblePage }) => {
     const [password, setPassword] = useState('');
@@ -286,10 +288,22 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleLogin = (contactValue, passwordValue) => {
-        console.log("Логин:", contactValue);
-        console.log("Пароль:", passwordValue);
-        setVisiblePage('SuccessfulAuth');
+    const handleLogin = async (email_or_username, passwordValue) => {
+        try {
+            const res = await axios.post('/api/login', null, {
+                params: {
+                    email_or_username,
+                    password: passwordValue,
+                },
+            });
+
+            console.log(res.data);
+            localStorage.setItem('bearer_token', res.data.access_token);
+            setVisiblePage('SuccessfulAuth');
+        } catch (err) {
+            console.log(err.message);
+            alert('Неверный логин или пароль');
+        }
     };
 
     const togglePasswordVisibility = () => {
@@ -303,93 +317,89 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
 
     return (
         <>
-        <AuthAnimatedFrame />
-        <section className="LoginForm-app">
+            <AuthAnimatedFrame />
+            <section className="LoginForm-app">
+                <div className="section-1">
+                    <form onSubmit={handleSubmit}>
+                        <header>
+                            <div>
+                                <img src={logoURL} alt="logo" />
+                            </div>
 
-            <div className="section-1">
-                <form onSubmit={handleSubmit}>
-                    <header>
-                        <div>
-                            <img src={logoURL} alt="logo" />
-                        </div>
+                            <h1 className='section-1__form__header__text-1'>ВОЙДИТЕ В АККАУНТ</h1>
+                            <p className='section-1__form__header__text-2'>С возвращением в Legal Ai.</p>
+                        </header>
 
-                        <h1 className='section-1__form__header__text-1'>ВОЙДИТЕ В АККАУНТ</h1>
-
-                        <p className='section-1__form__header__text-2'>
-                            С возвращением в Legal Ai.
-                        </p>
-                    </header>
-
-                    <section>
-                        <div className='section-1__section__label-1'>
-                            <label htmlFor="contact">Номер телефона или Email</label>
-                            <input
-                                id="contact"
-                                placeholder="Ваша электронная почта/номер тел."
-                                type="text"
-                                value={contact}
-                                onChange={(e) => setContact(e.target.value)}
-                                required
-                            />
-                        </div>
-
-                        <div className='section-1__section__label-2'>
-                            <label htmlFor="password">Пароль</label>
-                            <div className="password-container">
+                        <section>
+                            <div className='section-1__section__label-1'>
+                                <label htmlFor="contact">Номер телефона или Email</label>
                                 <input
-                                    id="password"
-                                    placeholder="Введите пароль"
-                                    type={showPassword ? "text" : "password"}
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    id="contact"
+                                    placeholder="Ваша электронная почта/номер тел."
+                                    type="text"
+                                    value={contact}
+                                    onChange={(e) => setContact(e.target.value)}
                                     required
                                 />
-                                <img
-                                    src={eyeClosedURL}
-                                    alt="show-password-button"
-                                    onClick={togglePasswordVisibility}
-                                    style={{ cursor: 'pointer' }}
-                                />
                             </div>
-                        </div>
-                    </section>
 
-                    <footer>
-                        <button type="submit" className='section-1__footer__button-create-account'>
-                            Вход в аккаунт
+                            <div className='section-1__section__label-2'>
+                                <label htmlFor="password">Пароль</label>
+                                <div className="password-container">
+                                    <input
+                                        id="password"
+                                        placeholder="Введите пароль"
+                                        type={showPassword ? "text" : "password"}
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
+                                    <img
+                                        src={showPassword ? eyeOpenedURL : eyeClosedURL}
+                                        alt="show-password-button"
+                                        onClick={togglePasswordVisibility}
+                                        style={{ cursor: 'pointer' }}
+                                    />
+                                </div>
+                            </div>
+                        </section>
+
+                        <footer>
+                            <button type="submit" className='section-1__footer__button-create-account'>
+                                Вход в аккаунт
+                            </button>
+
+                            <span>Или</span>
+
+                            <div>
+                                <button type="button" onClick={() => navigate('/sign-up')}>
+                                    Создать аккаунт
+                                </button>
+
+                                <button type="button" onClick={() => setVisiblePage('RecoverAccount')}>
+                                    Восстановить пароль
+                                </button>
+                            </div>
+                        </footer>
+                    </form>
+
+                    <div className='section-1__fast-login'>
+                        <button type="button">
+                            <img src={appleIconURL} alt="apple-icon" />
+                            <span>Войти в Apple Account</span>
                         </button>
 
-                        <span>Или</span>
-
-                        <div>
-                            <button type="button" onClick={() => navigate('/sign-up')}>
-                                Создать аккаунт
-                            </button>
-
-                            <button type="button" onClick={() => setVisiblePage('RecoverAccount')}>
-                                Восстановить пароль
-                            </button>
-                        </div>
-                    </footer>
-                </form>
-
-                <div className='section-1__fast-login'>
-                    <button type="button">
-                        <img src={appleIconURL} alt="apple-icon" />
-                        <span>Войти в Apple Account</span>
-                    </button>
-
-                    <button type="button">
-                        <img src={googleIconURL} alt="google-icon" />
-                        <span>Войти с Google</span>
-                    </button>
+                        <button type="button">
+                            <img src={googleIconURL} alt="google-icon" />
+                            <span>Войти с Google</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-
-        </section>
+            </section>
         </>
     );
 };
+
 
 
 

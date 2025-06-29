@@ -34,6 +34,9 @@ import { v4 as uuidv4 } from 'uuid';
 import MobileInfo from '../mobile/MobileInfo/MobileInfo.jsx'
 
 import MobileSidebar from '../mobile/MobileSidebar/MobileSidebar.jsx'
+import { useNavigate } from 'react-router-dom'
+
+import axios from 'axios'
 
 
 
@@ -182,9 +185,38 @@ const Main = () => {
         }
     }, [isSidebarHidden])
 
+    const token = localStorage.getItem('bearer_token')
+    const navigate = useNavigate()
 
     useEffect(() => {
+
+        if (windowLayout.width <= 750) {
+            const checkAuthenticated = async () => {
+
+                if (!token) {
+                    navigate('/sign-in');
+                    return;
+                }
+    
+                try {
+                    const res = await axios.get('api/me', {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            Accept: 'application/json',
+                        },
+                    })
         
+                    console.log(`user: ${JSON.stringify(res.data)}`)
+        
+                } catch (err) {
+                    console.log(err.message)
+                    navigate('/sign-in')
+                    
+                }
+            }
+    
+            checkAuthenticated();
+        }
 
         if (isSidebarHidden) {
             mainRef.current.classList.add('main-sidebar-closed-instant')
@@ -287,15 +319,13 @@ const handleTouchEnd = () => {
 };
 
 
-useEffect(() => {
-    // console.log(translateY)
-}, [translateY])
-
 const handleSubmit = () => {
     if (inputFormRef.current) {
         inputFormRef.current.requestSubmit();
     }
 }
+
+
     
 const inputFormRef = useRef()
 

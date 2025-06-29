@@ -30,26 +30,12 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    // const [inputUsername, setInputUsername] = useState('')
-    // const [inputEmail, setInputEmail] = useState('')
-    // const [inputPassword, setInputPassword] = useState('')
-
-    // const [inputConfirmPassword, setInputConfirmPassword] = useState('')
-
     const [formData, setFormData] = useState({
         email: '',
         username: '',
         password: '',
         confirmPassword: ''
     })
-
-    // useEffect(() => {
-    //     setFormData({
-    //         email: inputEmail,
-    //         username: inputUsername,
-    //         password: inputPassword,
-    //     })
-    // }, [inputEmail, inputUsername, inputPassword])
 
     const register = async (data) => {
 
