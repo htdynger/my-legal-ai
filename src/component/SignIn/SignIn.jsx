@@ -25,6 +25,8 @@ import { useNavigate } from 'react-router-dom'
 
 import AuthAnimatedFrame from '../../animation/AuthAnimatedFrame/AuthAnimatedFrame'
 
+import axios from 'axios'
+
 
 const ChangePassword = ({ setVisiblePage }) => {
     const [password, setPassword] = useState('');
@@ -310,23 +312,40 @@ const RecoverAccount = ({ setVisiblePage }) => {
 
 
 const LoginForm = ({ navigate, setVisiblePage }) => {
-    const [contact, setContact] = useState('');
-    const [password, setPassword] = useState('');
+    // const [contact, setContact] = useState('');
+    // const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleLogin = (contactValue, passwordValue) => {
-        console.log("Логин:", contactValue);
-        console.log("Пароль:", passwordValue);
-        setVisiblePage('SuccessfulAuth');
+    const [formData, setFormData] = useState({
+        email_or_username: '',
+        password: '',
+    })
+
+    const handleLogin = (inputData) => {
+        login(inputData)
     };
+
+    const login = async (data) => {
+
+        try {
+            const res = await axios.post('api/login', null, {
+                params: {
+                    email_or_username: data.email_or_username,
+                    password: data.password,
+                },
+            })
+
+            console.log(res.data)
+            localStorage.setItem('bearer_token', res.data.access_token)
+            setVisiblePage('SuccessfulAuth');
+        } catch (err) {
+            console.log(err.message)
+            alert('неправильно введены логин или пароль')
+        }
+    }
 
     const togglePasswordVisibility = () => {
         setShowPassword(prev => !prev);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        handleLogin(contact, password);
     };
 
     return (
@@ -336,7 +355,7 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
             <GradientCircle />
 
             <div className="section-1">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(e) => {e.preventDefault(); handleLogin(formData)}}>
                     <header>
                         <div>
                             <img src={logoURL} alt="logo" />
@@ -356,8 +375,11 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
                                 id="contact"
                                 placeholder="Ваша электронная почта/номер тел."
                                 type="text"
-                                value={contact}
-                                onChange={(e) => setContact(e.target.value)}
+                                value={formData.email_or_username}
+                                onChange={(e) => setFormData((prev) => ({
+                                    ...prev,
+                                    email_or_username: e.target.value
+                                }))}
                                 required
                             />
                         </div>
@@ -369,8 +391,11 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
                                     id="password"
                                     placeholder="Введите пароль"
                                     type={showPassword ? "text" : "password"}
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    value={formData.password}
+                                    onChange={(e) => setFormData((prev) => ({
+                                        ...prev,
+                                        password: e.target.value
+                                    }))}
                                     required
                                 />
                                 <img

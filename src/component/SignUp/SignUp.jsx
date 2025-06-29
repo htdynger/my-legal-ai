@@ -23,13 +23,62 @@ import { useVisualStore } from '../../store/useVisualStore'
 
 import AuthAnimatedFrame from '../../animation/AuthAnimatedFrame/AuthAnimatedFrame'
 
+import axios from 'axios'
+
 
 const RegisterForm = ({ navigate, setVisiblePage }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    const handleCreateAccount = () => {
-        setVisiblePage('PhoneVerification');
+    // const [inputUsername, setInputUsername] = useState('')
+    // const [inputEmail, setInputEmail] = useState('')
+    // const [inputPassword, setInputPassword] = useState('')
+
+    // const [inputConfirmPassword, setInputConfirmPassword] = useState('')
+
+    const [formData, setFormData] = useState({
+        email: '',
+        username: '',
+        password: '',
+        confirmPassword: ''
+    })
+
+    // useEffect(() => {
+    //     setFormData({
+    //         email: inputEmail,
+    //         username: inputUsername,
+    //         password: inputPassword,
+    //     })
+    // }, [inputEmail, inputUsername, inputPassword])
+
+    const register = async (data) => {
+
+        try {
+            const res = await axios.post('/api/register', null, {
+                params: {
+                    email: data.email,
+                    username: data.username,
+                    password: data.password,
+                },
+            })
+
+            console.log(res.data)
+            navigate('/sign-in')
+            // setVisiblePage('SuccessfulAuth');
+        } catch (err) {
+
+            console.log(err.message)
+        }
+    }
+
+    const handleCreateAccount = (inputData) => {
+        if (inputData.password !== inputData.confirmPassword) {
+            alert('пароли не совпадают')
+            return
+        }
+        register(inputData)
+
+
     };
 
     return (
@@ -39,7 +88,7 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
             <GradientCircle />
 
             <div className="section-1">
-                <form action="" onSubmit={(e) => { e.preventDefault(); handleCreateAccount(); }}>
+                <form action="" onSubmit={(e) => { e.preventDefault(); handleCreateAccount(formData); }}>
                     <header>
                         <div>
                             <img src={logoURL} alt="Legal AI logo" />
@@ -56,13 +105,13 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
 
                     <section>
                         <div className="section-1__section__label-1">
-                            <label htmlFor="nickname">Никнейм</label>
-                            <input id="nickname" placeholder="Ваше имя пользователя" type="text" required />
+                            <label htmlFor="Username">Никнейм</label>
+                            <input onChange={(e) => setFormData(prev => ({ ...prev, username: e.target.value }))} value={formData.username} id="Username" placeholder="Ваше имя пользователя" type="text" required />
                         </div>
 
                         <div className="section-1__section__label-2">
                             <label htmlFor="contact">Номер телефона или Email</label>
-                            <input id="contact" placeholder="Ваша электронная почта/номер тел." type="text" required />
+                            <input onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))} value={formData.email} id="contact" placeholder="Ваша электронная почта/номер тел." type="text" required />
                         </div>
 
                         <div className="section-1__section__label-3">
@@ -74,6 +123,8 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
                                         id="password"
                                         placeholder="Создайте пароль"
                                         type={showPassword ? 'text' : 'password'}
+                                        onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
+                                        value={formData.password}
                                         required
                                     />
                                     <img
@@ -81,6 +132,7 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
                                         alt="показать/скрыть пароль"
                                         onClick={() => setShowPassword(!showPassword)}
                                         style={{ cursor: 'pointer' }}
+                                        
                                     />
                                 </div>
 
@@ -89,6 +141,8 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
                                         id="confirmPassword"
                                         placeholder="Подтвердите пароль"
                                         type={showConfirmPassword ? 'text' : 'password'}
+                                        onChange={(e) => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
+                                        value={formData.confirmPassword}
                                         required
                                     />
                                     <img

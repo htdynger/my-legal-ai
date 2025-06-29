@@ -6,7 +6,7 @@ export default defineConfig({
     server: {
       proxy: {
         '/api': {
-            target: 'https://dev-api.ascender-ai.com',
+            target: 'https://legai.io',
             changeOrigin: true,
             secure: false,
             // rewrite: (path) => path.replace(/^\/api/, ''), // отключи
