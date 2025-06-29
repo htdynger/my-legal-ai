@@ -10,7 +10,7 @@ const SidebarChats = ({date, chats, id}) => {
     const navigate = useNavigate()
 
     const { handleSelectChat, selectedChat, unSelectChat } = useChatStore()
-    const { toggleChat, setChatInstantEnabled } = useVisualStore()
+    const { toggleChat, setChatInstantEnabled, windowLayout, setIsMobileSidebarHidden } = useVisualStore()
 
     const handleClickOnChat = (chatId) => {
 
@@ -31,6 +31,10 @@ const SidebarChats = ({date, chats, id}) => {
             handleSelectChat(chatId)
             console.log(selectedChat)
             navigate('/')
+        }
+
+        if (windowLayout.width <= 750) {
+            setIsMobileSidebarHidden(true)
         }
 
 

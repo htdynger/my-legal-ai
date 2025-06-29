@@ -66,3 +66,17 @@
     transform: translateX(10px);
     transition: all 0.3s;
 }
+
+@media (max-width: 750px) {
+    .sidebarChats-container__chats-container__chats-text:hover p {
+        transform: none;
+        transition: none;
+    }
+
+    .sidebarChats-container__chats-container__chats-text.active-chat {
+        background-color: #222631;
+        padding: 16px 15px 16px 8px;
+        transition: padding 0.2s;
+        order: -1;
+    }
+}

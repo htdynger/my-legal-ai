@@ -33,6 +33,7 @@ import { useState, useEffect, useRef } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import MobileInfo from '../mobile/MobileInfo/MobileInfo.jsx'
 
+import MobileSidebar from '../mobile/MobileSidebar/MobileSidebar.jsx'
 
 
 
@@ -47,7 +48,7 @@ const Main = () => {
 
 
 
-    const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat, isSidebarHidden, windowLayout } = useVisualStore();
+    const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat, isSidebarHidden, windowLayout, isMobileSidebarHidden, setIsMobileSidebarHidden } = useVisualStore();
     const { selectedChat, handleSelectChat, data, setData, unSelectChat, setIsExplainEnabled, isExplainEnabled, sendButtonEnabled, hardSetSelectedChat } = useChatStore()
 
     const [messageText, setMessageText] = useState('')
@@ -238,7 +239,7 @@ const handleTouchStart = (e) => {
         setTimeout(() => {
             setIsOpen(false);
             setTranslateY(0);
-        }, 100)
+        }, 300)
         return
     }
     startYRef.current = e.touches[0].clientY;
@@ -290,7 +291,6 @@ useEffect(() => {
     // console.log(translateY)
 }, [translateY])
     
-
 
 
     return (
@@ -400,10 +400,13 @@ useEffect(() => {
 
 
                 {location.pathname === '/' && <>
+
+                    <MobileSidebar />
+
                     <div className='main-750__header-layout'> </div>
                     <header className='main-750__header'> 
                         <div>
-                            <button><img src={bookURL} alt="idk" /></button>
+                            <button onClick={() => setIsMobileSidebarHidden(false)}><img src={bookURL} alt="idk" /></button>
 
                         </div>
 

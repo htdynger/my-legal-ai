@@ -7,6 +7,9 @@ export const useVisualStore = create((set)=> ({
     visiblePage: 'none',
     setVisiblePage: (value) => set(() => ({visiblePage: value})),
 
+    isMobileSidebarHidden: true,
+    setIsMobileSidebarHidden: (boolean) => set(() => ({isMobileSidebarHidden: boolean})),
+
     isChatOpened: false,
     toggleChat: () => set((state)=> ({isChatOpened: true, chatInstantEnabled: true})),
     closeChat: () => set((state)=> ({isChatOpened: false, chatInstantEnabled: false})),
