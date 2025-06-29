@@ -395,7 +395,25 @@ const inputFormRef = useRef()
                                         </div> */}
 
                                         <div onMouseEnter={() => setNewChatImgSrc(newChatButtonHoverURL)} onMouseLeave={() => setNewChatImgSrc(newChatButtonURL)} onClick={() => addNewChat()} className='input-section__input-footer__container-n1__button-container-n2'> <button type='button'> <img src={newChatImgSrc} alt="new-chat-button" /> </button></div>
-                                        <div onMouseEnter={() => setAddFileImgSrc(addFileButtonHoverURL)} onMouseLeave={() => setAddFileImgSrc(addFileButtonURL)} className='input-section__input-footer__container-n1__button-container-n3'> <button type='button'> <img src={addFileImgSrc} alt="add-file-button" /> </button> </div>
+                                        <label
+  onMouseEnter={() => setAddFileImgSrc(addFileButtonHoverURL)}
+  onMouseLeave={() => setAddFileImgSrc(addFileButtonURL)}
+  className='input-section__input-footer__container-n1__button-container-n3 file-upload-button'
+  style={{ cursor: 'pointer' }}
+>
+  <input
+    type="file"
+    style={{ display: 'none' }}
+    onChange={(e) => {
+      const file = e.target.files[0];
+      if (file) {
+        console.log('Файл выбран:', file);
+        // здесь можешь сразу вызывать setFile или upload функцию
+      }
+    }}
+  />
+  <img src={addFileImgSrc} alt="add-file-button" />
+</label>
 
                                     </div>
 
