@@ -102,9 +102,31 @@
         text-decoration-thickness: 0%;
         width: 192px;
     }
+    .RegisterForm-app .section-1__fast-login {
+        display: flex;
+        gap: 15;
+        flex-direction: column;
+        width: 100%;
+        height: 143px;
+        justify-content: space-between;
+    }
 
     .RegisterForm-app .section-1__fast-login button {
         /* border: 1px solid #000; */
-        background-color: #222631;
+        background-color: #16191F;
+        width: 100%;
+        height: 64px;
+        border-radius: 16px;
+        padding: 20px 15px 20px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .RegisterForm-app .section-1__section__label-3__password-container {
+        display: flex;
+        gap: 15px;
+        flex-direction: column;
     }
 }
