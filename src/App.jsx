@@ -11,6 +11,7 @@ import { useVisualStore } from './store/useVisualStore';
 import { useEffect } from 'react';
 import MobileSignIn from './component/mobile/MobileSignIn/MobileSignIn';
 import MobileSignUp from './component/mobile/MobileSignUp/MobileSignUp';
+import ComingSoon from './animation/ComingSoon/ComingSoon';
 
 const App = () => {
 
@@ -32,6 +33,8 @@ const App = () => {
                     <Route element={<MainLayout />}>
                         <Route path="/" element={<Main />} />
                         <Route path="/document-generation" element={<DocumentGeneration />} />
+                        <Route path="/info" element={<ComingSoon />} />
+                        <Route path="/pro" element={<ComingSoon />} />
                     </Route>
 
                     {/* Auth layout без Header и Sidebar */}

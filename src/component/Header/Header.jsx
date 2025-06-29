@@ -30,8 +30,14 @@ const Header = () => {
 
     const navigate = useNavigate()
     const { unSelectChat } = useChatStore()
+
+
     const mainButtonRef = useRef()
     const documentGenerationButtonRef = useRef()
+    const infoButtonRef = useRef()
+    const proButtonRef = useRef()
+
+
     const location = useLocation()
     
     const sidebarAddNewChatButtonRef = useRef()
@@ -162,8 +168,8 @@ const Header = () => {
 
                             <div className='header__column-n2__container-n2'>
 
-                                <div> <button className='header__column-n2__container-n2__button-text-n1'> <img src={navBoxesButtonLogoURL} alt="Info" /> </button> </div>
-                                <div> <button className='header__column-n2__container-n2__button-text-n2'> <img src={navProButtonLogoURL} alt="Pro-Version" /> </button> </div>
+                                <div className={visualPathname === '/info/' ? 'navSelected' : ''} ref={infoButtonRef} onClick={() => handleNavigate('/info/', infoButtonRef)}> <button className='header__column-n2__container-n2__button-text-n1'> <img src={navBoxesButtonLogoURL} alt="Info" /> </button> </div>
+                                <div className={visualPathname === '/pro/' ? 'navSelected' : ''} ref={proButtonRef} onClick={() => handleNavigate('/pro/', proButtonRef)}> <button className='header__column-n2__container-n2__button-text-n2'> <img src={navProButtonLogoURL} alt="Pro-Version" /> </button> </div>
                                 <div className={visualPathname === '/document-generation/' ? 'navSelected' : ''} ref={documentGenerationButtonRef} onClick={() => handleNavigate('/document-generation/', documentGenerationButtonRef)}> <button className='header__column-n2__container-n2__button-text-n3'> <img src={navPenButtonLogoURL} alt="document-generation" /> </button> </div>
 
                                 <div> <button className='header__column-n2__container-n2__button-img-n1'> <img className='header__column-h2__container-n2__button-img-n1__logo' src={navSearchButtonLogoURL} alt="search-button-logo" /> </button> </div>

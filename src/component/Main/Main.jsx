@@ -290,8 +290,14 @@ const handleTouchEnd = () => {
 useEffect(() => {
     // console.log(translateY)
 }, [translateY])
-    
 
+const handleSubmit = () => {
+    if (inputFormRef.current) {
+        inputFormRef.current.requestSubmit();
+    }
+}
+    
+const inputFormRef = useRef()
 
     return (
 
@@ -355,40 +361,58 @@ useEffect(() => {
                             />
                         </div>
 
-                    <div ref={inputSectionRef} className={localChatOpened || isChatOpened ? 'input-section input-section-chatOpened' : 'input-section'}>
+
+                        <div ref={inputSectionRef} className={localChatOpened || isChatOpened ? 'input-section input-section-chatOpened' : 'input-section'}>
+
+                        <form ref={inputFormRef}
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            handleSendMessage(messageText);
+                        }}>
+
+                            <textarea
+                                ref={textareaRef}
+                                value={messageText}
+                                onChange={(e) => setMessageText(e.target.value)}
+                                placeholder="Начните писать"
+                                onKeyDown={(e) => {
+                                if (e.key === 'Enter' && !e.shiftKey) {
+                                    e.preventDefault(); // чтобы не было переноса строки
+                                    e.currentTarget.form.requestSubmit(); // инициируем submit формы
+                                }
+                                }}
+                            />
+
+                                <div className='input-section__input-footer'> 
+
+                                    <div className='input-section__input-footer__container-n1'>
+
+                                        {/* <div className='input-section__input-footer__container-n1__button-container-n1'>
+
+                                            <button> <img src={flagUzbURL} alt="flag-uzbekistan" /> </button>
+                                            <button> <img src={copyButtonURL} alt="copy-button" /></button> 
+                                            
+                                        </div> */}
+
+                                        <div onMouseEnter={() => setNewChatImgSrc(newChatButtonHoverURL)} onMouseLeave={() => setNewChatImgSrc(newChatButtonURL)} onClick={() => addNewChat()} className='input-section__input-footer__container-n1__button-container-n2'> <button type='button'> <img src={newChatImgSrc} alt="new-chat-button" /> </button></div>
+                                        <div onMouseEnter={() => setAddFileImgSrc(addFileButtonHoverURL)} onMouseLeave={() => setAddFileImgSrc(addFileButtonURL)} className='input-section__input-footer__container-n1__button-container-n3'> <button type='button'> <img src={addFileImgSrc} alt="add-file-button" /> </button> </div>
+
+                                    </div>
 
 
+                                    <div className='input-section__input-footer__container-n2'>
 
-                        <textarea ref={textareaRef} value={messageText} onChange={(e) => setMessageText(e.target.value)} placeholder='Начните писать'   />
+                                        <div onClick={() => setIsExplainEnabled(!isExplainEnabled)} className={isExplainEnabled ? 'input-section__input-footer__container-n2__button-container-n1 enabled' : 'input-section__input-footer__container-n2__button-container-n1'}> <button type='button' className='input-section__input-footer__container-n2__button-container-n1__button'> <img src={isExplainEnabled ? moreInfoButtonEnabledURL : moreInfoButtonURL} alt="more-info-button" /> </button> </div>
 
-                        <div className='input-section__input-footer'> 
-
-                            <div className='input-section__input-footer__container-n1'>
-
-                                {/* <div className='input-section__input-footer__container-n1__button-container-n1'>
-
-                                    <button> <img src={flagUzbURL} alt="flag-uzbekistan" /> </button>
-                                    <button> <img src={copyButtonURL} alt="copy-button" /></button> 
-                                    
-                                </div> */}
-
-                                <div onMouseEnter={() => setNewChatImgSrc(newChatButtonHoverURL)} onMouseLeave={() => setNewChatImgSrc(newChatButtonURL)} onClick={() => addNewChat()} className='input-section__input-footer__container-n1__button-container-n2'> <button> <img src={newChatImgSrc} alt="new-chat-button" /> </button></div>
-                                <div onMouseEnter={() => setAddFileImgSrc(addFileButtonHoverURL)} onMouseLeave={() => setAddFileImgSrc(addFileButtonURL)} className='input-section__input-footer__container-n1__button-container-n3'> <button> <img src={addFileImgSrc} alt="add-file-button" /> </button> </div>
-
-                            </div>
+                                        <div onClick={() => handleSubmit()} className={sendButtonEnabled ? 'input-section__input-footer__container-n2__button-container-n2' : 'input-section__input-footer__container-n2__button-container-n2 disabled'}> <button type='submit' className='input-section__input-footer__container-n2__button-container-n2__button'> <img src={sendButtonURL} alt="send-button" /> </button> </div>
+                                        
+                                    </div>
 
 
-                            <div className='input-section__input-footer__container-n2'>
-
-                                <div onClick={() => setIsExplainEnabled(!isExplainEnabled)} className={isExplainEnabled ? 'input-section__input-footer__container-n2__button-container-n1 enabled' : 'input-section__input-footer__container-n2__button-container-n1'}> <button className='input-section__input-footer__container-n2__button-container-n1__button'> <img src={isExplainEnabled ? moreInfoButtonEnabledURL : moreInfoButtonURL} alt="more-info-button" /> </button> </div>
-
-                                <div onClick={() => handleSendMessage(messageText)} className={sendButtonEnabled ? 'input-section__input-footer__container-n2__button-container-n2' : 'input-section__input-footer__container-n2__button-container-n2 disabled'}> <button className='input-section__input-footer__container-n2__button-container-n2__button'> <img src={sendButtonURL} alt="send-button" /> </button> </div>
-                                
-                            </div>
-
-
+                                </div>
+                            </form>
                         </div>
-                    </div>
+                    {/* </form> */}
 
 
 

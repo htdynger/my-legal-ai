@@ -62,6 +62,8 @@ import React from 'react';
 import { Document, Packer, Paragraph, TextRun, AlignmentType, PageBreak, ImageRun } from 'docx';
 import { saveAs } from 'file-saver';
 
+import ComingSoon from '../../animation/ComingSoon/ComingSoon';
+
 import { useVisualStore } from '../../store/useVisualStore';
 import { useChatStore } from '../../store/useChatStore';
 import MiniMessenger from '../MiniMessenger/MiniMessenger';
@@ -307,6 +309,7 @@ const DocumentSection = () => {
   return (
     <div className={isSidebarHidden ? 'content content-sidebar-hidden' : 
       'content content-sidebar-visible'}>
+        <ComingSoon />
       <div className={isSidebarHidden ? 'document-generation document-generation-sidebar-opened' : 'document-generation document-generation-sidebar-closed'}>
         <div className="document-generation__header">
           <input
