@@ -93,7 +93,7 @@ const Sidebar = () => {
         <>
             <div ref={sidebarRelativeRef} className={isSidebarHidden ? 'sidebar-relative sidebar-close-animation' : 'sidebar-relative sidebar-open-animation' }> </div>
 
-            <div className='aside-fixed-container'> 
+            <div className={isSidebarHidden ? 'aside-fixed-container sidebar-fixed-closed' : 'aside-fixed-container sidebar-fixed-opened'}> 
 
                 <aside ref={sidebarRef} className={isSidebarHidden ? "aside aside-sidebar-closed" : 'aside aside-sidebar-opened'}>
                     <div className='aside__navbar-n1'>

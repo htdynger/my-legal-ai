@@ -199,7 +199,7 @@ const Header = () => {
                         <nav className='header-1440__nav'>
                             <div className='header-1440__nav__column-1'> 
                                 <div className={visualPathname === '/' ? 'navSelected' : ''}><button ref={mainButtonRef} onClick={() => handleNavigate('/', mainButtonRef)}> <img src={mainIconURL} /></button></div>
-                                <div><button><img src={toggleSidebarButtonURL} alt="toggle-sidebar-button" /></button></div>
+                                <div onClick={() => toggleSidebar(!isSidebarHidden)}><button><img src={toggleSidebarButtonURL} alt="toggle-sidebar-button" /></button></div>
                             </div>
 
                             <div className='header-1440__nav__column-2'>

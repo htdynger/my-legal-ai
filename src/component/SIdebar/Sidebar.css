@@ -139,7 +139,6 @@
     display: flex;
     width: 292px;
     height: calc(100vh - 24px - 100px);
-    
 }
 
 .aside-fixed-container {
@@ -149,6 +148,21 @@
     position: fixed;
     width: 292px;
     height: calc(100vh - 24px - 100px);
+
+
+}
+
+.aside-fixed-container.sidebar-fixed-opened {
+    z-index: 3;
+    backdrop-filter: blur(10px);
+
+}
+.aside-fixed-container.sidebar-fixed-closed {
+    z-index: 0;
+    backdrop-filter: blur(0px);
+
+
+    /* opacity: 0; */
 }
 
 .aside-sidebar-opened {
@@ -176,7 +190,6 @@
     border-radius: 12px;
     border: 1px solid #373E4E;
     background: linear-gradient(90deg, rgba(25, 28, 36, 0.6) 0%, rgba(38, 42, 54, 0.6) 100%);
-
 
 }
 
