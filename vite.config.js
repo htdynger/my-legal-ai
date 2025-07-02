@@ -2,16 +2,20 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-    plugins: [react()],
-    server: {
-      proxy: {
-        '/api': {
-            target: 'https://legai.io',
-            changeOrigin: true,
-            secure: false,
-            // rewrite: (path) => path.replace(/^\/api/, ''), // отключи
-        }
-    }
-    
-    }
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://legai.io',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/ascender': {
+        target: 'https://dev-api.ascender-ai.com',
+        changeOrigin: true,
+        secure: false,
+        rewrite: path => path.replace(/^\/ascender/, ''), 
+      },
+    },
+  },
 })

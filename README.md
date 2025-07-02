@@ -12,13 +12,14 @@
 - tiptap
 - docx
 - file-saver
+- axios
 
 ### Структура проекта:
 
-animation: компоненты анимаций с position: absolute;
-component: структурные компоненты, наполняющие DOM, и содержащие в себе любые другие компоненты.
-store: хранилища zustand.
-utils: добавление зависимостей для tiptap (обеспечение корректного отображения стилей в document-generation
+- animation: компоненты анимаций с position: absolute;
+- component: структурные компоненты, наполняющие DOM, и содержащие в себе любые другие компоненты.
+- store: хранилища zustand.
+- utils: добавление зависимостей для tiptap (обеспечение корректного отображения стилей в document-generation)
 
 
 # v0.1

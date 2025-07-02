@@ -336,7 +336,7 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
             })
 
             console.log(res.data)
-            localStorage.setItem('bearer_token', res.data.access_token)
+            localStorage.setItem('access_token', res.data.access_token)
             setVisiblePage('SuccessfulAuth');
         } catch (err) {
             console.log(err.message)

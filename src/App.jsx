@@ -13,9 +13,13 @@ import MobileSignIn from './component/mobile/MobileSignIn/MobileSignIn';
 import MobileSignUp from './component/mobile/MobileSignUp/MobileSignUp';
 import ComingSoon from './animation/ComingSoon/ComingSoon';
 
+import axios from 'axios';
+
 const App = () => {
 
     const { setLayoutWidth, windowLayout } = useVisualStore()
+
+
 
     useEffect(() => {
         setLayoutWidth(window.innerWidth)
