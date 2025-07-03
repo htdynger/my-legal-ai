@@ -1,0 +1,100 @@
+.section-info-status {
+    width: 100%;
+    height: 94px;
+    border-radius: 24px;
+    padding: 15px 15px;
+    border: 2px solid #222631;
+    display: block;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.section-info-status aside {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 10px;
+    width: 890px;
+}
+
+.section-info-status aside div:nth-child(1),.section-info-status aside div:nth-child(2),.section-info-status aside div:nth-child(3) {
+    height: 60px;
+    width: 290px;
+    background-color: #292E3C;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px 10px 10px;
+    border-radius: 16px;
+
+}
+
+.section-info-status aside div:nth-child(1) div,.section-info-status aside div:nth-child(2) div {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #657085;
+    padding: 0;
+}
+
+
+.section-info-status aside div:nth-child(1) p:nth-child(2),.section-info-status aside div:nth-child(2) p:nth-child(2),.section-info-status aside div:nth-child(3) p:nth-child(2) {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    color: #FBFBFB;
+    text-wrap: nowrap;
+}
+
+.section-info-status aside div:nth-child(1) p:nth-child(3),.section-info-status aside div:nth-child(2) p:nth-child(3) {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    
+    color: #7E8BA5;
+}
+
+.section-info-status aside div:nth-child(3) div {
+    width: 48px;
+    height: 24px;
+    background: radial-gradient(58.27% 348.22% at 39.42% -41.67%, #4A83F0 0%, #B44ADD 39.73%, #D76674 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 10px;
+    font-family: Unbounded;
+    font-weight: 500;
+    font-size: 13px;
+    leading-trim: Cap height;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+
+    box-shadow: 0px 4px 15px 0px #B349DC7D;
+
+}
+
+
+.info-750-container {
+    display: flex;
+    font-style: normal;
+    gap: 10px;
+}
+
+.section-info-status__div-3__status {
+    font-family: Montserrat !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    line-height: 150% !important;
+    letter-spacing: 0% !important;
+    
+    color: #7E8BA5 !important;
+}
