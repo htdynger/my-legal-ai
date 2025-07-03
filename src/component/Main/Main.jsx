@@ -37,6 +37,7 @@ import MobileSidebar from '../mobile/MobileSidebar/MobileSidebar.jsx'
 import { useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
+import MobilePro from '../mobile/MobilePro/MobilePro.jsx'
 
 
 
@@ -185,7 +186,7 @@ const Main = () => {
         }
     }, [isSidebarHidden])
 
-    const token = localStorage.getItem('bearer_token')
+    const token = localStorage.getItem('access_token')
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -517,6 +518,14 @@ const inputFormRef = useRef()
 
                 
                 </>}
+
+                {location.pathname === '/pro' && <>
+                
+                
+                <MobilePro />
+
+            
+            </>}
 
                 
 
