@@ -39,7 +39,7 @@
     letter-spacing: 3px;
     /* flex: 4; */
     height: 50%;
-    margin-top: -100px;
+    margin-top: -100px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,14 +64,14 @@
     /* flex: 1; */
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     /* width: 100%; */
-    width: 700px;
-    text-align: left;
+    width: 100%;
+    text-align: center;
 
     word-spacing: 10px;
     letter-spacing: 5px;
-    margin-left: 10px;
+
 }
 
 @keyframes predeploy-h2-animation {
