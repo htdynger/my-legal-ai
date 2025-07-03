@@ -1,0 +1,206 @@
+.section-tariff {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    height: 418px;
+
+    gap: 20px;
+
+
+}
+
+.section-tariff header {
+    width: 100%;
+    height: 164px;
+
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 24px;
+    background-color: #222631;
+}
+
+.section-tariff header section:nth-child(1) {
+    width: 100%;
+    height: 56px;
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.section-tariff header section:nth-child(1) span:nth-child(1), .section-tariff header section:nth-child(1) span:nth-child(2) {
+    width: 172px;
+    height: 56px;
+}
+
+.section-tariff header section:nth-child(1) span:nth-child(1) h1 {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+    text-decoration: line-through;
+    color: #FBFBFB;
+}
+
+.section-tariff header section:nth-child(1) span:nth-child(2) h1 {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #00DC7D;
+}
+
+.section-tariff header section:nth-child(1) span:nth-child(1) h2, .section-tariff header section:nth-child(1) span:nth-child(2) h2 {
+    font-family: Montserrat;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+    -webkit-text-fill-color: #657085;
+    background: transparent;
+    color: #657085;
+}
+
+
+.section-tariff header section:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 30px;
+    width: 239px;
+    height: 53px;
+    background-color: #292E3C;
+} 
+
+.section-tariff header section:nth-child(2) button:nth-child(1) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 124px;
+    height: 43px;
+    padding: 10px 15px 10px 15px;
+    border-radius: 400px;
+
+    font-family: Unbounded;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+
+
+    background-color: #373E4E;
+    color: #7E8BA5;
+}
+
+.section-tariff header section:nth-child(2) button:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 105px;
+    height: 43px;
+    padding: 10px 15px 10px 15px;
+    border-radius: 400px;
+
+    font-family: Unbounded;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+
+    color: #657085;
+    
+
+}
+
+.section-tariff footer {
+    width: 100%;
+    position: relative;
+    height: 234px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    flex-direction: column;
+    border-radius: 24px;
+    gap: 15px;
+    background-color: #222631;
+}
+
+.section-tariff footer section:nth-child(1) {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 15px;
+}
+
+.section-tariff footer section:nth-child(2), .section-tariff footer section:nth-child(3) {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 15px;
+}
+
+.section-tariff footer section:nth-child(1) span,.section-tariff footer section:nth-child(2) span,.section-tariff footer section:nth-child(3) span {
+    width: 309px;
+    height: auto;
+    text-align: left;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+    color: #FBFBFB;
+}
+
+.section-tariff footer section:nth-child(1) div,.section-tariff footer section:nth-child(2) div,.section-tariff footer section:nth-child(3) div {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #657085;
+    border-radius: 12px;
+}
+
+.section-tariff footer::before {
+    content: ' ';
+    background-color: #292E3C;
+    height: 1px;
+    width: 90%;
+    display: flex;
+    position: absolute;
+    top: 71px;
+}
+
+.section-tariff footer::after {
+    content: ' ';
+    background-color: #292E3C;
+    height: 1px;
+    width: 90%;
+    display: flex;
+    position: absolute;
+    top: 150px;
+}

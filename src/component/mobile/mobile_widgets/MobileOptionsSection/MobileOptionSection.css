@@ -1,0 +1,178 @@
+.section-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    height: 713px;
+
+}
+
+
+.section-option h1 {
+    font-family: Unbounded;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #FBFBFB;
+    padding: 0px 5px;
+
+}
+
+.section-option aside {
+    width: 100%;
+    /* height: 603px; */
+    background-color: #222631;
+    padding: 20px;
+    border-radius: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-option aside div {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    /* background-color: #f00; */
+    height: 100%;
+
+}
+
+.section-option aside div:nth-child(1) {
+    flex: 1;
+    align-items: start;
+}
+
+.section-option aside div:nth-child(1) h1 {
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    color: #fbfbfb;
+    text-align: left;
+
+    border-bottom: 1px solid #292E3C;
+
+    padding-bottom: 15px;
+    display: flex;
+    align-items: left;
+    justify-content: center;
+}
+
+
+.section-option aside div:nth-child(1) span {
+    height: auto;
+    width: 100%;
+    padding: 15px 0px;
+    position: relative;
+    text-align: left;
+
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    color: #fbfbfb;
+
+    white-space: normal;
+    word-break: break-word;
+
+    flex: 1 1 auto;
+}
+
+.section-option aside div:nth-child(1) span:nth-child(2), .section-option aside div:nth-child(1) span:nth-child(3) ,.section-option aside div:nth-child(1) span:nth-child(4) ,.section-option aside div:nth-child(1) span:nth-child(5) {
+    border-bottom: 1px solid #292E3C;
+}
+
+.section-option aside div:nth-child(2) {
+    /* background-color: #0f0; */
+    width: 105px;
+}
+
+
+.section-option aside div:nth-child(2) h1 {
+    width: 100%;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+
+    margin-bottom: 40px;
+
+}
+
+.section-option aside div:nth-child(2) span, .section-option aside div:nth-child(3) span {
+    height: 105px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+
+}
+
+.section-option aside div:nth-child(2) span:nth-child(6), .section-option aside div:nth-child(3) span:nth-child(6) {
+    /* margin-bottom: -45px; */
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.section-option aside div:nth-child(2) span:nth-child(2), .section-option aside div:nth-child(3) span:nth-child(2),
+.section-option aside div:nth-child(2) span:nth-child(3), .section-option aside div:nth-child(3) span:nth-child(3),
+.section-option aside div:nth-child(2) span:nth-child(4), .section-option aside div:nth-child(3) span:nth-child(4),
+.section-option aside div:nth-child(2) span:nth-child(5), .section-option aside div:nth-child(3) span:nth-child(5),
+.section-option aside div:nth-child(2) span:nth-child(6), .section-option aside div:nth-child(3) span:nth-child(6) {
+    border-top: 1px solid #292E3C;
+}
+
+
+
+
+.section-option aside div:nth-child(3) {
+    width: 125px;
+
+    
+}
+
+
+.section-option aside div:nth-child(3) h1 {
+    font-family: Unbounded;
+    font-weight: 500;
+    font-size: 13px;
+    leading-trim: Cap height;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+    background: radial-gradient(58.27% 348.22% at 39.42% -41.67%, #4A83F0 0%, #B44ADD 39.73%, #D76674 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    border-radius: 10px;
+    width: 114px;
+    height: 24px;
+    padding: 7px 10px 7px 10px;
+    box-shadow: 0px 4px 15px 0px #B349DC7D;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 40px;
+}
+
+.section-option aside div:nth-child(3) h1 img {
+    margin-left: -10px;
+}

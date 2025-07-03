@@ -1,0 +1,65 @@
+.section-opportunity h1 {
+    margin-left: 20px;
+    font-family: Montserrat;
+font-weight: 600;
+font-size: 20px;
+line-height: 150%;
+letter-spacing: 0%;
+
+}
+.section-opportunity section aside {
+    display: flex;
+    width: 1141px;
+    margin: 0px 20px;
+    gap: 20px;
+}
+
+.section-opportunity {
+    width: 100%;
+    height: 417px;
+
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 100vw;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+
+.section-opportunity section {
+    /* background-color: #fff; */
+    width: 100%;
+    height: 367px;
+    display: block;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+
+}
+
+
+.section-opportunity section aside div {
+
+    width: 367px;
+    height: 367px;
+
+    background-color: #222631;
+    border-radius: 20px;
+
+    background-size: cover;
+    background-position: center;
+}
+
+
+.section-opportunity__opportunity-1 {
+    background-image: url('./item/opportunity-1.png');
+}
+.section-opportunity__opportunity-2 {
+    background-image: url('./item/opportunity-2.png');
+}
+.section-opportunity__opportunity-3 {
+    background-image: url('./item/opportunity-3.png');
+}
