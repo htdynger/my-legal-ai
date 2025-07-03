@@ -455,6 +455,7 @@ const time = useCountdown()
 
 
             {windowLayout.width <= 750 && <div className='predeploy-mobile'>
+                
                 <h1> COMING SOON </h1>
                 <h2> {time} </h2>    
             </div> }
