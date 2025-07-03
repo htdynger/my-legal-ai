@@ -38,8 +38,8 @@ import { useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
 import MobilePro from '../mobile/MobilePro/MobilePro.jsx'
-
-
+import { useCountdown } from '../../hooks/countdown'
+import './Predeploy.css'
 
 const Main = () => {
 
@@ -117,7 +117,7 @@ const Main = () => {
                         {
                             "author": "ai",
                             "title": "lorem ipsum",
-                            "message": "4343234 ipsum 4343234 sit lorem ipsum dolor sitlorem 4343234 dolor sit lorem 4343234 dolor sitlorem ipsum 4343234 sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sit",
+                            "message": " sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sit",
                             "date": "1",
                         },
                     ]
@@ -329,6 +329,7 @@ const handleSubmit = () => {
 
     
 const inputFormRef = useRef()
+const time = useCountdown()
 
     return (
 
@@ -340,7 +341,18 @@ const inputFormRef = useRef()
 
                     <>
 
-                        { isChatOpened && <Messenger />}
+                        { isChatOpened && 
+                        <>
+                            <Messenger />
+                            <div className='predeploy'> 
+
+
+                                <h1 className='animatedText'> COMING SOON</h1>
+                                <h2>                                {time}</h2>
+                            </div>
+                        </>
+
+                        }
 
                         <div className='main__text chat-opened__opacity-fade-out'>
                             <h1 className='hello-text-n1 hello-text-n1-chatOpened '> 
@@ -468,92 +480,10 @@ const inputFormRef = useRef()
                 </div>}
 
 
-            {windowLayout.width <= 750 && <section className='main-750'> 
-                
-
-
-                {location.pathname === '/' && <>
-
-                    <MobileSidebar />
-
-                    <div className='main-750__header-layout'> </div>
-                    <header className='main-750__header'> 
-                        <div>
-                            <button onClick={() => setIsMobileSidebarHidden(false)}><img src={bookURL} alt="idk" /></button>
-
-                        </div>
-
-                        <div>
-                            <button>
-                                <img src={mobileLogoURL} alt="logo" />
-                                <span> Pro </span>
-                            </button>
-                        </div>
-
-                        <div>
-
-                        </div>
-                    </header>
-                    
-
-
-
-                    <main>
-                        {isChatOpened && <Messenger />}
-
-                        <span className={localChatOpened || isChatOpened ? 'main-750__main__span__fade-out-animation' : 'main-750__main__span__fade-in-animation'}>
-                            <h1>Legal <p> AI </p> </h1>
-                            <p> приветствует вас. </p>
-                            <h2> Задайте мне вопрос </h2>
-                        </span>
-
-                    </main>
-                </>}
-
-
-                {location.pathname === '/info' && <>
-                
-                
-                    <MobileInfo />
-
-                
-                </>}
-
-                {location.pathname === '/pro' && <>
-                
-                
-                <MobilePro />
-
-            
-            </>}
-
-                
-
-
-
-                <MobileInputFooter 
-                    translateY={translateY} 
-                    isSwiping={isSwiping} 
-                    handleTouchStart={handleTouchStart}
-                    handleTouchMove={handleTouchMove}
-                    handleTouchEnd={handleTouchEnd}
-                    messageText={messageText} 
-                    setMessageText={setMessageText}
-                    mobileNewChatURL={mobileNewChatURL}
-                    mobileAddFileURL={mobileAddFileURL}
-                    mobileExplainURL={mobileExplainURL}
-                    handleSendMessage={handleSendMessage}
-                    mobileSendMessageURL={mobileSendMessageURL}
-                    setTranslateY={setTranslateY}
-                />
-
-                
-                    
-
-                
-                
-                
-            </section>}
+            {windowLayout.width <= 750 && <div className='predeploy-mobile'>
+                <h1> COMING SOON </h1>
+                <h2> {time} </h2>    
+            </div> }
         </>
         
         

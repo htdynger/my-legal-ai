@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Main from './component/Main/Main';
+// import Main from './component/Main/Main.jsx';
+
 import DocumentGeneration from './component/DocumentGeneration/DocumentGeneration';
 import SignUp from './component/SignUp/SignUp';
 import SignIn from './component/SignIn/SignIn';
@@ -14,6 +15,7 @@ import MobileSignUp from './component/mobile/MobileSignUp/MobileSignUp';
 import ComingSoon from './animation/ComingSoon/ComingSoon';
 
 import axios from 'axios';
+import Main from './component/Main/Main';
 
 const App = () => {
 
@@ -62,6 +64,8 @@ const App = () => {
             
             </BrowserRouter>
             }
+            
+
 
         </>
 

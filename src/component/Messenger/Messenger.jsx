@@ -15,7 +15,6 @@ import RotateTriangle from '../../animation/RotateTriangle/RotateTriangle'
 
 
 
-
 const Messenger = () => {
     
     const { selectedChat, data, setSendButtonEnabled } = useChatStore()
@@ -67,6 +66,10 @@ const Messenger = () => {
     return (
 
         <div ref={messengerWrapperRef} className='messenger-wrapper'>  
+            
+
+
+
             <section ref={messengerAppRef} className={chatInstantEnabled ? "messenger-app" : "messenger-app fade-out-animation"}>
 
                 {Array.isArray(selectedChat.message) && selectedChat.message.map((element) => {
@@ -79,7 +82,7 @@ const Messenger = () => {
 
 
 
-                        <div className='ai-message-app'>
+                        <div className='ai-message-app predeploy-message'>
 
                             {element.title && element.message ? <>
 

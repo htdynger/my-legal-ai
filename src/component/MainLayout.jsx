@@ -99,7 +99,7 @@ const MainLayout = () => {
 
 
 
-        checkAuthenticated();
+        // checkAuthenticated();
         // createChat()
         // getChats()
 
@@ -109,9 +109,9 @@ const MainLayout = () => {
 
     return (
         <div className="app">
-            <Header />
+            {/* <Header /> */}
             <div className="content-wrapper">
-                <Sidebar />
+                {/* <Sidebar /> */}
                 <Outlet /> 
             </div>
         </div>

@@ -1,0 +1,146 @@
+
+.predeploy {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    position: absolute;
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+
+    font-size: 72px;
+    transition: none !important;
+    animation: predeploy-fade-in-animation 2s forwards;
+}
+
+@keyframes predeploy-fade-in-animation {
+    0% {
+        opacity: 0;
+
+    } 30% {
+        opacity: 1;
+    } 50% {
+
+        opacity: 1;
+    } 100% {
+
+        opacity: 1;
+    }
+}
+
+.predeploy h1 {
+    animation: predeploy-h1-animation 1s forwards 1s, animateText 5s linear infinite 3s;
+    font-size: 84px;
+    color: #fbfbfb00;
+    word-spacing: 1px;
+    letter-spacing: 3px;
+    /* flex: 4; */
+    height: 50%;
+    margin-top: -100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-weight: 600;
+}
+
+@keyframes predeploy-h1-animation {
+    0% {
+        color: #fbfbfb00;
+    } 100% {
+        color: #fbfbfb33;
+
+    }
+}
+
+
+.predeploy h2 {
+    animation: predeploy-h2-animation 1s forwards 3s;
+    font-size: 64px;
+    color: #fbfbfb00;
+    /* flex: 1; */
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    /* width: 100%; */
+    width: 700px;
+    text-align: left;
+
+    word-spacing: 10px;
+    letter-spacing: 5px;
+    margin-left: 10px;
+}
+
+@keyframes predeploy-h2-animation {
+    0% {
+        color: #fbfbfb00;
+    } 100% {
+        color: #fbfbfb33;
+
+
+    }
+}
+
+
+.predeploy-message {
+    animation: predeploy-message-animation 2s forwards 1.5s;
+    opacity: 0;
+}
+
+@keyframes predeploy-message-animation {
+    
+    0% {
+        opacity: 0;
+    } 100% {
+        opacity: 1;
+    }   
+}
+
+.animatedText {
+    animation: animateText 5s linear infinite;
+}
+
+@keyframes animateText {
+    0%, 18%, 20%, 50.1%, 60%, 65.1%, 80%, 90.1%, 92% 
+    {
+        color: #fbfbfb33;
+        text-shadow: none;
+    } 
+    
+    18.1%, 20.1%, 30%, 50%, 60.1%, 65%, 80.1%, 90%, 92.1%, 100%
+    {
+        color: #fff;
+        text-shadow: 0 0 10px #001369,
+             0 0 20px #001369,
+             0 0 40px #001369,
+             0 0 80px #001369,
+             0 0 160px #001369,
+             0 0 400px #001369;
+
+    }
+}
+
+* {
+    overflow: hidden !important;
+}
+
+.predeploy-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    gap: 20px;
+}
+.predeploy-mobile h1 {
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.predeploy-mobile h2 {
+    font-size: 32px;
+}
