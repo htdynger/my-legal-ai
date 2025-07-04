@@ -57,6 +57,18 @@ const App = () => {
                     <Route path='*' element={<Main />} />
                     <Route path='/sign-in' element={<MobileSignIn />} />
                     <Route path='/sign-up' element={<MobileSignUp />} />
+
+                    <Route path='/legal/public' element={<MobileSignUp />} />
+
+                    <Route path='/info/news/1' element={<MobileSignUp />} />
+                    <Route path='/info/news/2' element={<MobileSignUp />} />
+
+                    <Route path='/settings/language' element={<MobileSignUp />} />
+                    <Route path='/settings/chats' element={<MobileSignUp />} />
+                    <Route path='/settings/explain' element={<MobileSignUp />} />
+                    <Route path='/settings/account' element={<MobileSignUp />} />
+
+                    
                 </Routes>
                 {/* ROUTING ВНУТРИ */}
             
