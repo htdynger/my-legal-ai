@@ -522,11 +522,18 @@ const inputFormRef = useRef()
                 {location.pathname === '/pro' && <>
                 
                 
-                <MobilePro />
+                    <MobilePro />
 
-            
-            </>}
+                
+                </>}
 
+
+
+                {location.pathname === '/settings' && <>
+                
+                    
+                
+                </>}
                 
 
 
