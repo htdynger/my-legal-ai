@@ -1,0 +1,69 @@
+
+.section-account-options {
+    width: 100%;
+    height: 198px;
+    border-radius: 16px;
+    padding: 0px 10px;
+    background-color: #222631;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.section-account-options section {
+    width: 100%;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 10px 15px 10px;
+}
+
+.section-account-options section div {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: #657085;
+}
+
+.section-account-options section span {
+    flex: 1;
+    height: 21px;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+
+    font-family: Montserrat;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 14px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+}
+
+.section-account-options section button {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+.section-account-options section:nth-child(1), .section-account-options section:nth-child(2) {
+    border-bottom: 1px solid #373E4E;
+}
