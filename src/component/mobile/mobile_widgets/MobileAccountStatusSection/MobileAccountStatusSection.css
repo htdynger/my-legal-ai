@@ -1,0 +1,142 @@
+
+.section-account-status {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-direction: column;
+
+    width: 100%;
+    height: 192px;
+    padding: 20px;
+    border-radius: 16px;
+
+    background-color: #222631;
+    position: relative;
+
+}
+
+.section-account-status header {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-self: start;
+
+    font-family: Unbounded;
+    font-weight: 300;
+    font-style: Light;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+    margin-bottom: 41px;
+
+
+}
+
+.section-account-status::after {
+
+    content: '';
+    position: absolute;
+    width: calc(100% - 40px);
+    display: flex;
+    height: 1px;
+    background-color: #373E4E;
+    top: 64px;
+
+}
+
+.section-account-status aside {
+    width: 100%;
+    height: 87px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section-account-status aside div {
+    flex: 1;
+    height: 87px;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-direction: column;
+
+}
+
+.section-account-status aside div span {
+    width: 114px;
+    height: 24px;
+    padding: 7px 10px 7px 10px;
+    border-radius: 10px;
+    background: radial-gradient(58.27% 348.22% at 39.42% -41.67%, #4A83F0 0%, #B44ADD 39.73%, #D76674 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    box-shadow: 0px 4px 15px 0px #B349DC7D;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    font-family: Unbounded;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 13px;
+
+    line-height: 150%;
+    letter-spacing: 0%;
+
+
+}
+
+.section-account-status aside div span img {
+    margin-left: 3px;
+    margin-right: 10px;
+}
+
+
+.section-account-status aside div p {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+}
+
+
+.section-account-status aside button {
+    width: 134px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    gap: 5px;
+    border-radius: 36px;
+
+}
+
+.section-account-status aside button span {
+    width: 79px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 15px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+    color: #657085;
+}
+
+.section-account-status aside button img {
+    width: 16.6px;
+    height: 16.6px;
+}
