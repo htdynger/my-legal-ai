@@ -135,12 +135,52 @@
     width: 100vw;
     height: 100vh;
     gap: 20px;
+    position: absolute;
+    animation: predeploy-mobile-animation 1s forwards;
+    backdrop-filter: blur(20px);
+    opacity: 0;
+    z-index: 9999999;
+}
+
+@keyframes predeploy-mobile-animation {
+    0% {
+        opacity: 0;
+    } 100% {
+        opacity: 1;
+    }
+}
+
+@keyframes predeploy-mobile-animation-2 {
+    0% {
+
+    } 100% {
+
+    }
 }
 .predeploy-mobile h1 {
     font-size: 42px;
     font-weight: 700;
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: animateText 5s linear infinite 1s;
+    color: #fbfbfb33;
+
 }
 
 .predeploy-mobile h2 {
     font-size: 32px;
+    opacity: 0;
+    animation: predeploy-mobile-animation 3s forwards 1s;
+}
+
+
+.predeploy-locked {
+    width: 100dvw;
+    height: 100dvh;
+    z-index: 999;
+    position: absolute;
+    background-color: #fff0;
 }

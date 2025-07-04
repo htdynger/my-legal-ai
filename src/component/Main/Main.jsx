@@ -300,7 +300,7 @@ const handleSubmit = () => {
     }
 }
 
-
+const [predeployTextHidden, setPredeployTextHidden] = useState(true)
     
 const inputFormRef = useRef()
 const time = useCountdown()
@@ -454,11 +454,102 @@ const time = useCountdown()
                 </div>}
 
 
-            {windowLayout.width <= 750 && <div className='predeploy-mobile'>
+
+
+            {windowLayout.width <= 750 && <section className='main-750'> 
                 
-                <h1> COMING SOON </h1>
-                <h2> {time} </h2>    
-            </div> }
+
+
+                {location.pathname === '/' && <>
+                    <div className='predeploy-locked' onClick={() => setPredeployTextHidden(false)}>
+
+                    </div>
+
+                    <div style={{display: predeployTextHidden ? 'none' : 'flex'}} className={!predeployTextHidden ? 'predeploy-mobile' : ''}>
+                        <h1> COMING SOON </h1>
+                        <h2> {time} </h2>    
+                    </div>
+
+                    <MobileSidebar />
+
+                    <div className='main-750__header-layout'> </div>
+                    <header className='main-750__header'> 
+                        <div>
+                            <button onClick={() => setIsMobileSidebarHidden(false)}><img src={bookURL} alt="idk" /></button>
+
+                        </div>
+
+                        <div>
+                            <button>
+                                <img src={mobileLogoURL} alt="logo" />
+                                <span> Pro </span>
+                            </button>
+                        </div>
+
+                        <div>
+
+                        </div>
+                    </header>
+                    
+
+
+
+                    <main>
+                        {isChatOpened && <Messenger />}
+
+                        <span className={localChatOpened || isChatOpened ? 'main-750__main__span__fade-out-animation' : 'main-750__main__span__fade-in-animation'}>
+                            <h1>Legal <p> AI </p> </h1>
+                            <p> приветствует вас. </p>
+                            <h2> Задайте мне вопрос </h2>
+                        </span>
+
+                    </main>
+                </>}
+
+
+                {location.pathname === '/info' && <>
+                
+                
+                    <MobileInfo />
+
+                
+                </>}
+
+                {location.pathname === '/pro' && <>
+                
+                
+                <MobilePro />
+
+            
+            </>}
+
+                
+
+
+
+                <MobileInputFooter 
+                    translateY={translateY} 
+                    isSwiping={isSwiping} 
+                    handleTouchStart={handleTouchStart}
+                    handleTouchMove={handleTouchMove}
+                    handleTouchEnd={handleTouchEnd}
+                    messageText={messageText} 
+                    setMessageText={setMessageText}
+                    mobileNewChatURL={mobileNewChatURL}
+                    mobileAddFileURL={mobileAddFileURL}
+                    mobileExplainURL={mobileExplainURL}
+                    handleSendMessage={handleSendMessage}
+                    mobileSendMessageURL={mobileSendMessageURL}
+                    setTranslateY={setTranslateY}
+                />
+
+                
+                    
+
+                
+                
+                
+            </section>}
         </>
         
         
