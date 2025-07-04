@@ -1,0 +1,114 @@
+
+.section-account-header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    height: 240px;
+
+    border-radius: 12px;
+    gap: 20px;
+    padding: 20px;
+    background-color: #222631;
+}
+
+
+.section-account-header header {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.section-account-header header img {
+    height: 70px;
+    width: 70px;
+
+}
+
+.section-account-header aside {
+    width: 100%;
+    height: 110px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.section-account-header aside div {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.section-account-header aside div h1 {
+    font-family: Unbounded;
+    font-weight: 900;
+    font-style: Black;
+    font-size: 32px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+}
+
+
+.section-account-header aside div h2 {
+    font-family: Unbounded;
+    font-weight: 900;
+    font-style: Black;
+    font-size: 11px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+
+}
+
+.section-account-header aside span {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+}
+
+.section-account-header aside span div {
+    width: 280px;
+    height: 30px;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    gap: 10px;
+    border: 1px solid #657085;
+    display: flex;
+    flex-direction: row;
+
+    font-family: Unbounded;
+    font-weight: 300;
+    font-style: Light;
+    font-size: 13px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+}
+
+.section-account-header aside span div strong {
+    font-family: Unbounded;
+font-weight: 500;
+font-style: Medium;
+font-size: 13px;
+leading-trim: NONE;
+line-height: 150%;
+letter-spacing: 0%;
+text-transform: lowercase;
+
+}

@@ -38,6 +38,7 @@ import { useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
 import MobilePro from '../mobile/MobilePro/MobilePro.jsx'
+import MobileSettings from '../mobile/MobileSettings/MobileSettings.jsx'
 
 
 
@@ -530,8 +531,8 @@ const inputFormRef = useRef()
 
 
                 {location.pathname === '/settings' && <>
-                
                     
+                    <MobileSettings />
                 
                 </>}
                 
