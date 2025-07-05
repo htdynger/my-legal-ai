@@ -1,0 +1,224 @@
+
+.news-page {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100dvh;
+    background-color: #16191F;
+    position: relative;
+    padding: 0px 20px 0px 20px;
+}
+
+.news-page header {
+    width: 100%;
+    height: 74px;
+    padding: 15px 20px 15px 20px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: #16191FCC;
+    backdrop-filter: blur(41px);
+
+}
+
+.news-page header button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 44px;
+}
+
+.news-page header span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 71px;
+    height: 24px;
+
+    font-family: Montserrat;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+}
+
+
+.news-page aside {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    padding-bottom: 20px;
+    margin-top: calc(74px + 20px);
+    gap: 20px;
+}
+
+
+.news-page aside header {
+    position: sticky;
+    width: 100%;
+    height: 480px;
+    display: flex;
+    align-items: end;
+    justify-content: start;
+
+    padding: 20px 30px 20px 30px;
+    border-radius: 16px;
+
+    z-index: 1;
+    background-color: transparent;
+    backdrop-filter: none;
+
+    background-position: center;
+    background-size:cover;
+
+
+}
+
+.news-page aside header h1 {
+    font-family: Unbounded;
+    font-weight: 900;
+    font-style: Black;
+    font-size: 24px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+}
+
+.news-page aside main {
+    width: 100%;
+    padding: 0px 10px;
+    gap: 15px;
+
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.news-page aside main span {
+    width: 100%;
+    height: 24px;
+
+    font-family: Montserrat;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+    color: #657085;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+
+}
+
+.news-page aside main h2 {
+    width: 100%;
+    height: 27px;
+
+    font-family: Montserrat;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 18px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+    color: #FBFBFB;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.news-page aside main p {
+    width: 100%;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+    color: #7E8BA5;
+}
+
+
+.news-page aside main i {
+    display: flex;
+    width: 100%;
+    height: 1px;
+    background: #373E4E;
+
+}
+
+.news-page aside main div {
+    width: 104px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.news-page aside main div button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+
+}
+
+.news-page aside footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.news-page aside footer button {
+    width: 103px;
+    height: 50px;
+    border-radius: 36px;
+    padding: 15px;
+    border: 1px solid #373E4E;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+    background-color: #22263199;
+}
+
+.news-page aside footer button span {
+    width: 48px;
+    height: 23px;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 15px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+}
