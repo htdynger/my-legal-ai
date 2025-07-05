@@ -1,0 +1,114 @@
+
+.settings-page-layout {
+    width: 100%;
+    min-height: 100dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    flex-direction: column;
+    position: relative;
+
+
+    background-color: #16191F;
+}
+
+.settings-page-layout .settings-page-layout__header {
+    width: 100%;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    padding: 15px 20px 15px 20px;
+    gap: 10px;
+
+    background: #16191FCC;
+    backdrop-filter: blur(41px);
+    z-index: 2;
+}
+
+.settings-page-layout .settings-page-layout__header button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 44px;
+
+}
+
+.settings-page-layout .settings-page-layout__header span {
+    flex: 1;
+    height: 24px;
+
+    font-family: Montserrat;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+}
+
+.settings-page-layout main {
+    margin-top: 169px;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+
+    gap: 40px;
+
+    padding: 0px 20px;
+
+
+}
+
+.settings-page-layout main div {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+.settings-page-layout main div h1 {
+    font-family: Unbounded;
+    font-weight: 900;
+    font-style: Black;
+    font-size: 20px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+
+}
+
+.settings-page-layout main div p {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+}
+
+
+.settings-page-layout footer {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 75px;
+}

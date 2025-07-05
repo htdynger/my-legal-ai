@@ -20,6 +20,7 @@ import axios from 'axios';
 import thumbnail_1 from './component/mobile/mobile_assets/thumbnails/1.png'
 import thumbnail_2 from './component/mobile/mobile_assets/thumbnails/2.jpg'
 import thumbnail_3 from './component/mobile/mobile_assets/thumbnails/3.jpg'
+import MobileSettingsLanguage from './component/mobile/MobileSettingsLanguage/MobileSettingsLanguage';
 
 const App = () => {
 
@@ -109,11 +110,14 @@ const App = () => {
                             ]} 
                         />} />
                     </Route>
+                        
+                    <Route path='/options'>
+                        <Route path='/options/language' element={<MobileSettingsLanguage />} />
+                        <Route path='/options/chats' element={<MobileSignUp />} />
+                        <Route path='/options/explain' element={<MobileSignUp />} />
+                        <Route path='/options/account' element={<MobileSignUp />} />
+                    </Route>
 
-                    <Route path='/settings/language' element={<MobileSignUp />} />
-                    <Route path='/settings/chats' element={<MobileSignUp />} />
-                    <Route path='/settings/explain' element={<MobileSignUp />} />
-                    <Route path='/settings/account' element={<MobileSignUp />} />
 
                     
                 </Routes>

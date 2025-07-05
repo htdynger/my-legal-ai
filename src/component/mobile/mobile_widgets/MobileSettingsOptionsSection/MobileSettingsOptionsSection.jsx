@@ -8,7 +8,10 @@ import icon_3URL from './item/icon-3.svg'
 import icon_4URL from './item/icon-4.svg'
 import icon_5URL from './item/icon-5.svg'
 
+import { useNavigate } from 'react-router-dom'
+
 const MobileSettingsOptionsSection = () => {
+    const navigate = useNavigate()
 
     return (
 
@@ -29,7 +32,7 @@ const MobileSettingsOptionsSection = () => {
 
                 </header>
 
-                <section>
+                <section onClick={() => navigate('/options/language')}>
                     <div>
                         <img src={icon_2URL} alt="" />
                     </div>

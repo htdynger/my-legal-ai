@@ -1,0 +1,122 @@
+
+.section-settings-language {
+    display: flex;
+    width: 100%;
+    height: 500px;
+    align-items: center;
+    justify-content: start;
+
+    gap: 10px;
+    border-radius: 24px;
+
+    flex-direction: column;
+    background-color: #222631;
+}
+
+
+.section-settings-language header {
+    width: 100%;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px;
+
+    border-bottom: 1px solid #373E4E;
+}
+
+.section-settings-language header textarea {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex: 1;
+    height: 24px;
+
+    font-family: Montserrat;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    resize: none;
+
+    color: #fbfbfb;
+
+}
+
+.section-settings-language header textarea::placeholder {
+    color: #657085;
+}
+
+
+.section-settings-language header button {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.section-settings-language aside {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+
+    padding: 20px;
+    width: 100%;
+    height: 426px;
+}
+
+.section-settings-language aside div {
+    width: 100%;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    padding: 16px;
+
+}
+
+.section-settings-language aside div button {
+    width: 100%;
+    height: 24px;
+    gap: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.section-settings-language aside div button img {
+    width: 32px;
+    height: 24px;
+    border-radius: 5px;
+
+}
+
+.section-settings-language aside div button span {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+
+    font-family: Montserrat;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 14px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+
+}
