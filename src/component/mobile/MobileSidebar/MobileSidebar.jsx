@@ -14,13 +14,32 @@ import { useEffect } from 'react'
 
 const MobileSidebar = () => {
 
-    const { data, unSelectChat } = useChatStore()
+    const { data, unSelectChat, apiChatsData, setApiChatsData } = useChatStore()
+
+
+    const token = localStorage.getItem('access_token')
+
+    const getChats = async () => {
+
+        try {
+            const res = await axios.get('/ascender/api/v1/1/chats', {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  Accept: 'application/json',
+                }
+              })
+
+              console.log(res.data)
+              setApiChatsData(res.data)
+        } catch (err) {
+
+            console.log(err)
+        }
+
+    }
 
     // const sidebarRef = useRef()
 
-
-
-    const { isSidebarHidden, toggleSidebar } = useVisualStore()
     // const location = useLocation()
     const navigate = useNavigate()
 
@@ -55,10 +74,15 @@ const MobileSidebar = () => {
     }
     
 
+    
+
     const groupedChats = groupMessagesByDate(data);
 
     
+    useEffect(() => {
 
+        getChats()
+    }, [])
 
 
 
@@ -82,9 +106,9 @@ const MobileSidebar = () => {
                 <textarea placeholder='Поиск в чатах...' name="" id=""></textarea>
 
                 <section>
-                                {groupedChats.map((element, key) => {
+                                {/* {groupedChats.map((element, key) => {
                                     const date = element[0];
-                                    const chats = element.slice(1); // каждый — { id, title }
+                                    const chats = element.slice(1); 
 
                                     return (
                                         <SidebarChats
@@ -94,7 +118,13 @@ const MobileSidebar = () => {
                                             chats={chats}
                                         />
                                     );
-                                })}
+                                })} */}
+
+                    <SidebarChats
+
+                    date={'01.01.2025'}
+                    chats={apiChatsData}
+                    />
                 </section>
             </aside>
 

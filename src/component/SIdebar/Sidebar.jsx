@@ -19,14 +19,39 @@ import { useState, useEffect, useRef } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-
+import axios from 'axios'
 
 
 const Sidebar = () => {
 
+    const { data, unSelectChat, apiChatsData, setApiChatsData } = useChatStore()
+
+
+    const token = localStorage.getItem('access_token')
+
+    const getChats = async () => {
+
+        try {
+            const res = await axios.get('/ascender/api/v1/1/chats', {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  Accept: 'application/json',
+                }
+              })
+
+              console.log(res.data)
+              setApiChatsData(res.data)
+        } catch (err) {
+
+            console.log(err)
+        }
+
+    }
+
+
+
     const { closeChat, setChatInstantEnabled, disablePointerEvents, pointerEvents } = useVisualStore()
 
-    const { data, unSelectChat } = useChatStore()
 
     const sidebarRef = useRef()
 
@@ -82,6 +107,8 @@ const Sidebar = () => {
     
     useEffect(() => {
         sidebarRelativeRef.current.classList.add('sidebar-open-instant')
+
+        getChats()
     }, [])
 
     
@@ -126,9 +153,9 @@ const Sidebar = () => {
 
 
 
-                                {groupedChats.map((element, key) => {
+                                {/* {groupedChats.map((element, key) => {
                                     const date = element[0];
-                                    const chats = element.slice(1); // каждый — { id, title }
+                                    const chats = element.slice(1);
 
                                     return (
                                         <SidebarChats
@@ -138,7 +165,29 @@ const Sidebar = () => {
                                             chats={chats}
                                         />
                                     );
-                                })}
+                                })} */}
+
+
+{/* 
+                                {chats && chats.map((chat, key) => {
+
+                                    return (
+
+                                        <SidebarChats
+                                            key={key}
+                                            date={'01.01.2025'}
+                                            chats={chat}
+                                        />
+                                    )
+                                })} */}
+
+
+
+                                        <SidebarChats
+
+                                            date={'01.01.2025'}
+                                            chats={apiChatsData}
+                                        />
 
                             </>
 

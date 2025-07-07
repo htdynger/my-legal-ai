@@ -11,6 +11,11 @@ export const useChatStore = create((set, get)=> ({
     setIsExplainEnabled: (boolean) => set({isExplainEnabled: boolean}),
 
 
+    apiChatsData: [],
+    setApiChatsData: (array) => set({apiChatsData: array}),
+
+
+
     unSelectChat: () => set({
         selectedChat: false,
         isExplainEnabled: false,
@@ -18,8 +23,10 @@ export const useChatStore = create((set, get)=> ({
     }),
     
     handleSelectChat: (id) => {
-        const chat = get().data.find((e) => e.id === id);
-        set({ selectedChat: chat ? chat : false });
+        // const chat = get().data.find((e) => e.id === id);
+        // set({ selectedChat: chat ? chat : false });
+
+        set({ selectedChat: id ? id : false });
     },
     hardSetSelectedChat: (object) => set({
         selectedChat: object,

@@ -22,15 +22,23 @@ import thumbnail_2 from './component/mobile/mobile_assets/thumbnails/2.jpg'
 import thumbnail_3 from './component/mobile/mobile_assets/thumbnails/3.jpg'
 import MobileSettingsLanguage from './component/mobile/MobileSettingsLanguage/MobileSettingsLanguage';
 
+
+
 const App = () => {
 
+
+
     const { setLayoutWidth, windowLayout } = useVisualStore()
+
 
 
 
     useEffect(() => {
         setLayoutWidth(window.innerWidth)
         console.log(window.innerWidth)
+
+
+
     }, [])
 
 

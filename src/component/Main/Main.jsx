@@ -36,25 +36,25 @@ import MobileInfo from '../mobile/MobileInfo/MobileInfo.jsx'
 import MobileSidebar from '../mobile/MobileSidebar/MobileSidebar.jsx'
 import { useNavigate } from 'react-router-dom'
 
-import axios from 'axios'
 import MobilePro from '../mobile/MobilePro/MobilePro.jsx'
 import MobileSettings from '../mobile/MobileSettings/MobileSettings.jsx'
 
-
+import axios from 'axios'
 
 const Main = () => {
 
-
+    const navigate = useNavigate()
     const textareaRef = useRef(null);
     const inputSectionRef = useRef(null)
 
 
 
+    
 
 
 
     const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat, isSidebarHidden, windowLayout, isMobileSidebarHidden, setIsMobileSidebarHidden } = useVisualStore();
-    const { selectedChat, handleSelectChat, data, setData, unSelectChat, setIsExplainEnabled, isExplainEnabled, sendButtonEnabled, hardSetSelectedChat } = useChatStore()
+    const { selectedChat, handleSelectChat, data, setData, unSelectChat, setIsExplainEnabled, isExplainEnabled, sendButtonEnabled, hardSetSelectedChat, apiChatsData ,setApiChatsData } = useChatStore()
 
     const [messageText, setMessageText] = useState('')
     
@@ -81,6 +81,88 @@ const Main = () => {
 
 
 
+    const token = localStorage.getItem('access_token')
+    const client_id = localStorage.getItem('client_id')
+
+
+    const checkAuthenticated = async () => {
+
+        if (!token) {
+            navigate('/sign-in');
+            return;
+        }
+
+        try {
+            const res = await axios.get('api/me', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: 'application/json',
+                },
+            })
+
+            console.log(`user: ${JSON.stringify(res.data)}`)
+
+        } catch (err) {
+            console.log(err.message)
+            navigate('/sign-in')
+            
+        }
+    }
+
+    const getChats = async () => {
+
+        try {
+            const res = await axios.get('/ascender/api/v1/1/chats', {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  Accept: 'application/json',
+                }
+              })
+
+              console.log(res.data)
+              setApiChatsData(res.data)
+        } catch (err) {
+
+            console.log(err)
+        }
+
+    }
+
+    
+    const createChat = async () => {
+
+        try {
+            const res = await axios.post(
+                
+                '/ascender/api/v1/1/chats', 
+                {
+                    "name": "newChat",
+                    "agent_id": 1,
+                    "organization_id": 1,
+                    "mode": "agent_autopilot",
+                    "platform": "unknown",
+                    "responsible": 0,
+                    "client_id": client_id,
+                    "created_by_id": 0,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        Accept: 'application/json',
+                    },
+                
+
+                })
+
+
+                handleSelectChat(res.data.id)
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+
+
+
     const handleSendMessage = (inputValue) => {
 
         if (!sendButtonEnabled) return
@@ -99,34 +181,42 @@ const Main = () => {
 
             // websockets связь
 
-            const id = uuidv4(); 
-            let initialState = [...data]
 
+
+            createChat().then(() => getChats())
+
+
+
+            // const id = uuidv4(); 
+            // let initialState = [...data]
+
+            // setLocalChatOpened(true)
+
+
+            // initialState.push(
+            //     {
+            //         title: inputValue,
+            //         id: id,
+            //         message: [
+            //             {
+            //                 "author": "user",
+            //                 "message": inputValue.trim(),
+            //                 "date": "1"
+            //             },
+            //             {
+            //                 "author": "ai",
+            //                 "title": "lorem ipsum",
+            //                 "message": "4343234 ipsum 4343234 sit lorem ipsum dolor sitlorem 4343234 dolor sit lorem 4343234 dolor sitlorem ipsum 4343234 sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sit",
+            //                 "date": "1",
+            //             },
+            //         ]
+            //     }   
+            // )
+
+            // setData(initialState)
             setLocalChatOpened(true)
 
 
-            initialState.push(
-                {
-                    title: inputValue,
-                    id: id,
-                    message: [
-                        {
-                            "author": "user",
-                            "message": inputValue.trim(),
-                            "date": "1"
-                        },
-                        {
-                            "author": "ai",
-                            "title": "lorem ipsum",
-                            "message": "4343234 ipsum 4343234 sit lorem ipsum dolor sitlorem 4343234 dolor sit lorem 4343234 dolor sitlorem ipsum 4343234 sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sit",
-                            "date": "1",
-                        },
-                    ]
-                }   
-            )
-
-            setData(initialState)
-            handleSelectChat(id)
             
         } else {
 
@@ -187,37 +277,14 @@ const Main = () => {
         }
     }, [isSidebarHidden])
 
-    const token = localStorage.getItem('access_token')
-    const navigate = useNavigate()
+
 
     useEffect(() => {
 
-        if (windowLayout.width <= 750) {
-            const checkAuthenticated = async () => {
+        checkAuthenticated()
 
-                if (!token) {
-                    navigate('/sign-in');
-                    return;
-                }
-    
-                try {
-                    const res = await axios.get('api/me', {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                            Accept: 'application/json',
-                        },
-                    })
-        
-                    console.log(`user: ${JSON.stringify(res.data)}`)
-        
-                } catch (err) {
-                    console.log(err.message)
-                    navigate('/sign-in')
-                    
-                }
-            }
-    
-            checkAuthenticated();
+        if (windowLayout.width <= 750) {
+
         }
 
         if (isSidebarHidden) {

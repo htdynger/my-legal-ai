@@ -29,6 +29,7 @@ const SidebarChats = ({date, chats, id}) => {
             setChatInstantEnabled(true)
             unSelectChat()
             handleSelectChat(chatId)
+            console.log(chatId)
             console.log(selectedChat)
             navigate('/')
         }
@@ -57,7 +58,8 @@ const SidebarChats = ({date, chats, id}) => {
                     <p className="sidebarChats-container__date-text"> {date} </p>
                     
                     <div className='sidebarChats-container__chats-container'>
-                        {chats.map((value, key)=> {
+
+                        {/* {chats.map((value, key)=> {
                             return (
                                 <span onClick={() => handleClickOnChat(value.id)} key={key} className={value.id === selectedChat.id ? "sidebarChats-container__chats-container__chats-text active-chat" : 'sidebarChats-container__chats-container__chats-text'}> 
 
@@ -66,6 +68,19 @@ const SidebarChats = ({date, chats, id}) => {
                                 </span>
                             )
                             
+                        })} */}
+
+
+                        {chats.map((value, key) => {
+
+                            return (
+
+                                <span onClick={() => handleClickOnChat(value.id)} key={key} className={value.id === selectedChat ? "sidebarChats-container__chats-container__chats-text active-chat" : 'sidebarChats-container__chats-container__chats-text'}> 
+
+                                    <p> {value.name} </p>
+                                    
+                                </span>
+                            )
                         })}
 
 
