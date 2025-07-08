@@ -40,6 +40,9 @@ import MobilePro from '../mobile/MobilePro/MobilePro.jsx'
 import MobileSettings from '../mobile/MobileSettings/MobileSettings.jsx'
 
 import axios from 'axios'
+// import { Socket } from 'socket.io-client'
+import { socket } from '../../utils/hooks/Socket.js'
+import { useSocket } from '../../utils/hooks/useSocket.js'
 
 const Main = () => {
 
@@ -48,13 +51,48 @@ const Main = () => {
     const inputSectionRef = useRef(null)
 
 
-
-    
-
-
-
     const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat, isSidebarHidden, windowLayout, isMobileSidebarHidden, setIsMobileSidebarHidden } = useVisualStore();
     const { selectedChat, handleSelectChat, data, setData, unSelectChat, setIsExplainEnabled, isExplainEnabled, sendButtonEnabled, hardSetSelectedChat, apiChatsData ,setApiChatsData } = useChatStore()
+
+    const [messages, setMessages] = useState([]);
+
+    useEffect(() => {
+
+        console.log(messages)
+    }, [messages])
+
+    useSocket((msg) => {
+        setMessages((prev) => [...prev, msg]);
+    });
+
+    const sendMessage = () => {
+        const payload = {
+          content: 'Hi!',
+          chat_id: 'd540a398-ceb4-4e3d-9cc6-c9ce6d07a967',
+          message_type: "customer_message",
+        };
+      
+        console.log("📤 Отправка:", payload);
+        console.log("Сокет подключён?", socket.connected); 
+      
+        socket.emit("chat-message", payload, (response) => {
+            console.log("📩 Ответ от сервера:", response);
+          });
+    };
+
+
+    setTimeout(() => {
+
+        
+        socket.emit("ping", () => {
+            console.log("ping ответ получен");
+          });
+          sendMessage()
+
+    }, 2000)
+
+
+
 
     const [messageText, setMessageText] = useState('')
     
@@ -101,6 +139,8 @@ const Main = () => {
             })
 
             console.log(`user: ${JSON.stringify(res.data)}`)
+
+            localStorage.setItem('client_id', res.data.id)
 
         } catch (err) {
             console.log(err.message)
