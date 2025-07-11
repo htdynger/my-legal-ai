@@ -13,18 +13,53 @@ import { useVisualStore } from '../../store/useVisualStore'
 import DotJump from '../../animation/DotJump/DotJump'
 import RotateTriangle from '../../animation/RotateTriangle/RotateTriangle'
 
+import axios from 'axios'
 
 
 
-const Messenger = () => {
+const Messenger = ({ messages }) => {
     
     const { selectedChat, data, setSendButtonEnabled } = useChatStore()
     const { chatInstantEnabled } = useVisualStore()
 
 
+    const a = localStorage.getItem('chat_id')
+    const b = JSON.parse(a)
+    const token = localStorage.getItem('access_token')
 
     
-    
+    const getMessages = async () => {
+
+        try {
+            const res = await axios.get(`/ascender/api/agents/1/messages/${b.id}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  Accept: 'application/json',
+                }
+              })
+
+              console.log(res.data)
+        } catch (err) {
+
+            console.log(err)
+        }
+    }
+
+    const getChat = async () => {
+
+        try {
+            const res = await axios.get(`/ascender/api/v1/1/chats/${b.id}`, {
+                header: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: 'application/json'
+                }
+            })
+
+            console.log(res)
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
 
     // console.log(data)
@@ -36,6 +71,12 @@ const Messenger = () => {
         void messengerAppRef.current.offsetWidth
         
     }, [chatInstantEnabled])
+
+    useEffect(() => {
+
+        getMessages()
+        // getChat()
+    }, [])
 
     // console.log(selectedChat)
     useEffect(() => {

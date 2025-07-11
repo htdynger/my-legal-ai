@@ -24,8 +24,8 @@ export const useSocket = (onMessage) => {
                     {
                         "account_id": client_id,
                         "chats_to_listen": [
-                            // selectedChat
-                            'd540a398-ceb4-4e3d-9cc6-c9ce6d07a967',
+                            selectedChat
+                            // '781ba7bb-0abd-457c-8e8b-be3b485cd3f9',
                         ]
                     },
                     {

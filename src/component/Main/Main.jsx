@@ -54,44 +54,93 @@ const Main = () => {
     const { isChatOpened, toggleChat, chatInstantEnabled, setChatInstantEnabled, closeChat, isSidebarHidden, windowLayout, isMobileSidebarHidden, setIsMobileSidebarHidden } = useVisualStore();
     const { selectedChat, handleSelectChat, data, setData, unSelectChat, setIsExplainEnabled, isExplainEnabled, sendButtonEnabled, hardSetSelectedChat, apiChatsData ,setApiChatsData } = useChatStore()
 
-    const [messages, setMessages] = useState([]);
+
+
+
+
+    const [localSelectedChat, setLocalSelectedChat] = useState(false)
+
+
+
+    const a = localStorage.getItem('chat_id')
+    const b = JSON.parse(a)
+    const chatMessages = localStorage.getItem(b.id)
+
+    const [messages, setMessages] = useState(chatMessages || []);
+
+    useEffect(() => {
+        console.log(messages)
+        localStorage.setItem(b.id, JSON.stringify(messages))
+    }, [messages])
+
 
     useEffect(() => {
 
-        console.log(messages)
-    }, [messages])
-
-    useSocket((msg) => {
-        setMessages((prev) => [...prev, msg]);
-    });
-
-    const sendMessage = () => {
-        const payload = {
-          content: 'Hi!',
-          chat_id: 'd540a398-ceb4-4e3d-9cc6-c9ce6d07a967',
-          message_type: "customer_message",
-        };
-      
-        console.log("📤 Отправка:", payload);
-        console.log("Сокет подключён?", socket.connected); 
-      
-        socket.emit("chat-message", payload, (response) => {
-            console.log("📩 Ответ от сервера:", response);
-          });
-    };
+        if (localStorage.getItem('chat_id')) {
+            setLocalSelectedChat(localStorage.getItem('chat_id'))
 
 
-    setTimeout(() => {
+            
+            if (b.rendered === false) {
 
+                const c = {
+                    id: b.id,
+                    value: b.value,
+                    rendered: true
+                }
+
+                localStorage.setItem('chat_id', JSON.stringify(c))
+                window.location.reload()
+
+            } else if (b.rendered === true) {
+
+
+
+                console.log(localChatOpened)
+                const startChatFlow = async () => {
+                    await getSessionToken();
+                    await sendMessage(b.message);
+                }
+                startChatFlow()
+
+
+                setLocalChatOpened(true)
+
+                setTimeout(() => {
+                    toggleChat()
         
-        socket.emit("ping", () => {
-            console.log("ping ответ получен");
-          });
-          sendMessage()
+                }, 1000)
 
-    }, 2000)
+                const c = {
+                    id: b.id,
+                    value: b.value,
+                    rendered: null
+                }
+
+                localStorage.setItem('chat_id', JSON.stringify(c))
+
+            } else {
+                setLocalChatOpened(true)
+
+                setTimeout(() => {
+                    toggleChat()
+        
+                }, 1000)
+
+                getSessionToken();
+            }
+        }
 
 
+
+    }, [])
+
+
+    useEffect(() => {
+
+        hardSetSelectedChat(localSelectedChat)
+        console.log(localSelectedChat)
+    }, [localSelectedChat])
 
 
     const [messageText, setMessageText] = useState('')
@@ -121,6 +170,109 @@ const Main = () => {
 
     const token = localStorage.getItem('access_token')
     const client_id = localStorage.getItem('client_id')
+
+
+    const getSessionToken = async (chatId) => {
+        const _chat = localStorage.getItem('chat_id')
+        const _idChat = JSON.parse(_chat)
+
+        // console.log(chat_test)
+
+        try {
+            const res = await axios.post('/ascender/api/v1/1/alp/initiate', {
+                account_id: client_id,
+                chats_to_listen: [
+                    // chatId
+                    _idChat.id
+                    // 'f470f2ad-ee24-4786-b988-90966197e81d'
+                ],
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            });
+
+
+    
+            const session_token = res.data.session_token;
+            localStorage.setItem('session_token', session_token);
+    
+
+            if (socket.connected) {
+                socket.disconnect();
+
+                console.log(1)
+            }
+            socket.auth = { token: session_token };
+            socket.connect();
+    
+            return new Promise((resolve, reject) => {
+                socket.once("connect", () => {
+                    console.log("✅ Socket подключен:", socket.id);
+    
+                    // Навешиваем обработчики (один раз)
+                    if (!socket.hasListeners("chat-message")) {
+                        socket.on("chat-message", (res) => {
+                            console.log("📥 chat-message:", res);
+
+                            setMessages((prev) => {
+                                const initialState = [...prev]
+
+                                initialState.push(res)
+
+                                return initialState
+                            })
+
+                        });
+    
+                        socket.on("chat-message-response", (res) => {
+                            console.log("📥 chat-message-response:", res);
+
+                            setMessages((prev) => {
+                                const initialState = [...prev]
+
+                                initialState.push(res)
+
+                                return initialState
+                            })
+
+                        });
+    
+                        socket.on("error", (res) => {
+                            console.log("📥 error:", res);
+
+                            setMessages((prev) => {
+                                const initialState = [...prev]
+
+                                initialState.push(res)
+
+                                return initialState
+                            })
+
+                        });
+                    }
+    
+                    resolve();
+                });
+    
+                socket.once("connect_error", (err) => {
+                    console.error("❌ Ошибка подключения сокета:", err.message);
+                    reject(err);
+                });
+            });
+    
+        } catch (err) {
+            console.log("Ошибка getSessionToken:", err.message);
+        }
+    };
+    
+    
+
+
+
+
 
 
     const checkAuthenticated = async () => {
@@ -169,7 +321,7 @@ const Main = () => {
     }
 
     
-    const createChat = async () => {
+    const createChat = async (inputValue) => {
 
         try {
             const res = await axios.post(
@@ -195,13 +347,56 @@ const Main = () => {
                 })
 
 
-                handleSelectChat(res.data.id)
+                const chatId = res.data.id
+
+
+                const localStorageChatId = {
+                    id: chatId,
+                    rendered: false,
+                    value: inputValue,
+                }
+
+                localStorage.setItem('chat_id', JSON.stringify(localStorageChatId))
+
+                window.location.reload();
+
+                return chatId
+
+                
         } catch (err) {
             console.log(err.message)
         }
     }
 
 
+    const sendMessage = (message) => {
+        const _chat = localStorage.getItem('chat_id')
+        const _idChat = JSON.parse(_chat)
+
+        const payload = {
+          content: message,
+          chat_id: _idChat.id,
+
+        //   
+          message_type: "customer_message",
+        };
+      
+        console.log("📤 Отправка:", payload);
+        console.log("Сокет подключён?", socket.connected); 
+      
+        socket.emit("chat-message", payload, (response) => {
+            console.log("📩 Ответ от сервера:", response);
+          });
+
+
+        setMessages((prev) => {
+            const initialState = [...prev]
+
+            initialState.push(payload)
+
+            return initialState
+        })
+    };
 
     const handleSendMessage = (inputValue) => {
 
@@ -209,59 +404,45 @@ const Main = () => {
         if (messageText.trim() === '') return
         setMessageText('')
 
+
+
         
         setTimeout(() => {
             toggleChat()
 
         }, 1000)
 
-        if (selectedChat === false) {
+        if (localSelectedChat === false) {
 
             // REST : POST /{organization_id}/chats Create Chat
 
             // websockets связь
 
 
-
-            createChat().then(() => getChats())
-
+            // createChat().then(() => getChats()).then(() => getSessionToken()).then(() => sendMessage())
 
 
-            // const id = uuidv4(); 
-            // let initialState = [...data]
+            // getSessionToken()
+        
+            // sendMessage()
 
-            // setLocalChatOpened(true)
+            const startChatFlow = async () => {
+                const chatId = await createChat(inputValue);
+                await getChats();
+                await new Promise(res => setTimeout(res, 1)); // 👈 пауза в 1 секунду
+                await getSessionToken();
+                await sendMessage(inputValue);
 
+            }
 
-            // initialState.push(
-            //     {
-            //         title: inputValue,
-            //         id: id,
-            //         message: [
-            //             {
-            //                 "author": "user",
-            //                 "message": inputValue.trim(),
-            //                 "date": "1"
-            //             },
-            //             {
-            //                 "author": "ai",
-            //                 "title": "lorem ipsum",
-            //                 "message": "4343234 ipsum 4343234 sit lorem ipsum dolor sitlorem 4343234 dolor sit lorem 4343234 dolor sitlorem ipsum 4343234 sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sit",
-            //                 "date": "1",
-            //             },
-            //         ]
-            //     }   
-            // )
+            startChatFlow()
 
-            // setData(initialState)
             setLocalChatOpened(true)
 
 
             
         } else {
 
-            let initialState = {...selectedChat}
-            let initialData = [...data]
 
             setTimeout(()=> {document.documentElement.scrollTo({
                 top: document.documentElement.scrollHeight,
@@ -270,30 +451,15 @@ const Main = () => {
             
             // websockets связь
 
-            
-            initialState.message.push(
+          
 
-                {
-                    "author": "user",
-                    "message": inputValue,
-                    "date": "1"
-                },
-                {
-                    "author": "ai",
-                    "title": "",
-                    "message": "",
-                    "date": "1",
-                },
-            )    
-            
-            // setData(initialState)
-            hardSetSelectedChat(initialState)
-            console.log(data)
             console.log(selectedChat)
 
-
+            sendMessage(inputValue);
 
         }
+
+
     }
 
     const mainRef = useRef()
@@ -448,7 +614,7 @@ const inputFormRef = useRef()
 
                     <>
 
-                        { isChatOpened && <Messenger />}
+                        { isChatOpened && <Messenger messages={messages} />}
 
                         <div className='main__text chat-opened__opacity-fade-out'>
                             <h1 className='hello-text-n1 hello-text-n1-chatOpened '> 
