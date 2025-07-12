@@ -113,8 +113,13 @@ const Sidebar = () => {
 
     
 
+    const date = new Date()
 
-    
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // месяцы с 0 по 11
+    const year = date.getFullYear();
+    const formattedDate = `${day}.${month}.${year}`;
+
     return (
 
         <>
@@ -150,42 +155,9 @@ const Sidebar = () => {
                         {location.pathname != '/document-generation/' || true ?
                         
                             <>
-
-
-
-                                {/* {groupedChats.map((element, key) => {
-                                    const date = element[0];
-                                    const chats = element.slice(1);
-
-                                    return (
-                                        <SidebarChats
-                                            key={key}
-
-                                            date={date}
-                                            chats={chats}
-                                        />
-                                    );
-                                })} */}
-
-
-{/* 
-                                {chats && chats.map((chat, key) => {
-
-                                    return (
-
-                                        <SidebarChats
-                                            key={key}
-                                            date={'01.01.2025'}
-                                            chats={chat}
-                                        />
-                                    )
-                                })} */}
-
-
-
                                         <SidebarChats
 
-                                            date={'01.01.2025'}
+                                            date={formattedDate}
                                             chats={apiChatsData}
                                         />
 

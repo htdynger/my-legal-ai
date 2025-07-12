@@ -63,15 +63,15 @@ const Main = () => {
     //     
     // }, [selectedChat])
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        console.log(messages)
+    //     console.log(messages)
 
-        if (messages && messages.length > 0 ) {
-            localStorage.setItem(selectedChat, JSON.stringify(messages))
-        }
+    //     if (messages && messages.length > 0 ) {
+    //         localStorage.setItem(selectedChat, JSON.stringify(messages))
+    //     }
 
-    }, [messages])
+    // }, [messages])
 
     useEffect(() => {
         localStorage.setItem('chat_id', selectedChat)
@@ -84,19 +84,14 @@ const Main = () => {
 
         setMessages((prev) => [...prev, data]);
 
-        localStorage.setItem(selectedChat, messages)
+        // localStorage.setItem(selectedChat, messages)
     };
 
     const send = async (content) => {
         await connectAndSendMessage(content, handleIncomingMessage);
 
         
-        const payload = {
-            content: content,
-            chat_id: selectedChat,
-            message_type: "customer_message",
-        }
-        setMessages((prev) => [...prev, payload]);
+
 
         // if (!messages || messages == []) {
 
@@ -188,15 +183,27 @@ const Main = () => {
 
     }
 
+
+
+
+
     
     const createChat = async () => {
+
+
+        const date = new Date();
+
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+
+        const formattedTime = `Чат ${hours}:${minutes}`;
 
         try {
             const res = await axios.post(
                 
                 '/ascender/api/v1/1/chats', 
                 {
-                    "name": "newChat",
+                    "name": formattedTime,
                     "agent_id": 1,
                     "organization_id": 1,
                     "mode": "agent_autopilot",
@@ -246,7 +253,17 @@ const Main = () => {
 
             setLocalChatOpened(true)
 
+            const payload = {
+                content: inputValue,
+                chat_id: selectedChat,
+                message_type: "customer_message",
+            }
+            setMessages((prev) => [...prev, payload]);
+
             createChat().then(() => getChats()).then(() => send(inputValue))
+
+
+
 
 
             

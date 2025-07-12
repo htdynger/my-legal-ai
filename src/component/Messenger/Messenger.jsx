@@ -26,27 +26,52 @@ const Messenger = ({ messages, setMessages }) => {
 
     
 
+    const [apiMessages, setApiMessages] = useState([])
+
+    const getMessages = async () => {
+        try {
+            const res = await axios.get(`/ascender/api/agents/1/messages/${selectedChat}`, {
+                params: {
+                    page: 1,
+                    page_size: 4,
+                }
+            })
+            console.log(res.data)
+            let arr = res.data.data
+
+            arr.reverse()
+
+            setMessages(arr)
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+
+        setTimeout(() => {
+
+    
+            getMessages()     
+        }, 10)
+        
+
+        
+    }, [selectedChat])
 
 
     useEffect(() => {
-        
-        const getMessages = async () => {
-            try {
-                const res = await axios.get(`/ascender/api/agents/1/messages/${selectedChat}`, {
-                    params: {
-                        page: 1,
-                        page_size: 4,
-                    }
-                })
-                console.log(res.data)
-            } catch (err) {
-                console.log(err)
-            }
-        }
 
-        getMessages()
+        setTimeout(() => {
+
+    
+            getMessages()     
+        }, 10)
         
-    }, [selectedChat])
+
+        
+    }, [])
 
     
 
@@ -64,11 +89,11 @@ const Messenger = ({ messages, setMessages }) => {
     // console.log(selectedChat)
     useEffect(() => {
 
-        setTimeout(() => {
+        // setTimeout(() => {
 
 
-            setLocalMessages(JSON.parse(localStorage.getItem(selectedChat)))
-        }, 1)
+        //     setLocalMessages(JSON.parse(localStorage.getItem(selectedChat)))
+        // }, 1)
 
         
 
@@ -123,15 +148,15 @@ const Messenger = ({ messages, setMessages }) => {
 
 
 
-    const [localMessages, setLocalMessages] = useState([])
+    // const [localMessages, setLocalMessages] = useState([])
 
-    useEffect(() => {
-        setTimeout(() => {
+    // useEffect(() => {
+    //     setTimeout(() => {
 
 
-            setLocalMessages(JSON.parse(localStorage.getItem(selectedChat)))
-        }, 1)
-    }, [messages])
+    //         setLocalMessages(JSON.parse(localStorage.getItem(selectedChat)))
+    //     }, 1)
+    // }, [messages])
     
 
     return (
@@ -139,18 +164,18 @@ const Messenger = ({ messages, setMessages }) => {
         <div ref={messengerWrapperRef} className='messenger-wrapper'>  
             <section ref={messengerAppRef} className={chatInstantEnabled ? "messenger-app" : "messenger-app fade-out-animation"}>
 
-                {Array.isArray(localMessages) && localMessages && localMessages.map((localMessage, index) => {
-                    if (localMessage.message_type === 'customer_message') return (
+                {Array.isArray(messages) && messages && messages.map((message, index) => {
+                    if (message.message_type === 'customer_message') return (
                         <>
                             <div key={index} className='user-message-container'> 
-                                <div className='user-message'> {localMessage.content} </div> 
+                                <div className='user-message'> {message.content} </div> 
                             </div>
 
 
                         </>
                         
                     )
-                    if (localMessage.message_type === 'ai_message') return (
+                    if (message.message_type === 'ai_message') return (
 
                     <div className='ai-message-container'> 
 
@@ -168,7 +193,9 @@ const Messenger = ({ messages, setMessages }) => {
                                     {/* <span> {localMessage.content} </span> */}
 
                                     <ReactMarkdown>
-                                        {localMessage.content}
+                                        
+                                        {/* {localMessage.content} */}
+                                        {message.content}
                                     </ReactMarkdown>
                                 </section>
 
