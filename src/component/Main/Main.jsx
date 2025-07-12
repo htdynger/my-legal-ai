@@ -269,6 +269,14 @@ const Main = () => {
             
         } else {
 
+            const payload = {
+                content: inputValue,
+                chat_id: selectedChat,
+                message_type: "customer_message",
+            }
+
+            setMessages((prev) => [...prev, payload]);
+
             send(inputValue)
 
 
@@ -593,7 +601,7 @@ const inputFormRef = useRef()
 
 
                     <main>
-                        {isChatOpened && <Messenger />}
+                        {isChatOpened && <Messenger messages={messages} setMessages={setMessages} />}
 
                         <span className={localChatOpened || isChatOpened ? 'main-750__main__span__fade-out-animation' : 'main-750__main__span__fade-in-animation'}>
                             <h1>Legal <p> AI </p> </h1>
@@ -646,6 +654,8 @@ const inputFormRef = useRef()
                     handleSendMessage={handleSendMessage}
                     mobileSendMessageURL={mobileSendMessageURL}
                     setTranslateY={setTranslateY}
+
+                    addNewChat={addNewChat}
                 />
 
                 

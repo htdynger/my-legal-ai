@@ -2,7 +2,7 @@
 // import MobileNavSection from "../../MobileNavSection/MobileNavSection"
 import MobileNavSection from '../MobileNavSection/MobileNavSection.jsx'
 
-const MobileInputFooter = ({ translateY, isSwiping, handleTouchStart, handleTouchMove, handleTouchEnd, messageText, setMessageText, mobileNewChatURL, mobileAddFileURL, mobileExplainURL, handleSendMessage, mobileSendMessageURL, setTranslateY }) => {
+const MobileInputFooter = ({ translateY, isSwiping, handleTouchStart, handleTouchMove, handleTouchEnd, messageText, setMessageText, mobileNewChatURL, mobileAddFileURL, mobileExplainURL, handleSendMessage, mobileSendMessageURL, setTranslateY, addNewChat }) => {
 
 
     return (
@@ -31,7 +31,7 @@ const MobileInputFooter = ({ translateY, isSwiping, handleTouchStart, handleTouc
                                 </div>
                                 <div className='main-750__footer__section__button-section'>
                                     <div className='main-750__footer__section__button-section__column-1'>
-                                        <div><button><img src={mobileNewChatURL} alt="new-chat" /></button></div>
+                                        <div onClick={addNewChat}><button><img src={mobileNewChatURL} alt="new-chat" /></button></div>
                                         <div><button><img src={mobileAddFileURL} alt="add-file" /></button></div>
                                     </div>
                                     <div className='main-750__footer__section__button-section__column-2'>
