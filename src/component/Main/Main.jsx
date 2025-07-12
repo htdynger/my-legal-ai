@@ -44,6 +44,8 @@ import axios from 'axios'
 import { socket } from '../../utils/hooks/Socket.js'
 import { useSocket } from '../../utils/hooks/useSocket.js'
 
+import { connectAndSendMessage, disconnectSocket } from '../../utils/hooks/socketHelper.js';
+
 const Main = () => {
 
     const navigate = useNavigate()
@@ -56,42 +58,55 @@ const Main = () => {
 
     const [messages, setMessages] = useState([]);
 
+    // useEffect(() => {
+
+    //     
+    // }, [selectedChat])
+
     useEffect(() => {
 
         console.log(messages)
+
+        if (messages && messages.length > 0 ) {
+            localStorage.setItem(selectedChat, JSON.stringify(messages))
+        }
+
     }, [messages])
 
-    useSocket((msg) => {
-        setMessages((prev) => [...prev, msg]);
-    });
+    useEffect(() => {
+        localStorage.setItem('chat_id', selectedChat)
 
-    const sendMessage = () => {
-        const payload = {
-          content: 'Hi!',
-          chat_id: 'd540a398-ceb4-4e3d-9cc6-c9ce6d07a967',
-          message_type: "customer_message",
-        };
-      
-        console.log("📤 Отправка:", payload);
-        console.log("Сокет подключён?", socket.connected); 
-      
-        socket.emit("chat-message", payload, (response) => {
-            console.log("📩 Ответ от сервера:", response);
-          });
+    }, [selectedChat])
+
+
+    const handleIncomingMessage = (data) => {
+        console.log("🎯 Получено сообщение:", data);
+
+        setMessages((prev) => [...prev, data]);
+
+        localStorage.setItem(selectedChat, messages)
     };
 
-
-    setTimeout(() => {
+    const send = async (content) => {
+        await connectAndSendMessage(content, handleIncomingMessage);
 
         
-        socket.emit("ping", () => {
-            console.log("ping ответ получен");
-          });
-          sendMessage()
+        const payload = {
+            content: content,
+            chat_id: selectedChat,
+            message_type: "customer_message",
+        }
+        setMessages((prev) => [...prev, payload]);
 
-    }, 2000)
+        // if (!messages || messages == []) {
+
+        //     setMessages([payload]);
+        // } else if (messages) {
+        // }
 
 
+
+    };
 
 
     const [messageText, setMessageText] = useState('')
@@ -112,8 +127,13 @@ const Main = () => {
         // disablePointerEvents(1000)
         setChatInstantEnabled(false)
         setTimeout(() => {
-        unSelectChat()
-        closeChat()}, 500)
+            unSelectChat()
+            closeChat()
+            setMessages([])
+
+        }, 500)
+
+        disconnectSocket()
 
     }
 
@@ -196,6 +216,7 @@ const Main = () => {
 
 
                 handleSelectChat(res.data.id)
+
         } catch (err) {
             console.log(err.message)
         }
@@ -210,86 +231,34 @@ const Main = () => {
         setMessageText('')
 
         
+        
         setTimeout(() => {
             toggleChat()
 
         }, 1000)
 
+        
+
+        
+
         if (selectedChat === false) {
 
-            // REST : POST /{organization_id}/chats Create Chat
 
-            // websockets связь
-
-
-
-            createChat().then(() => getChats())
-
-
-
-            // const id = uuidv4(); 
-            // let initialState = [...data]
-
-            // setLocalChatOpened(true)
-
-
-            // initialState.push(
-            //     {
-            //         title: inputValue,
-            //         id: id,
-            //         message: [
-            //             {
-            //                 "author": "user",
-            //                 "message": inputValue.trim(),
-            //                 "date": "1"
-            //             },
-            //             {
-            //                 "author": "ai",
-            //                 "title": "lorem ipsum",
-            //                 "message": "4343234 ipsum 4343234 sit lorem ipsum dolor sitlorem 4343234 dolor sit lorem 4343234 dolor sitlorem ipsum 4343234 sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sit",
-            //                 "date": "1",
-            //             },
-            //         ]
-            //     }   
-            // )
-
-            // setData(initialState)
             setLocalChatOpened(true)
+
+            createChat().then(() => getChats()).then(() => send(inputValue))
 
 
             
         } else {
 
-            let initialState = {...selectedChat}
-            let initialData = [...data]
+            send(inputValue)
 
-            setTimeout(()=> {document.documentElement.scrollTo({
-                top: document.documentElement.scrollHeight,
-                behavior: 'smooth',
-            })}, 100)
-            
-            // websockets связь
 
-            
-            initialState.message.push(
 
-                {
-                    "author": "user",
-                    "message": inputValue,
-                    "date": "1"
-                },
-                {
-                    "author": "ai",
-                    "title": "",
-                    "message": "",
-                    "date": "1",
-                },
-            )    
-            
-            // setData(initialState)
-            hardSetSelectedChat(initialState)
-            console.log(data)
-            console.log(selectedChat)
+            // hardSetSelectedChat(initialState)
+            // console.log(data)
+            // console.log(selectedChat)
 
 
 
@@ -448,7 +417,7 @@ const inputFormRef = useRef()
 
                     <>
 
-                        { isChatOpened && <Messenger />}
+                        { isChatOpened && <Messenger messages={messages} setMessages={setMessages} />}
 
                         <div className='main__text chat-opened__opacity-fade-out'>
                             <h1 className='hello-text-n1 hello-text-n1-chatOpened '> 

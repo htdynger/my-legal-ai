@@ -5,6 +5,9 @@ import { useChatStore } from '../../store/useChatStore'
 import { useVisualStore } from '../../store/useVisualStore'
 import { useNavigate, useLocation } from 'react-router-dom'
 
+import { connectAndSendMessage, disconnectSocket } from '../../utils/hooks/socketHelper.js';
+
+
 const SidebarChats = ({date, chats, id}) => {
     const location = useLocation()
     const navigate = useNavigate()
@@ -38,7 +41,11 @@ const SidebarChats = ({date, chats, id}) => {
             setIsMobileSidebarHidden(true)
         }
 
+        disconnectSocket()
 
+        localStorage.setItem('chat_id', selectedChat)
+
+        
 
         setTimeout(() => {document.documentElement.scrollTo({
             top: document.documentElement.scrollHeight,
