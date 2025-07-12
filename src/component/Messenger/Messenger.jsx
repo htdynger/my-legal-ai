@@ -14,6 +14,9 @@ import DotJump from '../../animation/DotJump/DotJump'
 import RotateTriangle from '../../animation/RotateTriangle/RotateTriangle'
 
 
+import ReactMarkdown from 'react-markdown'
+import axios from 'axios'
+
 
 
 const Messenger = ({ messages, setMessages }) => {
@@ -25,7 +28,26 @@ const Messenger = ({ messages, setMessages }) => {
 
 
 
-    
+    useEffect(() => {
+        
+        const getMessages = async () => {
+            try {
+                const res = await axios.get(`/ascender/api/agents/1/messages/${selectedChat}`, {
+                    params: {
+                        page: 1,
+                        page_size: 4,
+                    }
+                })
+                console.log(res.data)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        getMessages()
+        
+    }, [selectedChat])
+
     
 
 
@@ -132,21 +154,22 @@ const Messenger = ({ messages, setMessages }) => {
 
                     <div className='ai-message-container'> 
 
-                        {/* <DotJump /> */}
+                        
 
 
 
                         <div className='ai-message-app'>
-                            {true ? <>
-
-
 
                                 <header>
                                     <span> Заголовок </span>
                                 </header>
 
                                 <section>
-                                    <span> {localMessage.content} </span>
+                                    {/* <span> {localMessage.content} </span> */}
+
+                                    <ReactMarkdown>
+                                        {localMessage.content}
+                                    </ReactMarkdown>
                                 </section>
 
                                 <footer>
@@ -155,15 +178,7 @@ const Messenger = ({ messages, setMessages }) => {
                                     <button><img src={dislikeURL} alt="dislike-message" /></button>
                                     <button><img src={reSendURL} alt="re-send-message" /></button>
                                 </footer> 
-                            </>
-                            :
-                            <>
-                                
 
-                            </>
-
-                            
-                            }
                         </div>
                     </div>
 

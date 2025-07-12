@@ -234,5 +234,100 @@
 
 
 
+.ai-message-app section p {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Montserrat;
+    /* margin: 8px 0px; */
+}
+
+.ai-message-app section h2 {
+    margin: 32px 0px 12px 0px;
+    font-weight: 600;
+    font-family: Montserrat;
+    font-size: 24px;
+}
+
+.ai-message-app section h3 {
+    margin: 24px 0px 8px 0px;
+    font-weight: 600;
+    font-family: Montserrat;
+    font-size: 20px;
+}
+
+.ai-message-app section strong {
+    font-family: Montserrat;
+    font-weight: 900;
+}
 
 
+.ai-message-app section li {
+    font-family: Montserrat;
+    font-weight: 400;
+    /* margin: 8px 0px; */
+    font-size: 16px;
+}
+
+
+
+.ai-message-app section ol {
+
+    font-family: Montserrat;
+    font-weight: 400;
+    /* margin: 8px 0px; */
+    font-size: 16px;
+}
+
+.ai-message-app section ul {
+    font-family: Montserrat;
+    font-weight: 400;
+    /* margin: 8px 0px; */
+    font-size: 16px;
+
+
+    
+}
+
+.ai-message-app section ul,
+.ai-message-app section ol {
+  list-style: none;      /* отключает маркеры */
+  padding-left: 0;       /* убирает отступ */
+  margin-left: 0;        /* на всякий случай */
+
+  height: min-content;
+}
+
+.ai-message-app section li {
+  position: relative;    /* для кастомного маркера, если надо */
+  height: fit-content;
+  padding-left: 32px;       /* убирает отступ под "воображаемый" marker */
+
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.ai-message-app section li::before {
+    content: '•'; /* или '✓' или '➤' или даже url(...) */
+    position: absolute;
+    margin-left: -28px;
+    margin-top: -4px;
+    
+    color: #FBFBFB;
+    font-size: 48px;
+}
+
+
+.ai-message-app section ul p,
+.ai-message-app section ol p{
+  list-style: none;      /* отключает маркеры */
+  padding-left: 0;       /* убирает отступ */
+  margin-left: 0;
+  margin: 0;        /* на всякий случай */
+}
+
+.ai-message-app section li p {
+  position: relative;    /* для кастомного маркера, если надо */
+  padding-left: 0; 
+  margin: 0;      /* убирает отступ под "воображаемый" marker */
+}
