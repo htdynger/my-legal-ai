@@ -52,7 +52,7 @@
 
 .header-1440__nav__column-2 {
     height: 100%;
-    width: 334px;
+    /* width: 334px; */
     display: flex;
     align-items: center;
     justify-content: center;

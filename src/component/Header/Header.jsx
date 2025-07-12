@@ -204,9 +204,9 @@ const Header = () => {
 
                             <div className='header-1440__nav__column-2'>
                                 <div><button><img src={legAiLogo1URL} alt="logo-button" /></button></div>
-                                <div><button><img src={navPenButtonLogoURL} alt="document-generation-button" /></button></div>
-                                <div><button><img src={navBoxesButtonLogoURL} alt="info-button" /></button></div>
-                                <div><button><img src={navProButtonLogoURL} alt="pro-button" /></button></div>
+                                <div className={visualPathname === '/document-generation/' ? 'navSelected' : ''} ref={documentGenerationButtonRef} onClick={() => handleNavigate('/document-generation/', documentGenerationButtonRef)}><button><img src={navPenButtonLogoURL} alt="document-generation-button" /></button></div>
+                                <div className={visualPathname === '/info/' ? 'navSelected' : ''} ref={infoButtonRef} onClick={() => handleNavigate('/info/', infoButtonRef)}><button><img src={navBoxesButtonLogoURL} alt="info-button" /></button></div>
+                                <div className={visualPathname === '/pro/' ? 'navSelected' : ''} ref={proButtonRef} onClick={() => handleNavigate('/pro/', proButtonRef)}><button><img src={navProButtonLogoURL} alt="pro-button" /></button></div>
                                 <div><button><img src={navSearchButtonLogoURL} alt="search-button" /></button></div>
                                 <div><button><img src={userButtonLogoURL} alt="user-button" /></button></div>
                             </div>

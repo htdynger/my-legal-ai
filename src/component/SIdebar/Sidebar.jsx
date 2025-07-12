@@ -135,10 +135,10 @@ const Sidebar = () => {
                             <button onClick={addNewChat}> <img src={section1Icon2URL} alt="button-new-chat" /> </button>
                         </div>
 
-                        <div className='aside__navbar-n1__section-n2'>
+                        {/* <div className='aside__navbar-n1__section-n2'>
                             <button className='aside__navbar-n1__section-n2__button-n1'> <img src={section2Icon1URL} alt="button-left" /> </button>
                             <button className='aside__navbar-n1__section-n2__button-n2'> <img src={section2Icon2URL} alt="button-right" /> </button>
-                        </div>
+                        </div> */}
 
                     </div>
 
