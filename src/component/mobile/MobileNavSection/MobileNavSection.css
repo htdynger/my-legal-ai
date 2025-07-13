@@ -9,7 +9,7 @@
 
 .nav-750 section {
     border: 1px solid #292E3C;
-    background: #222631FF;
+    background: #222631CC;
     gap: 32px;
     padding: 15px;
     border-radius: 24px;
@@ -21,7 +21,7 @@
     justify-content: center;
     z-index: 20;
 
-    
+    /* position: relative; */
     
 }
 
@@ -31,8 +31,30 @@
 
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: space-between;
 }
+
+
+
+.nav-coming-soon span {
+    color: #373e4e !important;
+
+
+    /* height: 51px !important; */
+}
+
+
+.nav-coming-soon {
+    pointer-events: none;
+}
+
+.nav-coming-soon img {
+    /* filter: brightness(0) saturate(100%) invert(100%); */
+    filter: brightness(0) saturate(100%) invert(16%) sepia(12%) saturate(596%) hue-rotate(181deg) brightness(95%) contrast(90%);
+
+}
+
+
 
 .nav-750 section div button {
     gap: 10px;
@@ -47,6 +69,10 @@
     line-height: 150%;
     letter-spacing: 0%;
     color: #FBFBFB;
+    /* position: relative; */
+    background-color: transparent;
+
+    width: auto;
 }
 
 .nav-750__logo-container {
@@ -126,4 +152,19 @@
 
 /* .nav-750-selected::after {
     left: calc(50% - 43vw);
+} */
+
+
+
+/* .nav-coming-soon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 21;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    backdrop-filter: blur(10px);
 } */

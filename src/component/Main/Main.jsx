@@ -347,7 +347,7 @@ const Main = () => {
 
 
 
-    const [translateY, setTranslateY] = useState(0);
+const [translateY, setTranslateY] = useState(0);
 const [isOpen, setIsOpen] = useState(false);
 const [isSwiping, setIsSwiping] = useState(false);
 const startYRef = useRef(0);
@@ -370,13 +370,7 @@ const handleTouchStart = (e) => {
     
     if (!footerRevealer) return
 
-    if (isOpen) {
-        setTimeout(() => {
-            setIsOpen(false);
-            setTranslateY(0);
-        }, 300)
-        return
-    }
+
     startYRef.current = e.touches[0].clientY;
     startHeightRef.current = 134 + translateY; // фиксируем текущее значение
     setIsSwiping(true);
@@ -385,9 +379,12 @@ const handleTouchStart = (e) => {
 const handleTouchMove = (e) => {
     if (!footerRevealer) return
 
+
+
+
     const deltaY = startYRef.current - e.touches[0].clientY;
     const newHeight = startHeightRef.current + deltaY;
-    const clampedHeight = Math.min(Math.max(newHeight, 134), 633);
+    const clampedHeight = Math.min(Math.max(newHeight, 134), 509);
     setTranslateY(clampedHeight - 134);
 
 };
@@ -398,7 +395,7 @@ const handleTouchEnd = () => {
     
     setIsSwiping(false);
 
-    const threshold = (633 - 134) * 0.05; 
+    const threshold = (509 - 134) * 0.05; 
 
     // if (isOpen) {
     //     threshold = (633 - 134) * 0.99; 
@@ -410,12 +407,19 @@ const handleTouchEnd = () => {
 
     const currentHeight = 134 + translateY;
 
-    if (currentHeight - 134 > threshold) {
-        // Открыть
+    // if (currentHeight - 134 > threshold) {
+    //     setIsOpen(true);
+    //     setTranslateY(509 - 134);
+    // } else {
+    //     setIsOpen(false);
+    //     setTranslateY(0);
+    // }
+
+
+    if (currentHeight - 134 > 10 && isOpen === false) {
         setIsOpen(true);
-        setTranslateY(633 - 134);
-    } else {
-        // Закрыть
+        setTranslateY(509 - 134);
+    } else if (currentHeight - 134 < 499 && isOpen === true) {
         setIsOpen(false);
         setTranslateY(0);
     }

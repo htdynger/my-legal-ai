@@ -415,7 +415,8 @@
     @keyframes main-750__footer-wrapper__fade-in-animation {
         0% {
             background-color: #22263100;
-            /* backdrop-filter: blur(0px); */
+            backdrop-filter: blur(0px);
+            
             /* box-shadow: 0px 4px 100px 1px #00000000; */
             padding: 0;
             border-top-left-radius: 0px;
@@ -423,8 +424,8 @@
             z-index: 2;
         } 99% {
 
-            /* backdrop-filter: blur(40px); */
-            background-color: #222631ff;
+            backdrop-filter: blur(40px);
+            background-color: #2226318C;
             /* box-shadow: 0px 4px 100px 1px #00000099; */
             /* padding: 15px; */
             border-top-left-radius: 47px;
@@ -432,7 +433,7 @@
             border-top-right-radius: 47px;
             
         } 100% {
-            /* backdrop-filter: blur(40px); */
+            backdrop-filter: blur(40px);
             background-color: #222631ff;
             box-shadow: 0px 4px 100px 1px #00000099;
             /* padding: 15px; */

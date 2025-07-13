@@ -23,10 +23,10 @@ const MobileBetaPromoSection = () => {
                         <p>пользователей нейросети юриста</p>
                     </span>
 
-                    <button>
+                    {/* <button>
                         <span> Подробнее </span>
                         <img src={showMoreURL} alt="show-more" />
-                    </button>
+                    </button> */}
 
                 </div>
 

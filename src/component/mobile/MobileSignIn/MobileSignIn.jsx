@@ -376,14 +376,14 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
                                     Создать аккаунт
                                 </button>
 
-                                <button type="button" onClick={() => setVisiblePage('RecoverAccount')}>
+                                {/* <button type="button" onClick={() => setVisiblePage('RecoverAccount')}>
                                     Восстановить пароль
-                                </button>
+                                </button> */}
                             </div>
                         </footer>
                     </form>
 
-                    <div className='section-1__fast-login'>
+                    {/* <div className='section-1__fast-login'>
                         <button type="button">
                             <img src={appleIconURL} alt="apple-icon" />
                             <span>Войти в Apple Account</span>
@@ -393,7 +393,7 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
                             <img src={googleIconURL} alt="google-icon" />
                             <span>Войти с Google</span>
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         </>

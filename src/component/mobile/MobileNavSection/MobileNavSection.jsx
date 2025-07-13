@@ -33,16 +33,22 @@ const MobileNavSection = ({ setTranslateY }) => {
                     <button><img src={infoBlockIconURL} alt="infoblock-button" /><span> Инфоблок </span></button>
                 </div>
 
-                <div onClick={() => handleNavigate('/pro')} className={location.pathname === '/pro' ? 'nav-750-selected' : ''}>
+                <div onClick={() => handleNavigate('/pro')} className={location.pathname === '/pro' ? 'nav-750-selected' : 'nav-coming-soon'}>
                     <button><img src={proIconURL} alt="pro-button" /><span> Обновить план </span></button>
+
+                    <span> COMING SOON </span>
                 </div>
 
-                <div onClick={() => handleNavigate('/settings')} className={location.pathname === '/settings' ? 'nav-750-selected' : ''}>
+                <div onClick={() => handleNavigate('/settings')} className={location.pathname === '/settings' ? 'nav-750-selected' : 'nav-coming-soon'}>
                     <button><img src={settingsIconURL} alt="settings-icon" /><span> Настройки </span></button>
+
+                    <span> COMING SOON </span>
                 </div>
             </section>
 
-            <section>
+            {/* <section>
+                
+
                 <div>
                     <button><img src={hyperTextIconURL} alt="public" /><span> Публичная оферта </span></button>
                 </div>
@@ -50,7 +56,14 @@ const MobileNavSection = ({ setTranslateY }) => {
                 <div>
                     <button><img src={hyperTextIconURL} alt="legal" /><span> Условия и политика конфеденциальности </span></button>
                 </div>
-            </section>
+
+                <div className='nav-coming-soon'>
+                    <p>
+                        COMING SOON
+                    </p>  
+                </div>
+
+            </section> */}
 
             <section>
                 <div>

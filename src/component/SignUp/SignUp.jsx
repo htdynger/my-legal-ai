@@ -153,13 +153,13 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
                             <button type="button" onClick={() => navigate('/sign-in')}>
                                 Войти в аккаунт
                             </button>
-                            <button type="button" onClick={() => {navigate('/sign-in'); setVisiblePage('RecoverAccount')}}>
+                            {/* <button type="button" onClick={() => {navigate('/sign-in'); setVisiblePage('RecoverAccount')}}>
                                 Восстановить пароль
-                            </button>
+                            </button> */}
                         </div>
                     </footer>
                 </form>
-
+{/* 
                 <div className="section-1__fast-login">
                     <button type="button">
                         <img src={appleIconURL} alt="Войти через Apple" />
@@ -170,7 +170,7 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
                         <img src={googleIconURL} alt="Войти через Google" />
                         <span>Войти с Google</span>
                     </button>
-                </div>
+                </div> */}
             </div>
 
             <div className="section-2">

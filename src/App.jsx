@@ -81,13 +81,11 @@ const App = () => {
                         <Route path='/news/1' element={<MobileNewsPage
 
                             thumbnail={thumbnail_1}
-                            newsTitle={'LEG AI BETA: ДОБРО ПОЖАЛОВАТЬ В БЕТА ТЕСТ'}
-                            date={'15.05.2025'}
-                            textTitle={'Вот определение статьи АК 47'}
+                            newsTitle={'Legal news coming soon'}
+                            date={' '}
+                            textTitle={'Legal news coming soon'}
                             textParagraph={[
-                                'Lorem ipsum dolor sit amet consectetur. Tincidunt vitae eget tristique interdum nulla in. Nunc ut at massa augue euismod tristique lacus risus est. Consectetur egestas lectus nulla metus. Tristique justo pharetra ut augue cursus.',
-                                'Lorem ipsum dolor sit amet consectetur. Tincidunt vitae eget tristique interdum nulla in. Nunc ut at massa augue euismod tristique lacus risus est. Consectetur egestas lectus nulla metus. Tristique justo pharetra ut augue cursus.',
-                                'Lorem ipsum dolor sit amet consectetur. Tincidunt vitae eget tristique interdum nulla in. Nunc ut at massa augue euismod tristique lacus risus est. Consectetur egestas lectus nulla metus. Tristique justo pharetra ut augue cursus.',
+                                'Legal news coming soon',
                             ]} 
                         />} />
 
@@ -95,26 +93,22 @@ const App = () => {
                         <Route path='/news/2' element={<MobileNewsPage
 
                             thumbnail={thumbnail_2}
-                            newsTitle={'LEG AI BETA: ДОБРО ПОЖАЛОВАТЬ В БЕТА ТЕСТ'}
-                            date={'15.05.2025'}
-                            textTitle={'Вот определение статьи АК 47'}
+                            newsTitle={'Legal news coming soon'}
+                            date={' '}
+                            textTitle={'Legal news coming soon'}
                             textParagraph={[
-                                'Lorem ipsum dolor sit amet consectetur. Tincidunt vitae eget tristique interdum nulla in. Nunc ut at massa augue euismod tristique lacus risus est. Consectetur egestas lectus nulla metus. Tristique justo pharetra ut augue cursus.',
-                                'Lorem ipsum dolor sit amet consectetur. Tincidunt vitae eget tristique interdum nulla in. Nunc ut at massa augue euismod tristique lacus risus est. Consectetur egestas lectus nulla metus. Tristique justo pharetra ut augue cursus.',
-                                'Lorem ipsum dolor sit amet consectetur. Tincidunt vitae eget tristique interdum nulla in. Nunc ut at massa augue euismod tristique lacus risus est. Consectetur egestas lectus nulla metus. Tristique justo pharetra ut augue cursus.',
+                                'Legal news coming soon',
                             ]} 
                         />} />
 
                         <Route path='/news/3' element={<MobileNewsPage
 
                             thumbnail={thumbnail_3}
-                            newsTitle={'ВОТ ОПРЕДЕЛЕНИЕ СТАТЬИ АК 47'}
-                            date={'15.05.2025'}
-                            textTitle={'Вот определение статьи АК 47'}
+                            newsTitle={'Legal news coming soon'}
+                            date={' '}
+                            textTitle={'Legal news coming soon'}
                             textParagraph={[
-                                'Lorem ipsum dolor sit amet consectetur. Tincidunt vitae eget tristique interdum nulla in. Nunc ut at massa augue euismod tristique lacus risus est. Consectetur egestas lectus nulla metus. Tristique justo pharetra ut augue cursus.',
-                                'Lorem ipsum dolor sit amet consectetur. Tincidunt vitae eget tristique interdum nulla in. Nunc ut at massa augue euismod tristique lacus risus est. Consectetur egestas lectus nulla metus. Tristique justo pharetra ut augue cursus.',
-                                'Lorem ipsum dolor sit amet consectetur. Tincidunt vitae eget tristique interdum nulla in. Nunc ut at massa augue euismod tristique lacus risus est. Consectetur egestas lectus nulla metus. Tristique justo pharetra ut augue cursus.',
+                                'Legal news coming soon',
                             ]} 
                         />} />
                     </Route>

@@ -9,7 +9,7 @@ const MobileInputFooter = ({ translateY, isSwiping, handleTouchStart, handleTouc
         <>
         <div className='main-750__footer-layout'> </div>
                 <div 
-                    className={translateY > 350 ? 'main-750__footer-wrapper main-750__footer-wrapper__fade-in-animation' : 'main-750__footer-wrapper main-750__footer-wrapper__fade-out-animation'}
+                    className={translateY > 226 ? 'main-750__footer-wrapper main-750__footer-wrapper__fade-in-animation' : 'main-750__footer-wrapper main-750__footer-wrapper__fade-out-animation'}
                     style={{ height: `${134 + translateY}px`, transition: isSwiping ? 'none' : 'height 0.5s ease'}}
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
@@ -32,7 +32,7 @@ const MobileInputFooter = ({ translateY, isSwiping, handleTouchStart, handleTouc
                                 <div className='main-750__footer__section__button-section'>
                                     <div className='main-750__footer__section__button-section__column-1'>
                                         <div onClick={addNewChat}><button><img src={mobileNewChatURL} alt="new-chat" /></button></div>
-                                        <div><button><img src={mobileAddFileURL} alt="add-file" /></button></div>
+                                        {/* <div><button><img src={mobileAddFileURL} alt="add-file" /></button></div> */}
                                     </div>
                                     <div className='main-750__footer__section__button-section__column-2'>
                                         <div><button><img src={mobileExplainURL} alt="explain" /></button></div>
@@ -44,7 +44,7 @@ const MobileInputFooter = ({ translateY, isSwiping, handleTouchStart, handleTouc
                             </section>
 
 
-                            <div className={translateY > 490 ? 'main-750__footer__nav main-750__footer__nav__fade-in-animation' : 'main-750__footer__nav main-750__footer__nav__fade-out-animation'}>
+                            <div className={translateY > 366 ? 'main-750__footer__nav main-750__footer__nav__fade-in-animation' : 'main-750__footer__nav main-750__footer__nav__fade-out-animation'}>
                                 <MobileNavSection setTranslateY={setTranslateY} />
                             </div>
                         </div>

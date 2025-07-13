@@ -25,13 +25,13 @@ const MobileInfo = () => {
 
                     <MobileBetaPromoSection />
 
-                    <MobileInfoStatusSection />
+                    {/* <MobileInfoStatusSection /> */}
 
                     <MobileNewsSection />
 
                     <MobileOpportunitySection />
 
-                    <MobileUpgradeSectionMini />
+                    {/* <MobileUpgradeSectionMini /> */}
 
 
                 </main>
