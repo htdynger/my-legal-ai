@@ -146,7 +146,7 @@ const Main = () => {
         }
 
         try {
-            const res = await axios.get('api/me', {
+            const res = await axios.get('https://legai.io/api/me', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     Accept: 'application/json',
@@ -167,7 +167,7 @@ const Main = () => {
     const getChats = async () => {
 
         try {
-            const res = await axios.get('/ascender/api/v1/1/chats', {
+            const res = await axios.get('https://dev-api.ascender-ai.com/api/v1/1/chats', {
                 headers: {
                   Authorization: `Bearer ${token}`,
                   Accept: 'application/json',
@@ -201,7 +201,7 @@ const Main = () => {
         try {
             const res = await axios.post(
                 
-                '/ascender/api/v1/1/chats', 
+                'https://dev-api.ascender-ai.com/api/v1/1/chats', 
                 {
                     "name": formattedTime,
                     "agent_id": 1,

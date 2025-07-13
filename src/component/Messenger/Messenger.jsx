@@ -30,7 +30,7 @@ const Messenger = ({ messages, setMessages }) => {
 
     const getMessages = async () => {
         try {
-            const res = await axios.get(`/ascender/api/agents/1/messages/${selectedChat}`, {
+            const res = await axios.get(`https://dev-api.ascender-ai.com/api/agents/1/messages/${selectedChat}`, {
                 params: {
                     page: 1,
                     page_size: 200,

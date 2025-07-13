@@ -20,7 +20,7 @@ export const connectAndSendMessage = async (message, onMessage) => {
   try {
     // 1. Получить session_token
     const res = await axios.post(
-      "/ascender/api/v1/1/alp/initiate",
+      "https://dev-api.ascender-ai.com/api/v1/1/alp/initiate",
       {
         account_id: client_id,
         chats_to_listen: [chat_id],

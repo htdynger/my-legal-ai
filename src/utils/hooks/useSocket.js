@@ -20,7 +20,7 @@ export const useSocket = (onMessage) => {
             try {
                 const res = await axios.post(
                     
-                    '/ascender/api/v1/1/alp/initiate', 
+                    'https://dev-api.ascender-ai.com/api/v1/1/alp/initiate', 
                     {
                         "account_id": client_id,
                         "chats_to_listen": [
