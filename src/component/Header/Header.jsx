@@ -125,9 +125,9 @@ const Header = () => {
 
                             <div className='container'>
 
-                                <div className='header__column-n1__logo-container'>
+                                {/* <div className='header__column-n1__logo-container'>
                                     <img src={legAiLogo1URL} alt="logo" />
-                                </div>
+                                </div> */}
 
 
                                 <div className='header__column-n1__legAi-container'> 
@@ -135,7 +135,7 @@ const Header = () => {
                                     <img src={legAiText1URL} alt='ai' />
                                 </div>
 
-                                <div className='header__column-n1__pro-container'> <p> Pro </p>  </div>
+                                {/* <div className='header__column-n1__pro-container'> <p> Pro </p>  </div> */}
 
                             </div>
 
@@ -163,7 +163,7 @@ const Header = () => {
                         <nav className='header__column-n2'>
 
                             <div className='header__column-n2__container-n1'>
-                                <button className={visualPathname === '/' ? 'navSelected' : ''} ref={mainButtonRef} onClick={() => handleNavigate('/', mainButtonRef)}> <img src={mainIconURL} /></button>
+                                <button className={visualPathname === '/' ? 'navSelected' : ''} ref={mainButtonRef} onClick={() => handleNavigate('/', mainButtonRef)}> <img src={legAiLogo1URL} /></button>
                             </div>
 
                             <div className='header__column-n2__container-n2'>
@@ -199,9 +199,9 @@ const Header = () => {
                         <nav className='header-1440__nav'>
                             <div className='header-1440__nav__column-1'> 
 
-                                <div><button><img src={legAiLogo1URL} alt="logo-button" /></button></div>
+                                {/* <div><button><img src={legAiLogo1URL} alt="logo-button" /></button></div> */}
 
-                                <div className={visualPathname === '/' ? 'navSelected' : ''}><button ref={mainButtonRef} onClick={() => handleNavigate('/', mainButtonRef)}> <img src={navHomeButtonLogoSelectedURL} /></button></div>
+                                <div className={visualPathname === '/' ? 'navSelected' : ''}><button ref={mainButtonRef} onClick={() => handleNavigate('/', mainButtonRef)}> <img src={legAiLogo1URL} /></button></div>
                                 <div onClick={() => toggleSidebar(!isSidebarHidden)}><button><img src={toggleSidebarButtonURL} alt="toggle-sidebar-button" /></button></div>
                                 
                             </div>
