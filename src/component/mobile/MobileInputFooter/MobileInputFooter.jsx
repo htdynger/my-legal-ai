@@ -2,7 +2,7 @@
 // import MobileNavSection from "../../MobileNavSection/MobileNavSection"
 import MobileNavSection from '../MobileNavSection/MobileNavSection.jsx'
 
-const MobileInputFooter = ({ translateY, isSwiping, handleTouchStart, handleTouchMove, handleTouchEnd, messageText, setMessageText, mobileNewChatURL, mobileAddFileURL, mobileExplainURL, handleSendMessage, mobileSendMessageURL, setTranslateY, addNewChat }) => {
+const MobileInputFooter = ({ translateY, isSwiping, handleTouchStart, handleTouchMove, handleTouchEnd, messageText, setMessageText, mobileNewChatURL, mobileAddFileURL, mobileExplainURL, handleSendMessage, mobileSendMessageURL, setTranslateY, addNewChat, instantToggle }) => {
 
 
     return (
@@ -15,6 +15,7 @@ const MobileInputFooter = ({ translateY, isSwiping, handleTouchStart, handleTouc
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
                 >
+                    <div onClick={instantToggle} className='main-750__footer__click-zone'> </div>
                     <footer className='main-750__footer'> 
                         <div className="footer-shadow"></div>
                         <div className="footer-handle"></div>

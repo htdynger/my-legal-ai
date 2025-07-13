@@ -18,7 +18,7 @@
 
 .header-1440__nav__column-1 {
     height: 100%;
-    width: 123px;
+    /* width: 123px; */
     display: flex;
     align-items: center;
     justify-content: center;

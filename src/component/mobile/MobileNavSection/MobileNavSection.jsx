@@ -71,7 +71,11 @@ const MobileNavSection = ({ setTranslateY }) => {
                 </div>
             </section>
 
-            <div className='nav-750__logo-container'>
+            <div onClick={() => {
+                localStorage.removeItem('access_token')
+                localStorage.removeItem('client_id')
+                window.location.reload();
+            }} className='nav-750__logo-container'>
                 <img src={logoURL} alt="logo" />
             </div>
         </nav>

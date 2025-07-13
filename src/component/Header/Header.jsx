@@ -1,4 +1,4 @@
-import legAiLogo1URL from './items/legAiLogo1.png'
+import legAiLogo1URL from './items/legAiLogo1.svg'
 import legAiText1URL from './items/legAiText1.png'
 import legAiProLogo1URL from './items/legAiProLogo1.png'
 import navHomeButtonLogoURL from './items/navHomeButtonLogo.png'
@@ -198,12 +198,15 @@ const Header = () => {
                     <section className='header-1440'>
                         <nav className='header-1440__nav'>
                             <div className='header-1440__nav__column-1'> 
-                                <div className={visualPathname === '/' ? 'navSelected' : ''}><button ref={mainButtonRef} onClick={() => handleNavigate('/', mainButtonRef)}> <img src={legAiLogo1URL} /></button></div>
+
+                                <div><button><img src={legAiLogo1URL} alt="logo-button" /></button></div>
+
+                                <div className={visualPathname === '/' ? 'navSelected' : ''}><button ref={mainButtonRef} onClick={() => handleNavigate('/', mainButtonRef)}> <img src={navHomeButtonLogoSelectedURL} /></button></div>
                                 <div onClick={() => toggleSidebar(!isSidebarHidden)}><button><img src={toggleSidebarButtonURL} alt="toggle-sidebar-button" /></button></div>
+                                
                             </div>
 
                             <div className='header-1440__nav__column-2'>
-                                {/* <div><button><img src={legAiLogo1URL} alt="logo-button" /></button></div> */}
                                 <div className={visualPathname === '/document-generation/' ? 'navSelected' : ''} ref={documentGenerationButtonRef} onClick={() => handleNavigate('/document-generation/', documentGenerationButtonRef)}><button><img src={navPenButtonLogoURL} alt="document-generation-button" /></button></div>
                                 <div className={visualPathname === '/info/' ? 'navSelected' : ''} ref={infoButtonRef} onClick={() => handleNavigate('/info/', infoButtonRef)}><button><img src={navBoxesButtonLogoURL} alt="info-button" /></button></div>
                                 <div className={visualPathname === '/pro/' ? 'navSelected' : ''} ref={proButtonRef} onClick={() => handleNavigate('/pro/', proButtonRef)}><button><img src={navProButtonLogoURL} alt="pro-button" /></button></div>

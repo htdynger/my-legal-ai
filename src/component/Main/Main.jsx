@@ -426,6 +426,19 @@ const handleTouchEnd = () => {
 };
 
 
+const instantToggle = () => {
+    if (isOpen === false) {
+
+        setIsOpen(true);
+        setTranslateY(509 - 134);
+
+    } else if (isOpen === true) {
+        
+        setIsOpen(false);
+        setTranslateY(0);
+    }
+}
+
 const handleSubmit = () => {
     if (inputFormRef.current) {
         inputFormRef.current.requestSubmit();
@@ -660,6 +673,8 @@ const inputFormRef = useRef()
                     setTranslateY={setTranslateY}
 
                     addNewChat={addNewChat}
+
+                    instantToggle={instantToggle}
                 />
 
                 
