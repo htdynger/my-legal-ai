@@ -185,9 +185,9 @@ const Messenger = ({ messages, setMessages }) => {
 
                         <div className='ai-message-app'>
 
-                                <header>
+                                {/* <header>
                                     <span> Заголовок </span>
-                                </header>
+                                </header> */}
 
                                 <section>
                                     {/* <span> {localMessage.content} </span> */}
