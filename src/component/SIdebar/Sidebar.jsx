@@ -19,6 +19,8 @@ import { useState, useEffect, useRef } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
+
 import axios from 'axios'
 
 
@@ -32,7 +34,7 @@ const Sidebar = () => {
     const getChats = async () => {
 
         try {
-            const res = await axios.get('/ascender/api/v1/1/chats', {
+            const res = await axios.get(`${VITE_API_LEGAI}/v1/1/chats`, {
                 headers: {
                   Authorization: `Bearer ${token}`,
                   Accept: 'application/json',

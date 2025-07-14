@@ -6,6 +6,8 @@ import axios from "axios";
 
 import { useChatStore } from "../../store/useChatStore";
 
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
+
 export const useSocket = (onMessage) => {
 
     const token = localStorage.getItem('access_token')
@@ -20,7 +22,7 @@ export const useSocket = (onMessage) => {
             try {
                 const res = await axios.post(
                     
-                    '/ascender/api/v1/1/alp/initiate', 
+                    `${VITE_API_LEGAI}/v1/1/alp/initiate`, 
                     {
                         "account_id": client_id,
                         "chats_to_listen": [

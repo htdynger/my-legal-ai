@@ -26,6 +26,7 @@ import { useNavigate } from 'react-router-dom'
 import AuthAnimatedFrame from '../../animation/AuthAnimatedFrame/AuthAnimatedFrame'
 
 import axios from 'axios'
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
 
 
 const ChangePassword = ({ setVisiblePage }) => {
@@ -328,7 +329,7 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
     const login = async (data) => {
 
         try {
-            const res = await axios.post('api/login', null, {
+            const res = await axios.post(`${VITE_API_LEGAI}/accounts/login`, null, {
                 params: {
                     email_or_username: data.email_or_username,
                     password: data.password,
