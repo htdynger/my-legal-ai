@@ -1,5 +1,5 @@
 # TODO: @zahcoder34 define appropriate base image
-FROM node:20-alpine AS builder
+FROM node:20.14.0-alpine AS builder
 
 WORKDIR /app
 
