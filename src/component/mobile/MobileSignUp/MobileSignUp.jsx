@@ -18,6 +18,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useVisualStore } from '../../../store/useVisualStore'
 import AuthAnimatedFrame from '../../../animation/AuthAnimatedFrame/AuthAnimatedFrame'
 import SuccessfulAuth from '../../SuccessfulAuth/SuccessfulAuth.jsx'
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
 
 import axios from 'axios'
 
@@ -34,7 +35,7 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
 
     const register = async (data) => {
         try {
-            const res = await axios.post('https://legai.io/api/register', null, {
+            const res = await axios.post(`${VITE_API_LEGAI}/accounts/register`, null, {
                 params: {
                     email: data.email,
                     username: data.username,
@@ -112,7 +113,7 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
                                             onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                                         />
                                         <img
-                                            src={showPassword ? eyeOpenedURL : eyeClosedURL}
+                                            src={showPassword ? eyeClosedURL : eyeClosedURL}
                                             alt="показать/скрыть пароль"
                                             onClick={() => setShowPassword(!showPassword)}
                                             style={{ cursor: 'pointer' }}

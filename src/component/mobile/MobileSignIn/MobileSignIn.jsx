@@ -24,6 +24,8 @@ import AuthAnimatedFrame from '../../../animation/AuthAnimatedFrame/AuthAnimated
 
 import axios from 'axios'
 
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
+
 
 const ChangePassword = ({ setVisiblePage }) => {
     const [password, setPassword] = useState('');
@@ -290,7 +292,7 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
 
     const handleLogin = async (email_or_username, passwordValue) => {
         try {
-            const res = await axios.post('https://legai.io/api/login', null, {
+            const res = await axios.post(`${VITE_API_LEGAI}/accounts/login`, null, {
                 params: {
                     email_or_username,
                     password: passwordValue,
@@ -355,7 +357,7 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
                                         required
                                     />
                                     <img
-                                        src={showPassword ? eyeOpenedURL : eyeClosedURL}
+                                        src={showPassword ? eyeClosedURL : eyeClosedURL}
                                         alt="show-password-button"
                                         onClick={togglePasswordVisibility}
                                         style={{ cursor: 'pointer' }}
