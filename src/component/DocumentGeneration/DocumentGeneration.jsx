@@ -5,7 +5,7 @@ import './style/DocumentSection.css'
 import animatedFrameFragmentURL from './items/animated-frame-fragment.mp4'
 import previewTextURL from './items/previewText.png'
 
-import documentGenerationAiPreviewBigURL from './items/documentGenerationAiPreviewBig.mp4';
+
 import documentGenerationAiPreviewSmallURL from './items/documentGenerationAiPreviewSmall.mp4';
 
 import toggleButtonLogoURL from './items/toggleButtonLogo.png';
