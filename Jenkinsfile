@@ -9,6 +9,7 @@ pipeline {
         IMAGE_NAME = 'legai-frontend'
         DOCKERFILE_PATH = 'Dockerfile'
         VITE_API_ASCENDER = "${params.ASCENDER_API_URL}"
+        CONTAINER_NAME = 'legai-frontend-container'
     }
 
     stages {
@@ -19,18 +20,26 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build("${IMAGE_NAME}", "--build-arg VITE_API_ASCENDER=${VITE_API_ASCENDER} -f ${DOCKERFILE_PATH} .")
-                }
+                sh """
+                    docker build --build-arg VITE_API_ASCENDER=${VITE_API_ASCENDER} -f ${DOCKERFILE_PATH} -t ${IMAGE_NAME} .
+                """
             }
         }
         stage('Run Docker Container') {
             steps {
-                script {
-                    docker.image("${IMAGE_NAME}").withRun("-p 80:80 -e VITE_API_ASCENDER=${VITE_API_ASCENDER}") { c ->
-                        echo "Container is running with ID: ${c.id}"
-                    }
-                }
+                sh """
+                    docker run -d --name ${CONTAINER_NAME} -p 80:80 -e VITE_API_ASCENDER=${VITE_API_ASCENDER} ${IMAGE_NAME}
+                    docker ps -a | grep ${CONTAINER_NAME}
+                """
+            }
+        }
+        stage('Cleanup Docker') {
+            steps {
+                sh """
+                    docker stop ${CONTAINER_NAME} || true
+                    docker rm ${CONTAINER_NAME} || true
+                    docker rmi ${IMAGE_NAME} || true
+                """
             }
         }
     }
