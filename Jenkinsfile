@@ -27,7 +27,9 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    docker.image("${IMAGE_NAME}").run("-d -p 80:80 -e VITE_API_ASCENDER=${VITE_API_ASCENDER}")
+                    docker.image("${IMAGE_NAME}").withRun("-p 80:80 -e VITE_API_ASCENDER=${VITE_API_ASCENDER}") { c ->
+                        echo "Container is running with ID: ${c.id}"
+                    }
                 }
             }
         }
