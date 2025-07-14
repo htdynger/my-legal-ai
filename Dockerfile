@@ -16,7 +16,7 @@ FROM nginx:alpine
 
 RUN rm -rf /usr/share/nginx/html/*
 
-# Build asssets -> /nginx/html... To host it
+# Build assets -> /nginx/html... To host it
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/nginx.conf
