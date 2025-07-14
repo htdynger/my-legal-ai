@@ -45,6 +45,7 @@ import { socket } from '../../utils/hooks/Socket.js'
 import { useSocket } from '../../utils/hooks/useSocket.js'
 
 import { connectAndSendMessage, disconnectSocket } from '../../utils/hooks/socketHelper.js';
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
 
 const Main = () => {
 
@@ -146,7 +147,7 @@ const Main = () => {
         }
 
         try {
-            const res = await axios.get('https://legai.io/api/me', {
+            const res = await axios.get(`${VITE_API_LEGAI}/me`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     Accept: 'application/json',
@@ -167,7 +168,7 @@ const Main = () => {
     const getChats = async () => {
 
         try {
-            const res = await axios.get('https://dev-api.ascender-ai.com/api/v1/1/chats', {
+            const res = await axios.get(`${VITE_API_LEGAI}/v1/1/chats`, {
                 headers: {
                   Authorization: `Bearer ${token}`,
                   Accept: 'application/json',
@@ -201,7 +202,7 @@ const Main = () => {
         try {
             const res = await axios.post(
                 
-                'https://dev-api.ascender-ai.com/api/v1/1/chats', 
+                `${VITE_API_LEGAI}/v1/1/chats`, 
                 {
                     "name": formattedTime,
                     "agent_id": 1,
