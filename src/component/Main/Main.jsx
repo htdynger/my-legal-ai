@@ -40,9 +40,7 @@ import MobilePro from '../mobile/MobilePro/MobilePro.jsx'
 import MobileSettings from '../mobile/MobileSettings/MobileSettings.jsx'
 
 import axios from 'axios'
-import { Socket } from 'socket.io-client'
-import { socket } from '../../utils/hooks/Socket.js'
-import { useSocket } from '../../utils/hooks/useSocket.js'
+// import { Socket } from 'socket.io-client'
 
 import { connectAndSendMessage, disconnectSocket } from '../../utils/hooks/socketHelper.js';
 const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
