@@ -17,6 +17,8 @@ import RotateTriangle from '../../animation/RotateTriangle/RotateTriangle'
 import ReactMarkdown from 'react-markdown'
 import axios from 'axios'
 
+// const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
+const VITE_API_ASCENDER = import.meta.env.VITE_API_ASCENDER
 
 
 const Messenger = ({ messages, setMessages }) => {
@@ -30,7 +32,7 @@ const Messenger = ({ messages, setMessages }) => {
 
     const getMessages = async () => {
         try {
-            const res = await axios.get(`https://dev-api.ascender-ai.com/api/agents/1/messages/${selectedChat}`, {
+            const res = await axios.get(`${VITE_API_ASCENDER}/agents/1/messages/${selectedChat}`, {
                 params: {
                     page: 1,
                     page_size: 200,

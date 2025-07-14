@@ -25,6 +25,7 @@ import AuthAnimatedFrame from '../../animation/AuthAnimatedFrame/AuthAnimatedFra
 
 import axios from 'axios'
 
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
 
 const RegisterForm = ({ navigate, setVisiblePage }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +41,7 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
     const register = async (data) => {
 
         try {
-            const res = await axios.post('https://legai.io/api/register', null, {
+            const res = await axios.post(`${VITE_API_LEGAI}/accounts/register`, null, {
                 params: {
                     email: data.email,
                     username: data.username,

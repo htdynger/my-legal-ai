@@ -3,6 +3,7 @@ import { io } from "socket.io-client";
 import axios from "axios";
 
 let socket = null;
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
 
 export const connectAndSendMessage = async (message, onMessage) => {
   const token = localStorage.getItem("access_token");
@@ -20,7 +21,7 @@ export const connectAndSendMessage = async (message, onMessage) => {
   try {
     // 1. Получить session_token
     const res = await axios.post(
-      "https://dev-api.ascender-ai.com/api/v1/1/alp/initiate",
+      `${VITE_API_LEGAI}/v1/1/alp/initiate`,
       {
         account_id: client_id,
         chats_to_listen: [chat_id],
@@ -39,7 +40,7 @@ export const connectAndSendMessage = async (message, onMessage) => {
 
     // 2. Инициализировать сокет, если ещё не создан
     if (!socket) {
-      socket = io("https://dev-api.ascender-ai.com", {
+      socket = io("https://legai.io", {
         path: "/api/v2/alp",
         extraHeaders: {
           Authorization: `Bearer ${session_token}`,
