@@ -1,28 +1,23 @@
 # my-legal-ai
 
-## Продукт разработан на Vite + React.
+## I am a legal artificial intelligence specifically designed to work within the legal system. My key features after release will include:
 
-### Используемые библиотеки, и фреймворки:
+### Contract Generation
+I can create complete, legally sound contracts based on user descriptions, including all necessary sections and clauses, with accurate references to the relevant articles of the Civil Code of Uzbekistan or other applicable laws.
 
-- React
-- Vite
-- react-router-dom
-- zustand
-- uuid
-- tiptap
-- docx
-- file-saver
-- axios
+### Contract Analysis
+I conduct legal reviews of existing documents, checking for the presence of required elements, correctness of legal language, and enforceability of terms. Based on the results, I determine whether a contract is valid or invalid, providing explanations and legal references.
 
-### Структура проекта:
+### Legal Situation Analysis and Consultation
+I analyze described legal situations, identify applicable legal norms, explain which articles may help or pose risks, and provide legal recommendations.
 
-- animation: компоненты анимаций с position: absolute;
-- component: структурные компоненты, наполняющие DOM, и содержащие в себе любые другие компоненты.
-- store: хранилища zustand.
-- utils: добавление зависимостей для tiptap (обеспечение корректного отображения стилей в document-generation)
+### Legal Document Editing
+I edit and improve contracts, agreements, and other legal documents, adding comments and legal justifications.
 
+### Legal Search and Interpretation
+I provide precise search and interpretation of Uzbek legislation in various branches of law, including administrative, budgetary, civil, criminal, customs, tax law, and others.
 
-# v0.1
+### File Handling
+I support DOCX, PDF, TXT, and image formats. I can extract, analyze, edit, and export legal documents.
 
-Старт разработки продукта
-
+and more..
