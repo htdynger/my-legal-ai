@@ -65,17 +65,17 @@ const MobileNavSection = ({ setTranslateY }) => {
 
             </section> */}
 
-            <section>
+            <section  onClick={() => {
+                localStorage.removeItem('access_token')
+                localStorage.removeItem('client_id')
+                window.location.reload();
+            }} >
                 <div>
                     <button><img src={logOutIconURL} alt="log-out-button" /><span> Выйти </span></button>
                 </div>
             </section>
 
-            <div onClick={() => {
-                localStorage.removeItem('access_token')
-                localStorage.removeItem('client_id')
-                window.location.reload();
-            }} className='nav-750__logo-container'>
+            <div className='nav-750__logo-container'>
                 <img src={logoURL} alt="logo" />
             </div>
         </nav>
