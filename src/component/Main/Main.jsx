@@ -165,7 +165,7 @@ const Main = () => {
     const getChats = async () => {
 
         try {
-            const res = await axios.get('/api/v1/1/chats', {
+            const res = await axios.get(`${VITE_API_LEGAI}/v1/1/chats`, {
                 headers: {
                   Authorization: `Bearer ${token}`,
                   Accept: 'application/json',
@@ -199,7 +199,7 @@ const Main = () => {
         try {
             const res = await axios.post(
                 
-                '/api/v1/1/chats', 
+                `${VITE_API_LEGAI}/v1/1/chats`, 
                 {
                     "name": formattedTime,
                     "agent_id": 1,
