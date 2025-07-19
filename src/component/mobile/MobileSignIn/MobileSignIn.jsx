@@ -292,7 +292,7 @@ const LoginForm = ({ navigate, setVisiblePage }) => {
 
     const handleLogin = async (email_or_username, passwordValue) => {
         try {
-            const res = await axios.post(`${VITE_API_LEGAI}/accounts/login`, null, {
+            const res = await axios.post(`api/accounts/login`, null, {
                 params: {
                     email_or_username,
                     password: passwordValue,

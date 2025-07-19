@@ -144,7 +144,7 @@ const Main = () => {
         }
 
         try {
-            const res = await axios.get(`${VITE_API_LEGAI}/accounts/me`, {
+            const res = await axios.get(`api/accounts/me`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     Accept: 'application/json',
