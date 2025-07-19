@@ -135,7 +135,9 @@
     flex-direction: column;
     align-self: flex-start;
     width: 70%;
-    min-height: 54px;
+    /* min-height: 54px; */
+    min-height: calc(100vh - 100px - 100px - 150px);
+
 
     border-radius: 40px;
     padding: 15px 25px;
@@ -214,6 +216,8 @@
     padding: auto;
     opacity: 1;
     width: 100%;
+
+
 }
 
 .messenger-wrapper-animation {
@@ -334,3 +338,18 @@
   padding-left: 0; 
   margin: 0;      /* убирает отступ под "воображаемый" marker */
 }
+
+
+
+
+
+
+
+
+
+
+
+/* 
+.ai-triangle-loader {
+    margin-bottom: calc(80vh - 100px - 150px);
+} */
