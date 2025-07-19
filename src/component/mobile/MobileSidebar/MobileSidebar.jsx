@@ -22,7 +22,7 @@ const MobileSidebar = () => {
     const getChats = async () => {
 
         try {
-            const res = await axios.get('/ascender/api/v1/1/chats', {
+            const res = await axios.get('/api/v1/1/chats', {
                 headers: {
                   Authorization: `Bearer ${token}`,
                   Accept: 'application/json',

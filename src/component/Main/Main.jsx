@@ -40,9 +40,6 @@ import MobilePro from '../mobile/MobilePro/MobilePro.jsx'
 import MobileSettings from '../mobile/MobileSettings/MobileSettings.jsx'
 
 import axios from 'axios'
-import { Socket } from 'socket.io-client'
-import { socket } from '../../utils/hooks/Socket.js'
-import { useSocket } from '../../utils/hooks/useSocket.js'
 
 import { connectAndSendMessage, disconnectSocket } from '../../utils/hooks/socketHelper.js';
 
@@ -146,7 +143,7 @@ const Main = () => {
         }
 
         try {
-            const res = await axios.get('api/me', {
+            const res = await axios.get('api/accounts/me', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     Accept: 'application/json',
@@ -167,7 +164,7 @@ const Main = () => {
     const getChats = async () => {
 
         try {
-            const res = await axios.get('/ascender/api/v1/1/chats', {
+            const res = await axios.get('/api/v1/1/chats', {
                 headers: {
                   Authorization: `Bearer ${token}`,
                   Accept: 'application/json',
@@ -201,7 +198,7 @@ const Main = () => {
         try {
             const res = await axios.post(
                 
-                '/ascender/api/v1/1/chats', 
+                '/api/v1/1/chats', 
                 {
                     "name": formattedTime,
                     "agent_id": 1,
