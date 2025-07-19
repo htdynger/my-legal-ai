@@ -1,28 +1,36 @@
-# my-legal-ai
-
-## Продукт разработан на Vite + React.
-
-### Используемые библиотеки, и фреймворки:
+## my-legal-ai
+### The product is built with Vite + React.
+Libraries and frameworks used:
 
 - React
+
 - Vite
+
 - react-router-dom
+
 - zustand
+
 - uuid
+
 - tiptap
+
 - docx
+
 - file-saver
+
 - axios
 
-### Структура проекта:
+### Project structure:
+animation: components with position: absolute; used for animations
 
-- animation: компоненты анимаций с position: absolute;
-- component: структурные компоненты, наполняющие DOM, и содержащие в себе любые другие компоненты.
-- store: хранилища zustand.
-- utils: добавление зависимостей для tiptap (обеспечение корректного отображения стилей в document-generation)
+component: structural components that populate the DOM and may contain any other components
 
+store: zustand stores
 
-# v0.1
+utils: additions for tiptap dependencies (ensuring correct style rendering in document-generation)
 
-Старт разработки продукта
+### v0.1
+Start of product development
 
+### v0.11
+MVP with chat functionality is ready
