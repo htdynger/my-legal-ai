@@ -25,6 +25,7 @@ import AuthAnimatedFrame from '../../animation/AuthAnimatedFrame/AuthAnimatedFra
 
 import axios from 'axios'
 
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
 
 const RegisterForm = ({ navigate, setVisiblePage }) => {
     const [showPassword, setShowPassword] = useState(false);

@@ -19,6 +19,8 @@ import { useState, useEffect, useRef } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
+
 import axios from 'axios'
 
 

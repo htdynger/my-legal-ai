@@ -3,6 +3,7 @@ import { io } from "socket.io-client";
 import axios from "axios";
 
 let socket = null;
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
 
 export const connectAndSendMessage = async (message, onMessage) => {
   const token = localStorage.getItem("access_token");

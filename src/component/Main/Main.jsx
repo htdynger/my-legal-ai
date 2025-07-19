@@ -42,6 +42,7 @@ import MobileSettings from '../mobile/MobileSettings/MobileSettings.jsx'
 import axios from 'axios'
 
 import { connectAndSendMessage, disconnectSocket } from '../../utils/hooks/socketHelper.js';
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
 
 const Main = () => {
 

@@ -26,6 +26,7 @@ import { useNavigate } from 'react-router-dom'
 import AuthAnimatedFrame from '../../animation/AuthAnimatedFrame/AuthAnimatedFrame'
 
 import axios from 'axios'
+const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
 
 
 const ChangePassword = ({ setVisiblePage }) => {
