@@ -41,7 +41,7 @@ const RegisterForm = ({ navigate, setVisiblePage }) => {
     const register = async (data) => {
 
         try {
-            const res = await axios.post('api/accounts/register', null, {
+            const res = await axios.post(`${VITE_API_LEGAI}/accounts/register`, null, {
                 params: {
                     email: data.email,
                     username: data.username,
