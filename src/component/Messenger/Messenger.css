@@ -200,12 +200,17 @@
     height: 26px;
 }
 
+.ai-message-app footer button:active img {
+    transform: scale(1.1), translateY(8px), rotate(20deg);
+}
+
 
 .ai-message-app footer button img {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 16px;
+    transition: all 0.2s;
 }
 
 
@@ -353,3 +358,9 @@
 .ai-triangle-loader {
     margin-bottom: calc(80vh - 100px - 150px);
 } */
+
+
+
+.messenger-selected {
+    background-color: #373E4E;
+}
