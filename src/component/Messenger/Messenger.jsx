@@ -161,12 +161,69 @@ const Messenger = ({ messages, setMessages }) => {
     // }, [messages])
     
 
+    const [messageRating, setMessageRating] = useState([])
+
+    const toggleLike = (index) => {
+
+        setMessageRating((prev) => {
+            const newState = [...prev]
+            const ratedMessage = { ...newState[index] }
+      
+            if (ratedMessage.isLiked) {
+                ratedMessage.isLiked = false
+            } else {
+                ratedMessage.isLiked = true
+                ratedMessage.isDisliked = false
+            }
+      
+            newState[index] = ratedMessage
+            return newState
+        })
+
+    }
+
+    const toggleDislike = (index) => {
+
+        setMessageRating((prev) => {
+            const newState = [...prev]
+            const ratedMessage = { ...newState[index] }
+    
+            if (ratedMessage.isDisliked) {
+                ratedMessage.isDisliked = false
+            } else {
+                ratedMessage.isDisliked = true
+                ratedMessage.isLiked = false
+            }
+    
+            newState[index] = ratedMessage
+            return newState
+        })
+    
+    }
+
+    
+
+      
+
     return (
+
+        
 
         <div ref={messengerWrapperRef} className='messenger-wrapper'>  
             <section ref={messengerAppRef} className={chatInstantEnabled ? "messenger-app" : "messenger-app fade-out-animation"}>
 
                 {Array.isArray(messages) && messages && messages.map((message, index) => {
+
+                    setMessageRating((prev) => {
+                        const initialState = [...prev]
+                        initialState.push({
+                            message_type: message.message_type,
+                            isLiked: false,
+                            isDisliked: false,
+                        })
+                        return initialState
+                    })
+                            
                     if (message.message_type === 'customer_message') return (
                         <>
                             <div key={index} className='user-message-container'> 
@@ -181,7 +238,7 @@ const Messenger = ({ messages, setMessages }) => {
 
                     <div className='ai-message-container'> 
 
-                        
+
 
 
 
@@ -203,8 +260,8 @@ const Messenger = ({ messages, setMessages }) => {
 
                                 <footer>
                                     <button><img src={copyURL} alt="copy-message" /></button>
-                                    <button><img src={likeURL} alt="like-message" /></button>
-                                    <button><img src={dislikeURL} alt="dislike-message" /></button>
+                                    <button className={messageRating[index].isLiked && 'messenger-selected'} onClick={() => toggleLike(index)}><img src={likeURL} alt="like-message" /></button>
+                                    <button className={messageRating[index].isDisliked && 'messenger-selected'} onClick={() => toggleDislike(index)}><img src={dislikeURL} alt="dislike-message" /></button>
                                     <button><img src={reSendURL} alt="re-send-message" /></button>
                                 </footer> 
 

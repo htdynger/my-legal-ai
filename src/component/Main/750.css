@@ -512,6 +512,8 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
+
+        pointer-events: none;
     }
 
     .main-750__header div:nth-child(2) button span {
