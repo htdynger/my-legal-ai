@@ -325,7 +325,7 @@
 .main-sidebar-opened-instant {
     transition: none !important;
     animation: none !important;
-    margin-left: -316px;
+    /* margin-left: -316px; */
 }
 
 
@@ -339,20 +339,20 @@
 
 @keyframes main-sidebar-closed-animation {
     0% {
-        margin-left: -316px;
+        /* margin-left: -316px; */
 
     } 100% {
-        margin-left: 0px;
+        /* margin-left: 0px; */
 
     }
 }
 
 @keyframes main-sidebar-opened-animation {
     0% {
-        margin-left: 0px;
+        /* margin-left: 0px; */
 
     } 100% {
-        margin-left: -316px;
+        /* margin-left: -316px; */
 
     }
 }
