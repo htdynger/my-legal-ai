@@ -26,6 +26,8 @@ import './1440.css'
 
 import { useChatStore } from '../../store/useChatStore'
 
+import logoURL from './items/logo.svg'
+
 const Header = () => {
 
     const navigate = useNavigate()
@@ -130,9 +132,15 @@ const Header = () => {
                                 </div> */}
 
 
-                                <div className='header__column-n1__legAi-container'> 
-                                    <p>Leg</p>
-                                    <img src={legAiText1URL} alt='ai' />
+                                <div className={isSidebarHidden ? 'header__column-n1__legAi-container openedSidebar' : 'header__column-n1__legAi-container closedSidebar'}>
+                                    <div>
+                                        <img src={logoURL} alt="" />
+                                    </div>
+
+                                    <div>
+                                        <button onClick={toggleSidebar}><img className='button-icon-n1' src={toggleSidebarButtonURL} alt="toggle-sidebar-button" /></button>
+                                    </div>
+
                                 </div>
 
                                 {/* <div className='header__column-n1__pro-container'> <p> Pro </p>  </div> */}
@@ -141,16 +149,15 @@ const Header = () => {
 
 
 
-
+                        {/* 
                             <div className={isSidebarHidden ? 'sidebar-closed openedSidebar' : 'sidebar-closed closedSidebar'}>
-                                <button onClick={toggleSidebar}><img className='button-icon-n1' src={toggleSidebarButtonURL} alt="toggle-sidebar-button" /></button>
 
                                 <button ref={sidebarAddNewChatButtonRef} onClick={() => handleAddNewChatClick()}><img className='button-icon-n2' src={newChatButtonURL} alt="new-chat-button" /></button>
 
                                 <button><img className='button-icon-n3' src={leftButtonURL} alt="left-button-icon" /></button>
 
                                 <button><img className='button-icon-n4' src={rightButtonURL} alt="right-button-icon" /></button>
-                            </div>
+                            </div> */}
 
 
 
