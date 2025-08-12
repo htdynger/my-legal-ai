@@ -5,6 +5,7 @@ import './style/DocumentSection.css'
 import animatedFrameFragmentURL from './items/animated-frame-fragment.mp4'
 import previewTextURL from './items/previewText.png'
 
+import betaURL from './items/inputButtons/beta.svg'
 
 import documentGenerationAiPreviewSmallURL from './items/documentGenerationAiPreviewSmall.mp4';
 
@@ -64,6 +65,7 @@ import { saveAs } from 'file-saver';
 
 import ComingSoon from '../../animation/ComingSoon/ComingSoon';
 
+import chatURL from './items/chat.mp4'
 import { useVisualStore } from '../../store/useVisualStore';
 import { useChatStore } from '../../store/useChatStore';
 import MiniMessenger from '../MiniMessenger/MiniMessenger';
@@ -306,11 +308,114 @@ const DocumentSection = () => {
     setIsZoomed(!isZoomed);
   };
 
+
+
+  
+  
+  const chatRef = useRef(null);
+  const containerRef = useRef(null);
+  const isDragging = useRef(false);
+  const offset = useRef({ x: 0, y: 0 });
+  const padding = 20;
+
+  useEffect(() => {
+    const chat = chatRef.current;
+    const container = containerRef.current;
+
+    const handleMouseMove = (e) => {
+      if (!isDragging.current || !chat || !container) return;
+
+      const containerRect = container.getBoundingClientRect();
+
+      let x = e.clientX - offset.current.x - containerRect.left;
+      let y = e.clientY - offset.current.y - containerRect.top;
+
+      const maxX = containerRect.width - chat.offsetWidth;
+      const maxY = containerRect.height - chat.offsetHeight;
+
+      x = Math.max(padding, Math.min(x, maxX - padding));
+      y = Math.max(padding, Math.min(y, maxY - padding));
+
+      chat.style.transition = "none";
+      chat.style.left = `${x}px`;
+      chat.style.top = `${y}px`;
+    };
+
+    const handleMouseUp = () => {
+      if (!isDragging.current || !chat || !container) return;
+      isDragging.current = false;
+
+      const chatRect = chat.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+
+      const x = chatRect.left - containerRect.left;
+      const y = chatRect.top - containerRect.top;
+
+      const cw = container.clientWidth;
+      const ch = container.clientHeight;
+      const w = chat.offsetWidth;
+      const h = chat.offsetHeight;
+
+      const corners = [
+        { x: padding, y: padding },
+        { x: cw - w - padding, y: padding },
+        { x: padding, y: ch - h - padding },
+        { x: cw - w - padding, y: ch - h - padding },
+      ];
+
+      let nearest = corners[0];
+      let minDist = Infinity;
+
+      for (let corner of corners) {
+        const dx = x - corner.x;
+        const dy = y - corner.y;
+        const dist = dx * dx + dy * dy;
+        if (dist < minDist) {
+          minDist = dist;
+          nearest = corner;
+        }
+      }
+
+      chat.style.transition = "all 0.4s ease";
+      chat.style.left = `${nearest.x}px`;
+      chat.style.top = `${nearest.y}px`;
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
+
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    const chat = chatRef.current;
+    if (!chat) return;
+
+    isDragging.current = true;
+
+    const chatRect = chat.getBoundingClientRect();
+    offset.current = {
+      x: e.clientX - chatRect.left,
+      y: e.clientY - chatRect.top,
+    };
+  };
+
+
+  const [isChatVisible, setIsChatVisible] = useState(false)
+  
+
   return (
     <div className={isSidebarHidden ? 'content content-sidebar-hidden' : 
       'content content-sidebar-visible'}>
-        <ComingSoon />
-      <div className={isSidebarHidden ? 'document-generation document-generation-sidebar-opened' : 'document-generation document-generation-sidebar-closed'}>
+
+      
+        {/* <ComingSoon /> */}
+        
+        <div ref={containerRef}  className={isSidebarHidden ? 'document-generation document-generation-sidebar-opened' : 'document-generation document-generation-sidebar-closed'}>
         <div className="document-generation__header">
           <input
             value={documentName}
@@ -343,7 +448,8 @@ const DocumentSection = () => {
         </div>
         <div 
           
-          className="document-generation__main"
+          
+          className={isTextChangeEnabled ? 'document-generation__main text-chat-opened' : 'document-generation__main text-chat-closed'}
         >
           <div ref={scrollRef} className='document-generation__main__scroll-feature'>
             <div className={isTextChangeEnabled ? 'opened' : 'locked'}></div>
@@ -366,15 +472,558 @@ const DocumentSection = () => {
             style={{ display: 'none' }}
             onChange={handleInsertImage}
           />
+
+          
+          
+
+        {pages[activePageIndex] && (
+          <TextEditor isChatVisible={isChatVisible} setIsChatVisible={setIsChatVisible} editorProp={pages[activePageIndex].ref.current} />
+        )}
+
+
+
         </div>
+
+
+        
       </div>
 
-      {pages[activePageIndex] && (
-        <DocumentGenerationAi editorProp={pages[activePageIndex].ref.current} />
-      )}
+      {/* {pages[activePageIndex] && (
+          <DocumentGenerationAi editorProp={pages[activePageIndex].ref.current} />
+        )} */}
+
+        {/* <div
+              ref={containerRef}
+              style={{
+                position: "absolute",
+                width: "calc(100vw - 48px - 292px)",
+                height: "calc(100vh - 100px - 24px)",
+                overflow: "hidden",
+              }}
+              > */}
+
+<section
+        ref={chatRef}
+        className={isChatVisible ? 'Chat Chat-fade-in-animation' : 'Chat Chat-fade-out-animation'}
+        onMouseDown={handleMouseDown}
+        style={{
+          position: "absolute",
+          cursor: isDragging.current ? "grabbing" : "grab",
+          userSelect: "none",
+          right: padding,
+          bottom: padding,
+        }}
+      >
+          
+          <div className='Chat__row-1'>
+            <header>
+              <p>
+              Начните чат
+
+              </p>
+
+              <button>
+                <img src={closeDropdownButtonURL} alt="" />
+              </button>
+            </header>
+
+            <main>
+              <div className='Chat__animated-frame-parent'>
+                <video
+                      className="Chat__animated-frame"
+                      src={chatURL}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                  />
+              </div>
+            </main>
+          </div>
+
+          <footer>
+
+            <div className='Chat__input-container'>
+
+              <input type="text" placeholder='Начните писать' />
+
+              <img src={betaURL} alt="" />
+
+            </div>
+
+
+            <div className='Chat__input-buttons'>
+
+              <div>
+
+                <div>
+
+                  <button>
+                    <img src={flagUzbURL} alt="" />
+                  </button>
+                  
+                  <button>
+                    <img src={copyButtonURL} alt="" />
+
+                  </button>
+
+                </div>
+
+
+                <div>
+
+                  <button>
+                    <img src={addFileButtonURL} alt="" />
+
+                  </button>
+
+                </div>
+
+
+              </div>
+
+
+              <div className='Chat__input-buttons__send'>
+                <button>
+                  <img src={sendButtonURL} alt="" />
+
+                </button>
+              </div>
+
+            </div>
+
+
+          </footer>
+
+
+        </section>
+        
+        {/* </div> */}
+
     </div>
   );
 };
+
+
+
+const TextEditor = ({ editorProp, setIsChatVisible, isChatVisible }) => {
+
+  const { selectedChat, data, setData, handleSelectChat, unSelectChat, sendButtonEnabled, hardSetSelectedChat } = useChatStore()
+    const { toggleChat, closeChat } = useVisualStore()
+
+
+
+    useEffect(() => {
+      closeChat()
+      unSelectChat()
+    }, [])
+    const bigVideoRef = useRef();
+    const smallVideoRef = useRef();
+    const messengerRef = useRef();
+
+    
+
+    const [messageText, setMessageText] = useState('')
+
+
+    const handleSendMessage = () => {
+
+
+        if (!sendButtonEnabled) return
+        
+        if (messageText.trim() === '') return
+
+        bigVideoRef.current.classList.add('hidden');
+        smallVideoRef.current.classList.add('hidden');
+        messengerRef.current.style.display = `block`
+
+
+        setMessageText('')
+
+        toggleChat()
+
+        setTimeout(() => {
+          messengerRef.current.scrollTo({
+            top: messengerRef.current.scrollHeight,
+            behavior: 'smooth'
+          })
+        }, 50)
+
+
+        if (selectedChat === false) {
+
+            // REST : POST /{organization_id}/chats Create Chat
+
+            // websockets связь
+
+            const id = uuidv4(); 
+            console.log(data)
+            let initialState = [...data]
+            console.log(data)
+
+
+
+            initialState.push(
+                {
+                    title: messageText,
+                    id: id,
+                    message: [
+                        {
+                            "author": "user",
+                            "message": messageText.trim(),
+                            "date": "1"
+                        },
+                        {
+                            "author": "ai",
+                            "title": "lorem ipsum",
+                            "message": "4343234 ipsum 4343234 sit lorem ipsum dolor sitlorem 4343234 dolor sit lorem 4343234 dolor sitlorem ipsum 4343234 sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sitlorem ipsum dolor sit lorem ipsum dolor sit",
+                            "date": "1",
+                        },
+                    ]
+                }   
+            )
+
+            setData(initialState)
+            handleSelectChat(id)
+            
+        } else {
+
+            let initialState = {...selectedChat}
+          
+
+
+            
+            
+            // websockets связь
+
+            
+            initialState.message.push(
+
+                {
+                    "author": "user",
+                    "message": messageText,
+                    "date": "1"
+                },
+                {
+                    "author": "ai",
+                    "title": "",
+                    "message": "",
+                    "date": "1",
+                },
+            )    
+            // setData(initialState)
+
+            hardSetSelectedChat(initialState)
+
+        }
+    };
+
+    const textAlignStartButtonRef = useRef();
+    const textAlignCenterButtonRef = useRef();
+    const textAlignEndButtonRef = useRef();
+
+    const [isColorContentVisible, setIsColorContentVisible] = useState(true);
+
+    const textAlignButtonRefs = [textAlignStartButtonRef, textAlignCenterButtonRef, textAlignEndButtonRef];
+
+    const toggleAlignText = (buttonHasClicked, side) => {
+        textAlignButtonRefs.forEach((e) => {
+            e.current.classList.remove('text-align-selected');
+        });
+
+        buttonHasClicked.current.classList.add('text-align-selected');
+        editorProp.chain().focus().setTextAlign(side).run();
+    };
+
+    const toggleEditorMenu = () => {
+
+          setIsEditorMenuVisible(!isEditorMenuVisible)
+          documentGenerationAiRef.current.classList.toggle('visible');
+
+
+
+
+
+        messengerRef.current.classList.remove('messenger-animation')
+        void messengerRef.current.offsetWidth
+        messengerRef.current.classList.add('messenger-animation')
+
+
+    };
+
+
+
+    const [isEditorMenuVisible, setIsEditorMenuVisible] = useState(false);
+    const documentGenerationAiRef = useRef();
+
+
+
+
+
+
+    const fonts = ["Arial", "Georgia", "Courier New", "Times New Roman"];
+    
+    const weights = [
+        { value: "400", label: "Regular" },
+        { value: "500", label: "Medium" },
+        { value: "600", label: "Semibold" },
+        { value: "700", label: "Bold" },
+        { value: "900", label: "Black" },
+    ];
+    const fontSizes = Array.from({ length: 11 }, (_, i) => i + 10);
+
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [selectedFont, setSelectedFont] = useState(fonts[0]);
+
+    const [isWeightDropdownOpen, setWeightDropdownOpen] = useState(false);
+    const [selectedWeight, setSelectedWeight] = useState(weights[1].label);
+
+    const [isFontSizeDropdownOpen, setFontSizeDropdownOpen] = useState(false);
+    const [selectedFontSize, setSelectedFontSize] = useState(fontSizes[6]);
+
+    const handleFontSelect = (font) => {
+        setSelectedFont(font);
+        editorProp.chain().focus().setFontFamily(font).run();
+        setDropdownOpen(false);
+    };
+    const handleFontWeightSelect = (weight) => {
+        setSelectedWeight(weight.label);
+        editorProp.chain().focus().setFontWeight(weight.value).run();
+        setWeightDropdownOpen(false);
+        console.log(selectedWeight)
+    };
+    const handleFontSizeSelect = (size) => {
+        setSelectedFontSize(size);
+        editorProp.chain().focus().setFontSize(`${size}px`).run();
+        setFontSizeDropdownOpen(false);
+    };
+
+    // Состояние для хранения введённого кода цвета (без '#')
+    const [colorInput, setColorInput] = useState(
+      (editorProp?.getAttributes?.("fontColor")?.color || "#FFFFFF").replace(/^#/,'')
+    );
+    // Обработчик изменения цвета: обрезаем до 6 символов и применяем, если длина == 6
+    const handleColorChange = (e) => {
+      let value = e.target.value.replace(/^#/,'').slice(0, 6);
+      setColorInput(value);
+      if (value.length === 6 && editorProp) {
+        editorProp.chain().focus().setFontColor(`#${value}`).run();
+      }
+    };
+    
+
+    useEffect(() => {
+      if (isEditorMenuVisible) {
+        setTimeout(() => {
+
+          messengerRef.current.scrollTo({
+            top: messengerRef.current.scrollHeight,
+            behavior: 'smooth'
+          })
+        }, 900)
+      }
+
+    }, [isEditorMenuVisible])
+
+
+    
+    
+  return (
+
+    <>
+      <section className='TextEditor'>
+
+        <div className='TextEditor__content'>
+
+          <div className='TextEditor__content__header'>
+            <p>
+              Editor
+            </p>
+
+            <button>
+              <img src={toggleButtonLogoURL} alt="" />
+            </button>
+          </div>
+
+          <span className='hr'> </span>
+
+          <div className="document-generation-ai__header__settings-section__content">
+  
+  {/* Контейнер настройки текста */}
+  <div className="document-generation-ai__header__settings-section__content__text-editor-container">
+    
+    <p className="document-generation-ai__header__settings-section__content__text-editor-container__text">
+      Настройка текста
+    </p>
+
+    {/* Секция выбора гарнитуры */}
+    <div className="document-generation-ai__header__settings-section__content__text-editor-container__section-n1">
+      <div className={`custom-dropdown ${isDropdownOpen ? 'open' : ''}`} onClick={() => setDropdownOpen(!isDropdownOpen)}>
+        <div style={{ fontFamily: selectedFont }} className="custom-dropdown__selected">{selectedFont}</div>
+        <div className="custom-dropdown__list-container">
+          <div className="custom-dropdown__list-container__header">
+            <p className="custom-dropdown__list-container__header__text">Гарнитура</p>
+            <button className="custom-dropdown__list-container__header__button">
+              <img src={closeDropdownButtonURL} alt="close-dropdown-button" />
+            </button>
+          </div>
+          <div className="custom-dropdown__list-container__list">
+            <section>
+              {fonts.map((font) => (
+                <div key={font} className={selectedFont === font ? "custom-dropdown__option option-selected" : "custom-dropdown__option"} onClick={() => handleFontSelect(font)}>
+                  <img src={fontIconUrl} alt="icon" /> <span>{font}</span>
+                </div>
+              ))}
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Секция выбора начертания и размера */}
+    <div className="document-generation-ai__header__settings-section__content__text-editor-container__section-n2">
+
+      <div className="document-generation-ai__header__settings-section__content__text-editor-container__section-n2__select-font-weight-container">
+        <div className={`custom-dropdown-weight ${isWeightDropdownOpen ? 'open' : ''}`} onClick={() => setWeightDropdownOpen(!isWeightDropdownOpen)}>
+          <div className="custom-dropdown__weight__selected">{selectedWeight}</div>
+          <div className="custom-dropdown-weight__list-container">
+            <div className="custom-dropdown-weight__list-container__list">
+              {weights.map((weight) => (
+                <div
+                  key={weight.value}
+                  className={selectedWeight === weight.label ? "custom-dropdown-weight__option weight-option-selected" : "custom-dropdown-weight__option"}
+                  onClick={() => handleFontWeightSelect(weight)}
+                >
+                  {weight.label}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="document-generation-ai__header__settings-section__content__text-editor-container__section-n2__select-font-size-container">
+        <div className="custom-dropdown-size- container">
+          <div className={`custom-dropdown-size ${isFontSizeDropdownOpen ? 'open' : ''}`} onClick={() => setFontSizeDropdownOpen(!isFontSizeDropdownOpen)}>
+            <div className="custom-dropdown-size__selected">{selectedFontSize}</div>
+            <div className="custom-dropdown-size__button"></div>
+            <div className="custom-dropdown-size__list-container">
+              {fontSizes.map((size) => (
+                <div
+                  key={size}
+                  className="custom-dropdown-size__option"
+                  onClick={() => handleFontSizeSelect(size)}
+                >
+                  {size}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    {/* Секция выравнивания и стилей */}
+    <div className="document-generation-ai__header__settings-section__content__text-editor-container__section-n3">
+
+      <div className="document-generation-ai__header__settings-section__content__text-editor-container__section-n3__select-text-align">
+        <button ref={textAlignStartButtonRef} onClick={() => toggleAlignText(textAlignStartButtonRef, 'left')} className="text-align-selected">
+          <img src={textAlignStartIconURL} alt="" />
+        </button>
+        <button ref={textAlignCenterButtonRef} onClick={() => toggleAlignText(textAlignCenterButtonRef, 'center')} className="">
+          <img src={textAlignCenterIconURL} alt="" />
+        </button>
+        <button ref={textAlignEndButtonRef} onClick={() => toggleAlignText(textAlignEndButtonRef, 'right')} className="">
+          <img src={textAlignEndIconURL} alt="" />
+        </button>
+      </div>
+
+      <div className="document-generation-ai__header__settings-section__content__text-editor-container__section-n3__select-text-attributes">
+        <button className="text-align-selected">
+          <img src={textDecoration1IconURL} alt="" />
+        </button>
+        <button className="">
+          <img src={textDecoration2IconURL} alt="" />
+        </button>
+        <button className="">
+          <img src={textDecoration3IconURL} alt="" />
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  {/* Секция цвета текста */}
+
+  <span className='hr'></span>
+
+  <div className="document-generation-ai__header__settings-section__content__text-color-container">
+    <div className="document-generation-ai__header__settings-section__content__text-color-container__header">
+      <p className="document-generation-ai__header__settings-section__content__text-color-container__header__text">Цвет</p>
+      <button
+        onClick={() => setIsColorContentVisible(true)}
+        className={isColorContentVisible ? 'document-generation-ai__header__settings-section__content__text-color-container__header__button hidden' : 'document-generation-ai__header__settings-section__content__text-color-container__header__button'}>
+        <img src={accordionOpenButtonIconURL} alt="accordion-open-button" />
+      </button>
+    </div>
+
+    <div className={isColorContentVisible ? 'document-generation-ai__header__settings-section__content__text-color-container__main visible' : 'document-generation-ai__header__settings-section__content__text-color-container__main'}>
+      <div className="document-generation-ai__header__settings-section__content__text-color-container__main__section-n1">
+
+        <div className="document-generation-ai__header__settings-section__content__text-color-container__main__section-n1__color-section">
+          <div className="document-generation-ai__header__settings-section__content__text-color-container__main__section-n1__color-section__demo-color"></div>
+          <input
+            type="text"
+            maxLength={6}
+            value={colorInput}
+            onChange={handleColorChange}
+            className="document-generation-ai__header__settings-section__content__text-color-container__main__section-n1__color-section__color-input"
+          />
+        </div>
+
+        <div className="document-generation-ai__header__settings-section__content__text-color-container__main__section-n1__opacity-section">
+          <input type="text" defaultValue={'100'} className="document-generation-ai__header__settings-section__content__text-color-container__main__section-n1__opacity-section__opacity-input" />
+          <p className="document-generation-ai__header__settings-section__content__text-color-container__main__section-n1__opacity-section__text">%</p>
+        </div>
+
+      </div>
+
+      <div className="document-generation-ai__header__settings-section__content__text-color-container__main__section-n2">
+        <button><img src={eyeIconURL} alt="eye-icon-button" /></button>
+        <button onClick={() => setIsColorContentVisible(false)}>
+          <img src={accordionCloseButtonIconURL} alt="accordion-close-button" />
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+        </div>
+
+        <button
+        style={{color: isChatVisible ? '#657085' : '#FBFBFB'}}
+        onClick={() => setIsChatVisible(!isChatVisible)} className='TextEditor__openChat'>
+          {isChatVisible ? 'Закрыть чат' : 'Открыть чат'}
+        </button>
+
+      </section>
+    
+    </>
+  )
+}
+
+
+
+
+
+
 
 const DocumentGenerationAi = ({ editorProp }) => {
 
