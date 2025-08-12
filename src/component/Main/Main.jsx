@@ -315,7 +315,7 @@ const Main = () => {
 
     useEffect(() => {
 
-        checkAuthenticated()
+        // checkAuthenticated()
 
         if (windowLayout.width <= 750) {
 
