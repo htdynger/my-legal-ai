@@ -1,0 +1,240 @@
+.MobileBottomSidebar {
+    position: absolute;
+    height: calc(100vh);
+    width: 100vw;
+    z-index: 999999;
+
+
+    padding: 10px;
+
+    align-items: start;
+    justify-content: end;
+    flex-direction: column;
+
+    /* transform: translateY(210px); */
+    display: flex;
+    backdrop-filter: brightness(1);
+    
+
+    /* background-color: #fff; */
+}
+
+.MobileBottomSidebar span {
+    width: 100vw;
+
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    margin-bottom: 10px;
+    height: 5px;
+}
+
+
+.MobileBottomSidebar__close-area {
+    display: flex;
+    flex: 1;
+    align-items: end;
+}
+
+
+.MobileBottomSidebar section {
+    width: 100%;
+    padding: 15px;
+    gap: 20px;
+    z-index: 999;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: start;
+    border-radius: 42px;
+    height: 210px;
+    /* background: #222631ff; */
+    /* background: #2226318C; */
+    background: #191B23;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 4px 100px 1px #00000099;
+
+    margin-bottom: -240px;
+    /* margin-bottom: -245px; */
+    
+}
+
+
+
+.MobileBottomSidebar section .add-file {
+    width: 100%;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 32px;
+    border: 1px solid #292E3C;
+    background: #222631;
+
+}
+
+.MobileBottomSidebar section .add-file span {
+    width: 163px;
+    height: 21px;
+
+    font-family: Montserrat;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 14px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+
+    margin: 0;
+
+}
+
+.MobileBottomSidebar section .add-file i {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MobileBottomSidebar section div {
+    width: 100%;
+    height: 61px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #222631CC;
+    border: 1px solid #292E3C;
+    padding: 15px;
+    border-radius: 24px;
+}
+
+.MobileBottomSidebar section div span {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 152px;
+    height: 42px;
+    margin: 0;
+}
+
+
+.MobileBottomSidebar section div span p:nth-child(1) {
+    font-family: Montserrat;
+font-weight: 500;
+font-style: Medium;
+font-size: 14px;
+leading-trim: NONE;
+line-height: 150%;
+letter-spacing: 0%;
+color: #373E4E;
+}
+
+.MobileBottomSidebar section div span p:nth-child(2) {
+    font-family: Montserrat;
+font-weight: 500;
+font-style: Medium;
+font-size: 14px;
+leading-trim: NONE;
+line-height: 150%;
+letter-spacing: 0%;
+color: #7E8BA5;
+} 
+
+.MobileBottomSidebar section div button {
+    width: 51px;
+    height: 31px;
+    border-radius: 100px;
+    background: #373E4E;
+
+}
+
+
+
+
+
+.MobileBottomSidebar__fade-in-animation section {
+    animation: MobileBottomSidebar__fade-in-animation 0.4s forwards;
+}
+
+@keyframes MobileBottomSidebar__fade-in-animation {
+    0% {
+        display: flex;
+        margin-bottom: -240px;
+    } 99% {
+        display: flex;
+        margin-bottom: -0px;
+
+    } 100% {
+        display: flex;
+        margin-bottom: -0px;
+    }
+}
+
+
+
+.MobileBottomSidebar__fade-out-animation section {
+    animation: MobileBottomSidebar__fade-out-animation 0.4s forwards;
+}
+
+@keyframes MobileBottomSidebar__fade-out-animation {
+    0% {
+        display: flex;
+        margin-bottom: 0px;
+    } 99% {
+        margin-bottom: -240px;
+        display: flex;
+
+    } 100% {
+        margin-bottom: -240px;
+        display: none;
+
+    }
+}
+
+
+
+.MobileBottomSidebar__fade-in-animation  {
+    animation: MobileBottomSidebar__fade-in-animation-brightness 0.4s forwards;
+}
+
+@keyframes MobileBottomSidebar__fade-in-animation-brightness {
+    0% {
+        backdrop-filter: brightness(1);
+        display: flex;
+    } 99% {
+        display: flex;
+        backdrop-filter: brightness(0.7);
+    } 100% {
+        display: flex;
+        backdrop-filter: brightness(0.7);
+    }
+}
+
+
+.MobileBottomSidebar__fade-out-animation {
+    animation: MobileBottomSidebar__fade-out-animation-brightness 0.4s forwards;
+}
+
+
+@keyframes MobileBottomSidebar__fade-out-animation-brightness {
+    0% {
+        backdrop-filter: brightness(0.7);
+        display: flex;
+    } 99% {
+        display: flex;
+        backdrop-filter: brightness(1);
+    } 100% {
+        display: none;
+        backdrop-filter: brightness(1);
+    }
+}
+
+

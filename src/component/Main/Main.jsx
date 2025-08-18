@@ -44,8 +44,15 @@ import MobileSettings from '../mobile/MobileSettings/MobileSettings.jsx'
 import axios from 'axios'
 
 import { connectAndSendMessage, disconnectSocket } from '../../utils/hooks/socketHelper.js';
+import MobileHeader from '../mobile/MobileHeader/MobileHeader.jsx'
+import MobileInputFooterV2 from '../mobile/MobileInputFooterV2/MobileInputFooterV2.jsx'
 const VITE_API_LEGAI = import.meta.env.VITE_API_LEGAI
 
+
+import AuthAnimatedFrame from '../../animation/AuthAnimatedFrame/AuthAnimatedFrame.jsx'
+import MobileSidebarV2 from '../mobile/MobileSidebarV2/MobileSidebarV2.jsx'
+import MobileTopSidebar from '../mobile/MobileTopSidebar/MobileTopSidebar.jsx'
+import MobileBottomSidebar from '../mobile/MobileBottomSidebar/MobileBottomSidebar.jsx'
 const Main = () => {
 
     const navigate = useNavigate()
@@ -446,6 +453,9 @@ const handleSubmit = () => {
 }
 
 
+
+const [isMobileTopSidebarOpened, setIsMobileTopSidebarOpened] = useState(false)
+const [isMobileBottomSidebarOpened, setIsMobileBottomSidebarOpened] = useState(false)
     
 const inputFormRef = useRef()
 
@@ -593,7 +603,7 @@ const inputFormRef = useRef()
 
                 {location.pathname === '/' && <>
 
-                    <MobileSidebar />
+                    {/* <MobileSidebar />
 
                     <div className='main-750__header-layout'> </div>
                     <header className='main-750__header'> 
@@ -626,7 +636,46 @@ const inputFormRef = useRef()
                             <h2> Задайте мне вопрос </h2>
                         </span>
 
-                    </main>
+                    </main> */}
+
+                    <MobileSidebarV2 />
+
+                    <div
+                        style={{
+                            borderRadius: isMobileSidebarHidden ? `0px` : `48px`,
+                            transform: isMobileSidebarHidden ? `translateX(0px)` : `translateX(310px)`,
+                            transition: `all 0.5s fade-in`
+                        }}
+                        className='main-750-v2'
+                    >
+
+                        <MobileTopSidebar isMobileTopSidebarOpened={isMobileTopSidebarOpened} setIsMobileTopSidebarOpened={setIsMobileTopSidebarOpened} />
+
+                        <MobileBottomSidebar setIsMobileBottomSidebarOpened={setIsMobileBottomSidebarOpened} isMobileBottomSidebarOpened={isMobileBottomSidebarOpened} />
+
+                        
+
+
+                        <MobileHeader setIsMobileTopSidebarOpened={setIsMobileTopSidebarOpened} isMobileTopSidebarOpened={isMobileTopSidebarOpened} title={"Новый чат"} />
+                        
+                        <AuthAnimatedFrame />
+
+
+                        <h1 className='chat-title'>
+                            Начните чат с Legal Ai
+                            {/* {isMobileSidebarHidden} */}
+                        </h1>
+
+
+                        <MobileInputFooterV2 setIsMobileBottomSidebarOpened={setIsMobileBottomSidebarOpened} />
+
+
+
+
+                    </div>
+
+                    
+
                 </>}
 
 
@@ -657,7 +706,7 @@ const inputFormRef = useRef()
 
 
 
-                <MobileInputFooter 
+                {/* <MobileInputFooter 
                     translateY={translateY} 
                     isSwiping={isSwiping} 
                     handleTouchStart={handleTouchStart}
@@ -675,7 +724,7 @@ const inputFormRef = useRef()
                     addNewChat={addNewChat}
 
                     instantToggle={instantToggle}
-                />
+                /> */}
 
                 
                     
@@ -684,6 +733,8 @@ const inputFormRef = useRef()
                 
                 
             </section>}
+
+
         </>
         
         
