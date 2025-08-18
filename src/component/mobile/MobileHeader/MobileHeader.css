@@ -1,0 +1,42 @@
+.MobileHeader {
+    height: 94px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 20px;
+
+
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 10;       /* над контентом */
+}
+
+.MobileHeader button {
+    width: 44px;
+    height: 44px;
+    border-radius: 200px;
+    border: 1px solid #4E546A88;
+
+    
+    background-color: #222631CC;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MobileHeader button:nth-child(1) img {
+    width: 17px;
+    height: 20px;
+    margin-left: -4px;
+}
+
+.MobileHeader h2 {
+    flex: 1;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500px;
+
+}

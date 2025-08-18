@@ -110,7 +110,7 @@ const Sidebar = () => {
     useEffect(() => {
         sidebarRelativeRef.current.classList.add('sidebar-open-instant')
 
-        getChats()
+        // getChats()
     }, [])
 
     
