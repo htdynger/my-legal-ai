@@ -6,7 +6,7 @@
         justify-content: space-between;
         height: 100vh;
         width: 100vw;
-        background-color: #16191F;
+        background-color: #222631;
     }
     
     .main-750__header {
@@ -559,3 +559,43 @@
 
 
 
+.main-750-v2 {
+    display: flex;
+    width: 100vw;
+
+    position: fixed; /* или absolute, если внутри другого фиксированного контейнера */
+    inset: 0;         /* занять весь вьюпорт */
+    height: 100vh; 
+
+    background-color: #121319;
+}
+
+
+.main-750-v2 .chat-title {
+    width: 237px;
+    height: 44px;
+    border-radius: 26px;
+    gap: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: calc(50vh - 22px);
+    left: calc(50vw - 119px);
+
+    background-color: #222631;
+
+
+    font-family: Montserrat;
+font-weight: 500;
+font-style: Medium;
+font-size: 16px;
+leading-trim: NONE;
+line-height: 150%;
+letter-spacing: 0%;
+text-align: center;
+
+color: #657085;
+}
